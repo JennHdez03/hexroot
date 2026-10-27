@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030403">
+    <meta name="description"
+        content="HEX ROOT: explora el escape room, descubre las anomalías y sobrevive al sistema M.A.T.E.O.">
+    <title>Videojuego</title>
+    <link rel="icon" type="image/png" href="img/icono_favi.png">
+    <link rel="stylesheet" href="css/videojuego.css">
+    <link rel="stylesheet" href="css/menu-navegacion.css">
+    <link rel="stylesheet" href="css/efectos-globales.css">
+    <script src="js/efectos-globales.js" defer></script>
+
+</head>
+
+<body>
+    <nav class="hex-nav" id="hexNav" aria-label="Navegación principal">
+
+        <!-- Arco decorativo -->
+        <div class="hex-nav__frame" aria-hidden="true">
+            <img class="hex-nav__frame-image" src="img/hud/radar-ring-green.png" alt="">
+        </div>
+
+        <!-- Opciones de navegación -->
+        <div class="hex-nav__items" id="hexNavItems">
+
+            <a class="hex-nav__item" href="tematica.html">
+                <span class="hex-nav__number">01</span>
+                <span class="hex-nav__label">Tematica</span>
+            </a>
+
+            <a class="hex-nav__item" href="trailer.html">
+                <span class="hex-nav__number">02</span>
+                <span class="hex-nav__label">trailer</span>
+            </a>
+
+            <a class="hex-nav__item" href="galeria.html">
+                <span class="hex-nav__number">03</span>
+                <span class="hex-nav__label">GALERÍA</span>
+            </a>
+
+            <a class="hex-nav__item" href="revista.html">
+                <span class="hex-nav__number">04</span>
+                <span class="hex-nav__label">REVISTA</span>
+            </a>
+
+            <a class="hex-nav__item" href="personajes.html">
+                <span class="hex-nav__number">05</span>
+                <span class="hex-nav__label">PERSONAJES</span>
+            </a>
+
+            <a class="hex-nav__item" href="contacto.html">
+                <span class="hex-nav__number">06</span>
+                <span class="hex-nav__label">CONTACTO</span>
+            </a>
+
+        </div>
+
+        <!-- Botón central -->
+        <button class="hex-nav__toggle" id="hexNavToggle" type="button" aria-label="Abrir menú de navegación"
+            aria-expanded="false" aria-controls="hexNavItems">
+            <img src="img/icono.png" alt="" class="hex-nav__icon">
+        </button>
+
+    </nav>
+
+    <div class="game-noise" aria-hidden="true"></div>
+    <div class="game-cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+
+
+    <!-- Progreso de lectura -->
+    <div class="game-progress" aria-hidden="true">
+        <span id="gameProgressBar"></span>
+    </div>
+
+    <main id="gameExperience">
+
+        <!-- ESCENA 01: PRESENTACIÓN -->
+        <section class="game-scene game-hero escape-presentation" id="escape-room" data-scene="01">
+
+            <div class="scene-grid" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-green" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-pink" aria-hidden="true"></div>
+
+            <div class="scene-index">
+                <span>FILE_001</span>
+                <span>GAME EXPERIENCE</span>
+            </div>
+
+            <div class="escape-presentation-layout">
+
+                <!-- COLUMNA IZQUIERDA -->
+                <div class="escape-intro">
+
+                    <h1 class="escape-title">
+                        EL ESCAPE ROOM
+                    </h1>
+
+                    <div class="escape-info-panel">
+
+                        <div class="escape-info-corner" aria-hidden="true"></div>
+
+                        <p class="escape-info-heading">¿Cómo se juega?</p>
+
+                        <div class="escape-info-text" id="escapeInfoText" aria-live="polite">
+                            <p id="escapeParagraphOne"></p>
+                            <p id="escapeParagraphTwo"></p>
+                        </div>
+
+                        <span class="escape-text-cursor" id="escapeTextCursor" aria-hidden="true">_</span>
+
+                        <p class="escape-terminal-status" id="escapeTerminalStatus">
+                            SYSTEM READY // CLICK IMAGE TO DECODE
+                        </p>
+
+                    </div>
+
+                    <!-- BOTONES GRÁFICOS -->
+                    <div class="escape-buttons">
+
+                        <button class="escape-image-button" type="button" data-message="OBSERVA."
+                            aria-label="Observar el entorno">
+                            <img src="img/hud/button-down-green.png" alt="">
+                            <span>OBSERVA.</span>
+                        </button>
+
+                        <button class="escape-image-button" type="button" data-message="RESUELVE."
+                            aria-label="Resolver las pruebas">
+                            <img src="img/hud/button-down-green.png" alt="">
+                            <span>RESUELVE.</span>
+                        </button>
+
+                        <button class="escape-image-button" type="button" data-message="SOBREVIVE."
+                            aria-label="Sobrevivir a las anomalías">
+                            <img src="img/hud/button-down-green.png" alt="">
+                            <span>SOBREVIVE.</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- COLUMNA DERECHA: IMAGEN CON MARCO -->
+                <div class="escape-game-visual">
+
+                    <button class="escape-image-trigger" id="escapeImageTrigger" type="button"
+                        aria-label="Descifrar información del videojuego" aria-controls="escapeInfoText">
+
+                        <img class="escape-game-image" src="img/juego_cables.jpg"
+                            alt="Vista del videojuego HEX ROOT con la prueba de conexión de cables">
+
+                        <img class="escape-game-frame" src="img/hud/login-frame-green.png" alt="" aria-hidden="true">
+
+                        <span class="escape-game-scan" aria-hidden="true"></span>
+
+                        <span class="escape-image-label">
+                            M.A.T.E.O. // ARCHIVE_001
+                        </span>
+
+                        <span class="escape-image-prompt" id="escapeImagePrompt">
+                            CLICK TO DECRYPT
+                        </span>
+
+                    </button>
+
+                    <span class="escape-visual-data">REC // 001</span>
+
+                </div>
+
+            </div>
+
+            <div class="hero-bottom">
+                <span>SCROLL TO DESCEND</span>
+                <div class="scroll-indicator"><span></span></div>
+                <span>01 / 06</span>
+            </div>
+
+        </section>
+
+        <!-- ESCENA 02: OBJETIVO -->
+        <section class="game-scene game-objective" id="objetivo" data-scene="02">
+
+            <div class="objective-layout">
+                <div class="objective-visual reveal">
+
+                    <div class="objective-image-art">
+                        <img class="objective-game-image" src="img/juego_pov.jpg"
+                            alt="Vista en primera persona del videojuego HEX ROOT">
+                        <div class="objective-light" aria-hidden="true"></div>
+                        <span class="objective-code">ROOM_03 / LOCKED</span>
+                    </div>
+
+
+                    <div class="floating-tag tag-one">ACCESS DENIED</div>
+                    <div class="floating-tag tag-two">UNKNOWN ENTITY</div>
+                </div>
+
+                <div class="objective-copy reveal">
+                    <p class="eyebrow">
+                        <span class="eyebrow-line"></span>
+
+                    </p>
+
+                    <h2>OBJET<span class="text-green">IVO</span></h2>
+
+                    <p class="section-lead">
+                        Encuentra la salida de la Sala de Profesores antes
+                        de que las anomalías logren entrar.
+                    </p>
+
+                    <p class="body-copy">
+                        El jugador deberá observar el entorno, encontrar
+                        pistas, resolver los desafíos y utilizar correctamente
+                        la información encontrada para reconstruir la contraseña.
+                    </p>
+
+
+                    <div class="objective-stats">
+                        <div class="objective-stat">
+                            <strong>03</strong>
+                            <span>Pruebas</span>
+                        </div>
+
+                        <div class="objective-stat">
+                            <strong>01</strong>
+                            <span>Contraseña</span>
+                        </div>
+
+                        <div class="objective-stat">
+                            <strong>12:00</strong>
+                            <span>Minutos</span>
+                        </div>
+                    </div>
+
+
+                    <a href="#pruebas" class="objective-explore-button">
+                        <img src="img/hud/bar-panel-green-1.png" alt="">
+                        <span>EXPLORAR LAS PRUEBAS</span>
+                        <span class="objective-explore-arrow">↘</span>
+                    </a>
+                </div>
+            </div>
+
+            <span class="scene-number">02 — OBJECTIVE</span>
+        </section>
+
+        <!-- ESCENA 03: PRUEBAS -->
+        <section class="game-scene game-challenges" id="pruebas" data-scene="03">
+
+            <div class="challenge-heading reveal">
+                <div>
+                    <p class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        INTERACTIVE CHALLENGES / 003
+                    </p>
+
+                    <h2>LAS <span class="text-green">PRUEBAS</span></h2>
+                </div>
+
+                <div class="challenge-controls">
+                    <span id="challengeCounter">01 / 03</span>
+                    <button id="challengePrev" type="button" aria-label="Prueba anterior">←</button>
+                    <button id="challengeNext" type="button" aria-label="Prueba siguiente">→</button>
+                </div>
+            </div>
+
+            <p class="challenge-intro reveal">
+                Cada pista importa. Cada error tiene consecuencias.
+                Encuentra los fragmentos necesarios para escapar.
+            </p>
+
+            <div class="challenge-viewport" id="challengeViewport">
+                <div class="challenge-track" id="challengeTrack">
+
+                    <article class="challenge-card" data-challenge="01">
+                        <div class="challenge-card-top">
+                            <span>CHALLENGE_01</span>
+                            <span class="challenge-status">01 / 03</span>
+                        </div>
+
+                        <div class="challenge-art challenge-art-cables">
+                            <div class="cable cable-a"></div>
+                            <div class="cable cable-b"></div>
+                            <div class="cable cable-c"></div>
+                            <div class="cable-node node-a"></div>
+                            <div class="cable-node node-b"></div>
+                            <div class="cable-node node-c"></div>
+                            <span class="art-code">CIRCUIT // ERROR</span>
+                        </div>
+
+                        <div class="challenge-card-content">
+                            <p class="card-index">01 — OBSERVA</p>
+                            <h3>CONEXIÓN</h3>
+                            <p>
+                                Interactúa con los cables y encuentra
+                                la conexión correcta.
+                            </p>
+                            <div class="challenge-result">
+                                <span>OBJETIVO</span>
+                                <strong>RESTAURAR CIRCUITO</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="challenge-card" data-challenge="02">
+                        <div class="challenge-card-top">
+                            <span>CHALLENGE_02</span>
+                            <span class="challenge-status">02 / 03</span>
+                        </div>
+
+                        <div class="challenge-art challenge-art-files">
+                            <div class="file-sheet">
+                                <span>STUDENT RECORD</span>
+                                <i></i><i></i><i></i>
+                                <b>?</b>
+                            </div>
+                            <div class="file-sheet file-sheet-back">
+                                <span>ARCHIVE / 07</span>
+                                <i></i><i></i><i></i>
+                            </div>
+                            <span class="art-code">DATA CORRUPTED</span>
+                        </div>
+
+                        <div class="challenge-card-content">
+                            <p class="card-index">02 — RESUELVE</p>
+                            <h3>ARCHIVOS</h3>
+                            <p>
+                                Organiza correctamente los documentos
+                                siguiendo las pistas encontradas.
+                            </p>
+                            <div class="challenge-result">
+                                <span>OBJETIVO</span>
+                                <strong>RECUPERAR INFORMACIÓN</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="challenge-card" data-challenge="03">
+                        <div class="challenge-card-top">
+                            <span>CHALLENGE_03</span>
+                            <span class="challenge-status">03 / 03</span>
+                        </div>
+
+                        <div class="challenge-art challenge-art-puzzle">
+                            <div class="puzzle-piece piece-one"></div>
+                            <div class="puzzle-piece piece-two"></div>
+                            <div class="puzzle-piece piece-three"></div>
+                            <div class="puzzle-piece piece-four"></div>
+                            <span class="art-code">IMAGE FRAGMENTED</span>
+                        </div>
+
+                        <div class="challenge-card-content">
+                            <p class="card-index">03 — SOBREVIVE</p>
+                            <h3>RECONSTRUCCIÓN</h3>
+                            <p>
+                                Reordena las piezas y reconstruye
+                                la imagen que contiene la última pista.
+                            </p>
+                            <div class="challenge-result">
+                                <span>OBJETIVO</span>
+                                <strong>DESCUBRIR EL CÓDIGO</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="challenge-progress">
+                <span id="challengeProgressBar"></span>
+            </div>
+
+            <p class="challenge-hint">
+                <span class="status-dot"></span>
+                DESLIZA PARA EXPLORAR LOS DESAFÍOS
+            </p>
+
+            <div class="password-strip reveal">
+                <div>
+                    <span class="eyebrow">FINAL ACCESS PROTOCOL</span>
+                    <h3>LA CONTRASEÑA</h3>
+                    <p>
+                        Los fragmentos obtenidos durante las pruebas
+                        contienen la clave para desbloquear la salida.
+                    </p>
+                </div>
+
+                <div class="password-display" aria-label="Contraseña oculta">
+                    <span>_</span><span>_</span><span>_</span>
+                    <span>_</span><span>_</span>
+                </div>
+            </div>
+
+            <span class="scene-number">03 — CHALLENGES</span>
+        </section>
+
+        <!-- ESCENA 04: SALA DE PROFESORES -->
+        <section class="game-scene game-room" id="sala-profesores" data-scene="04">
+
+            <div class="room-background" aria-hidden="true">
+                <div class="room-grid"></div>
+                <div class="room-door"></div>
+                <div class="room-light room-light-green"></div>
+                <div class="room-light room-light-pink"></div>
+            </div>
+
+            <div class="room-content reveal">
+                <p class="eyebrow">
+                    <span class="eyebrow-line"></span>
+                    LOCATION FILE / 004
+                </p>
+
+                <h2>SALA DE<br><span>PROFESORES</span></h2>
+
+                <p class="room-subtitle">TU PUNTO DE PARTIDA.</p>
+
+                <div class="room-description">
+                    <p>
+                        La Sala de Profesores es el escenario principal
+                        del escape room. Un espacio cotidiano que se ha
+                        convertido en una zona controlada por M.A.T.E.O.
+                    </p>
+                    <p>
+                        Entre archivos, conexiones y pistas ocultas,
+                        deberás encontrar la información necesaria
+                        para escapar antes de que las anomalías invadan
+                        por completo el lugar.
+                    </p>
+                </div>
+
+                <div class="room-alert">
+                    <span class="status-dot"></span>
+                    LOCATION STATUS: COMPROMISED
+                </div>
+            </div>
+
+            <!-- Panel visual: Sala de Profesores -->
+            <div class="room-visual" aria-label="Escenario de la Sala de Profesores">
+                <img src="img/render (2).jpeg" alt="Vista de la Sala de Profesores dentro de HEX ROOT"
+                    class="room-visual-image">
+            </div>
+
+            <div class="room-side-data">
+                <span>SECTOR 03</span>
+                <span>NO EXIT DETECTED</span>
+                <span>ENTITY ACTIVITY: HIGH</span>
+            </div>
+
+            <span class="scene-number">04 — LOCATION</span>
+        </section>
+
+        // <!-- ESCENA 05: TIEMPO LÍMITE -->
+
+
+        <!-- ESCENA 06: CIERRE -->
+        <section class="game-scene game-ending" id="protocolo-final" data-scene="06">
+
+            <div class="ending-rings" aria-hidden="true">
+                <span></span><span></span><span></span>
+            </div>
+
+            <div class="ending-content reveal">
+                <p class="eyebrow">M.A.T.E.O. // FINAL TRANSMISSION</p>
+
+                <h2>EL SISTEMA<br><span>TE ESTÁ OBSERVANDO.</span></h2>
+
+                <p>
+                    La salida existe. Pero primero tendrás que demostrar
+                    que puedes encontrarla.
+                </p>
+
+                <div class="ending-status">
+                    <span class="status-dot"></span>
+                    CONNECTION TERMINATING...
+                </div>
+
+                <a href="trailer.html" class="game-button game-button-pink">
+                    <span>VOLVER AL TRÁILER</span>
+                    <span class="button-arrow">↗</span>
+                </a>
+            </div>
+
+            <footer class="game-footer">
+                <span>HEX ROOT © 2026</span>
+                <span>SYSTEM FAILURE</span>
+                <a href="index.html">VOLVER AL INICIO ↑</a>
+            </footer>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="js/videojuego.js"></script>
+    <script src="js/menu-navegacion.js" defer></script>
+</body>
+
+</html>

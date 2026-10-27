@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#08080c">
+
+    <title>HEX ROOT</title>
+    <link rel="icon" type="image/png" href="img/icono_favi.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/efectos-globales.css">
+    <script src="js/efectos-globales.js" defer></script>
+</head>
+
+<body class="booting">
+
+    <!-- PANTALLA DE CARGA HEX ROOT -->
+    <section class="boot-screen" id="bootScreen">
+
+        <div class="hud-grid"></div>
+
+        <header class="hud-header">
+            <div class="hud-brand">
+                <i class="dot"></i>
+                HEX ROOT // SYSTEM TERMINAL
+            </div>
+
+            <div id="hudClock" class="hud-clock">00:00:00</div>
+
+            <div class="hud-status">
+                ENCRYPTED CONNECTION
+            </div>
+        </header>
+
+        <main class="hud-main">
+
+            <!-- PANEL IZQUIERDO -->
+            <aside class="hud-panel">
+
+                <h3>SYSTEM DIAGNOSTICS</h3>
+
+                <p>CPU STATUS</p>
+                <strong id="cpuStatus">SCANNING...</strong>
+
+                <div class="data-bar">
+                    <span></span>
+                </div>
+
+                <p>MEMORY ALLOCATION</p>
+                <strong>0x7F 010101</strong>
+
+                <div class="binary-display" id="binaryDisplay">
+                    01001000 01000101<br>
+                    01011000 00100000<br>
+                    01010010 01001111<br>
+                    01001111 01010100
+                </div>
+
+                <small>NODE_001 // BOGOTA</small>
+
+            </aside>
+
+            <!-- NÚCLEO CENTRAL ANIMADO -->
+            <section class="hud-core">
+
+                <div class="core-label">
+                    ● QUANTUM CORE // ACTIVE
+                </div>
+
+                <div class="core-container">
+                    <i class="ring r1"></i>
+                    <i class="ring r2"></i>
+                    <i class="ring r3"></i>
+                    <i class="ring r4"></i>
+
+                    <div class="core-center">
+                        ✦
+                        <b>HEX</b>
+                        <small>0x001</small>
+                    </div>
+                </div>
+
+                <p id="coreStatus">INITIALIZING SYSTEM...</p>
+
+                <div class="progress">
+                    <span id="coreProgress"></span>
+                </div>
+
+                <strong id="corePercentage">00%</strong>
+
+            </section>
+
+            <!-- PANEL DERECHO -->
+            <aside class="hud-panel right">
+
+                <h3>ENCRYPTION PROCESS</h3>
+
+                <p class="pink">DECRYPTING</p>
+                <strong id="decryptText">PASSWORD...</strong>
+
+                <div class="code-window">
+                    01010101<br>
+                    10101010<br>
+                    11001001<br>
+                    00110110
+                </div>
+
+                <div class="radar">
+                    <i></i>
+                </div>
+
+                <p>
+                    FIREWALL:
+                    <b class="pink">UNSTABLE</b>
+                </p>
+
+                <small>ANOMALY DETECTED</small>
+
+            </aside>
+
+        </main>
+
+        <!-- CONSOLA INFERIOR -->
+        <section class="console">
+
+            <h3>● SYSTEM LOG</h3>
+
+            <div id="terminalConsole">
+                <p>&gt; INITIALIZING HEX ROOT...</p>
+                <p>&gt; ESTABLISHING SECURE CONNECTION...</p>
+                <p>&gt; SCANNING UNKNOWN DIMENSION...</p>
+            </div>
+
+        </section>
+
+        <!-- FORMULARIO CON MARCO PNG -->
+        <section class="access-section is-hidden" id="accessSection">
+
+            <div class="access-heading">
+
+                <span class="pink">
+                    IDENTITY REQUIRED
+                </span>
+
+                <h1>IDENTIFY YOURSELF</h1>
+
+                <p>
+                    ENTER YOUR NAME OR ALIAS TO CONTINUE
+                </p>
+
+            </div>
+
+            <form id="accessForm" autocomplete="off" novalidate>
+
+                <label class="access-input" for="username">
+
+                    <span>user@hexroot:</span>
+
+                    <input id="username" name="username" type="text" maxlength="30" placeholder="ENTER_IDENTITY"
+                        autocomplete="off" required aria-describedby="identityError">
+
+                    <span class="identity-error" id="identityError" role="alert">
+                        ⚠ IDENTITY REQUIRED // ENTER YOUR ALIAS
+                    </span>
+
+                    <span class="cursor">_</span>
+
+                </label>
+
+                <button id="accessButton" type="submit">
+                    <span>INITIALIZE ACCESS</span>
+                    <span>↗</span>
+                </button>
+
+            </form>
+
+            <p class="access-warning">
+                <b class="pink">WARNING:</b>
+                UNAUTHORIZED ACCESS MAY CAUSE REALITY FAILURE
+            </p>
+
+        </section>
+
+        <!-- MENSAJE DE AUTORIZACIÓN -->
+        <section class="terminal-response" id="terminalResponse" aria-live="polite">
+
+            <div>✦</div>
+
+            <h2 id="responseText"></h2>
+
+            <p>AUTHENTICATION PROTOCOL COMPLETE</p>
+
+        </section>
+
+        <footer class="hud-footer">
+            <span>HEX ROOT // BUILD 01.0.26</span>
+            <span>04°36' N / 74°05' W</span>
+            <span class="pink">SYSTEM UNSTABLE</span>
+        </footer>
+
+    </section>
+
+    <!-- EFECTOS DE INTERFAZ -->
+    <div class="scanlines"></div>
+    <div class="glitch-overlay"></div>
+    <!-- LUZ DEL CURSOR -->
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+    <!-- CURSOR HUD PERSONALIZADO -->
+    <div class="hud-cursor" id="hudCursor" aria-hidden="true">
+        <svg class="hud-cursor-arrow" viewBox="0 0 64 80">
+            <path class="cursor-arrow-main" d="M8 5 L8 65 L24 48 L36 72 L46 67 L34 43 L57 42 Z" />
+
+            <path class="cursor-arrow-detail" d="M8 5 L34 43 L57 42 Z" />
+
+            <path class="cursor-arrow-line" d="M24 48 L34 43" />
+
+            <path class="cursor-arrow-glitch" d="M12 12 L42 42" />
+        </svg>
+
+        <span class="hud-cursor-corner"></span>
+        <span class="hud-cursor-ring"></span>
+    </div>
+
+    <!-- ESTELA DEL CURSOR -->
+    <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
+
+    <!-- DESTELLO DE CLIC -->
+    <div class="cursor-click-effect" id="cursorClickEffect" aria-hidden="true"></div>
+
+    <!-- MENÚ PRINCIPAL -->
+    <main class="hero" id="inicio">
+
+        <div class="background-grid"></div>
+
+        <!-- PERSONAJES -->
+        <div class="character character-left">
+            <img src="img/nastya_lego%20(2).png" alt="Nastya">
+        </div>
+
+        <div class="character character-right">
+            <img src="img/zuri_lego%20(2).png" alt="Zuri">
+        </div>
+
+        <section class="interface">
+
+            <div class="system-label">
+                <span class="system-status">● SYSTEM STATUS: UNSTABLE</span>
+                <span class="system-code">HEX-ROOT_001</span>
+                <span class="system-user" id="systemUser">USER: GUEST</span>
+            </div>
+
+            <!-- LOGOTIPO -->
+            <div class="logo-container">
+                <img src="img/logo.png" class="logo-image" alt="HEX ROOT — Un mundo, dos anomalías">
+            </div>
+
+            <!-- LOS SIETE BOTONES DEL MENÚ -->
+            <nav class="main-menu" aria-label="Menú principal">
+
+                <a href="tematica.html">
+                    <span>TEMÁTICA</span>
+                    <b>↗</b>
+                </a>
+
+                <a href="trailer.html">
+                    <span>TRÁILER</span>
+                    <b>↗</b>
+                </a>
+
+                <a href="videojuego.html">
+                    <span>VIDEOJUEGO</span>
+                    <b>↗</b>
+                </a>
+
+                <a href="galeria.html">
+                    <span>GALERÍA</span>
+                    <b>↗</b>
+                </a>
+
+                <a href="revista.html">
+                    <span>REVISTA</span>
+                    <b>↗</b>
+                </a>
+
+                <a href="personaje.html">
+                    <span>PERSONAJES</span>
+                    <b>↗</b>
+                </a>
+
+                <a href="contacto.html">
+                    <span>CONTACTO</span>
+                    <b>↗</b>
+                </a>
+
+            </nav>
+
+            <!-- BOTÓN INDEPENDIENTE DE DESCARGA -->
+            <a class="download-button" href="descargas/HEX-ROOT.zip">
+                <svg class="download-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path d="M12 3V15" />
+                    <path d="M7 10L12 15L17 10" />
+                    <path d="M4 17V21H20V17" />
+                </svg>
+
+                <span class="download-copy">
+                    <strong>JUGAR</strong>
+                    <small>DOWNLOAD GAME // ZIP</small>
+                </span>
+            </a>
+
+            <div class="bottom-decoration">
+                — REALITY.EXE // CORRUPTED —
+            </div>
+
+        </section>
+
+        <div class="side-info left">
+            FUNDACIÓN UNIVERSITARIA SAN MATEO · EXPERIMENTAL HORROR EXPERIENCE
+        </div>
+
+        <div class="side-info right">
+            DIMENSION: UNKNOWN · VERSION 01.0.26
+        </div>
+
+        <footer class="footer">
+            <span class="copyright">© HEX ROOT — ALL SYSTEMS UNSTABLE</span>
+
+            <span class="connection-status">
+                CONNECTION ACTIVE
+                <i class="connection-dot"></i>
+            </span>
+        </footer>
+
+    </main>
+
+    <script src="js/main.js" defer></script>
+
+</body>
+
+</html>

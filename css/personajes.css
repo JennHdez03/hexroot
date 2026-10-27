@@ -1,0 +1,1012 @@
+
+/* =========================================
+   HEX ROOT — PERSONAJES
+========================================= */
+*{
+    text-wrap: balance; 
+}
+
+/* Fondo: zona blanca amplia para proteger la legibilidad del título */
+.characters-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: #050505;
+    color: #f5f5f5;
+}
+
+.characters-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    background: #050505;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 27%,
+        0 48%
+    );
+    pointer-events: none;
+}
+
+/* Cabecera */
+.characters-heading {
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    min-height: 390px;
+    padding: 85px 20px 100px;
+    text-align: center;
+    color: #050505;
+}
+
+.characters-index {
+    position: relative;
+    z-index: 2;
+    margin: 0 0 28px;
+    color: #161616;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+}
+
+/* Área propia del título */
+.gravity-title {
+    position: relative;
+    width: min(100%, 1000px);
+    height: 150px;
+    margin: 0 auto;
+}
+
+.gravity-title__fallback {
+    margin: 0;
+    font-family: "Space Mono", monospace;
+    font-size: clamp(28px, 5.3vw, 68px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.065em;
+    color: #050505;
+}
+
+.gravity-title__canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    cursor: crosshair;
+}
+
+.gravity-title.is-ready .gravity-title__fallback {
+    visibility: hidden;
+}
+
+.gravity-hint {
+    position: relative;
+    z-index: 2;
+    margin: 10px 0 0;
+    color: #333;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+}
+
+/* Reduce la intensidad de la retícula de fondo */
+.vault-canvas {
+    opacity: 0.55;
+}
+
+/* Evita que el fondo compita con el texto de los perfiles */
+.characters-grain {
+    opacity: 0.045;
+}
+
+@media (max-width: 760px) {
+    .characters-heading {
+        min-height: 330px;
+        padding: 70px 18px 75px;
+    }
+
+    .gravity-title {
+        height: 120px;
+    }
+
+    .gravity-title__fallback {
+        font-size: clamp(26px, 8vw, 44px);
+    }
+
+    .characters-section::before {
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            100% 24%,
+            0 36%
+        );
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gravity-title__canvas {
+        cursor: default;
+    }
+}
+
+
+/* Fondo hexagonal */
+.vault-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Textura sutil */
+.characters-grain {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.5) 0.6px,
+        transparent 0.8px
+    );
+    background-size: 5px 5px;
+    mix-blend-mode: overlay;
+}
+
+/* -----------------------------------------
+   TÍTULO
+----------------------------------------- */
+
+.characters-heading {
+    position: relative;
+    z-index: 1;
+    padding: clamp(60px, 8vw, 115px) 20px 100px;
+    text-align: center;
+    color: #050505;
+}
+
+.characters-index {
+    margin: 0 0 22px;
+    color: #111;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+}
+
+.characters-heading h2 {
+    margin: 0;
+    font-family: "Space Mono", monospace;
+    font-size: clamp(30px, 5.2vw, 68px);
+    line-height: 1.1;
+    letter-spacing: -0.07em;
+}
+
+.heading-symbol {
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 32px;
+    animation: symbolPulse 3s ease-in-out infinite;
+}
+
+@keyframes symbolPulse {
+    0%, 100% { opacity: 0.45; transform: rotate(0); }
+    50% { opacity: 1; transform: rotate(90deg); }
+}
+
+/* -----------------------------------------
+   PERFILES
+----------------------------------------- */
+
+.character-profile {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(28px, 7vw, 110px);
+    padding: clamp(45px, 7vw, 100px) clamp(24px, 8vw, 130px);
+}
+
+.character-profile--nastya {
+    color: #f5f5f5;
+}
+
+.character-profile--zuri {
+    color: #080808;
+}
+
+/* Alternar posición de imagen y texto */
+.character-profile--zuri .character-visual {
+    order: 2;
+}
+
+.character-profile--zuri .character-info {
+    order: 1;
+}
+
+/* -----------------------------------------
+   IMÁGENES
+----------------------------------------- */
+
+.character-visual {
+    position: relative;
+    min-width: 0;
+}
+
+.visual-label,
+.visual-coordinate {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+}
+
+.visual-label {
+    margin-bottom: 14px;
+}
+
+.visual-coordinate {
+    margin-top: 14px;
+    text-align: right;
+    opacity: 0.7;
+}
+
+.character-visual--nastya .visual-label,
+.character-visual--nastya .visual-coordinate {
+    color: var(--vault-green);
+}
+
+.character-visual--zuri .visual-label,
+.character-visual--zuri .visual-coordinate {
+    color: #087e22;
+}
+
+.visual-frame {
+    position: relative;
+    min-height: 340px;
+    aspect-ratio: 4 / 5;
+    display: grid;
+    place-items: center;
+    border: 1px solid currentColor;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.character-visual--nastya .visual-frame {
+    border-color: rgba(22, 255, 0, 0.65);
+    box-shadow: 0 0 35px rgba(22, 255, 0, 0.08);
+}
+
+.character-visual--zuri .visual-frame {
+    border-color: rgba(0, 100, 20, 0.65);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.character-portrait {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    object-fit: contain;
+    object-position: center bottom;
+    transition: transform 0.6s cubic-bezier(.2, .8, .2, 1);
+}
+
+.character-visual:hover .character-portrait {
+    transform: scale(1.045);
+}
+
+.visual-crosshair {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: var(--vault-magenta);
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.visual-crosshair--one {
+    top: 12px;
+    left: 12px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+}
+
+.visual-crosshair--two {
+    right: 12px;
+    bottom: 12px;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+/* -----------------------------------------
+   DATOS Y NOMBRES HOLOGRÁFICOS
+----------------------------------------- */
+
+.character-kicker {
+    margin: 0 0 15px;
+    color: var(--vault-green);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+}
+
+.character-profile--zuri .character-kicker {
+    color: #087e22;
+}
+
+.holo-name {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: min(100%, 460px);
+    min-height: 100px;
+    padding: 20px 24px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(22, 255, 0, 0.75);
+    border-radius: 3px;
+    background:
+        linear-gradient(
+            115deg,
+            rgba(22, 255, 0, 0.12),
+            rgba(5, 5, 5, 0.9) 45%,
+            rgba(234, 0, 229, 0.12)
+        );
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition:
+        transform 0.25s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.holo-name--zuri {
+    border-color: rgba(0, 125, 25, 0.8);
+    background:
+        linear-gradient(
+            115deg,
+            rgba(0, 180, 35, 0.12),
+            rgba(255, 255, 255, 0.85) 48%,
+            rgba(234, 0, 229, 0.08)
+        );
+    color: #080808;
+}
+
+.holo-name__text {
+    position: relative;
+    z-index: 2;
+    font-family: "Space Mono", monospace;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.08em;
+    text-shadow: 2px 0 rgba(234, 0, 229, 0.65);
+}
+
+.holo-name__symbol {
+    position: relative;
+    z-index: 2;
+    font-size: 25px;
+    color: var(--vault-magenta);
+}
+
+.holo-name__glare {
+    position: absolute;
+    z-index: 1;
+    top: -100%;
+    left: -60%;
+    width: 45%;
+    height: 300%;
+    transform: rotate(28deg);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.42),
+        rgba(234, 0, 229, 0.3),
+        transparent
+    );
+    transition: left 0.55s ease;
+    pointer-events: none;
+}
+
+.holo-name:hover .holo-name__glare,
+.holo-name:focus-visible .holo-name__glare {
+    left: 130%;
+}
+
+.holo-name:hover,
+.holo-name:focus-visible,
+.holo-name[aria-expanded="true"] {
+    transform: perspective(800px) rotateX(2deg) rotateY(-2deg);
+    border-color: var(--vault-magenta);
+    box-shadow:
+        0 0 12px rgba(234, 0, 229, 0.45),
+        inset 0 0 20px rgba(234, 0, 229, 0.09);
+    outline: none;
+}
+
+.character-fullname {
+    margin: 17px 0;
+    font-family: Arial, sans-serif;
+    font-size: clamp(20px, 2.5vw, 29px);
+    font-weight: 700;
+}
+
+.character-data {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 28px;
+}
+
+.character-data span {
+    padding: 8px 10px;
+    border: 1px solid currentColor;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+}
+
+.character-profile--nastya .character-data span {
+    border-color: rgba(22, 255, 0, 0.3);
+}
+
+.character-profile--zuri .character-data span {
+    border-color: rgba(0, 100, 20, 0.35);
+}
+
+/* -----------------------------------------
+   TEXTO DIGITADO
+----------------------------------------- */
+
+.character-bio {
+    width: min(100%, 530px);
+    margin-top: 18px;
+    padding: 18px;
+    border-left: 2px solid var(--vault-magenta);
+    background: rgba(0, 0, 0, 0.68);
+    color: #f5f5f5;
+    font-family: "Space Mono", monospace;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.character-bio[hidden] {
+    display: none;
+}
+
+.bio-status {
+    margin: 0 0 12px;
+    color: var(--vault-green);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+}
+
+.bio-status span {
+    color: var(--vault-magenta);
+    animation: statusBlink 0.8s steps(2, start) infinite;
+}
+
+.typed-text {
+    white-space: pre-wrap;
+}
+
+.typed-text::after {
+    content: "▋";
+    display: inline-block;
+    margin-left: 3px;
+    color: var(--vault-magenta);
+    animation: statusBlink 0.7s steps(2, start) infinite;
+}
+
+.character-instruction {
+    margin: 20px 0;
+    font-size: 9px;
+    line-height: 1.8;
+    opacity: 0.65;
+}
+
+.character-traits {
+    margin-top: 35px;
+    font-family: Arial, sans-serif;
+    font-size: clamp(13px, 1.5vw, 18px);
+    font-weight: 700;
+    line-height: 1.8;
+}
+
+.character-traits i {
+    color: var(--vault-magenta);
+    font-style: normal;
+}
+
+/* -----------------------------------------
+   TRANSICIÓN Y PIE
+----------------------------------------- */
+
+.universe-transition {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px clamp(24px, 8vw, 130px);
+    color: var(--vault-magenta);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+}
+
+.transition-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        var(--vault-magenta),
+        var(--vault-green),
+        transparent
+    );
+}
+
+.characters-footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 25px clamp(24px, 5vw, 70px);
+    border-top: 1px solid rgba(22, 255, 0, 0.35);
+    color: var(--vault-green);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+}
+
+.characters-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.characters-footer a:hover {
+    color: var(--vault-magenta);
+}
+
+@keyframes statusBlink {
+    to { visibility: hidden; }
+}
+
+/* -----------------------------------------
+   RESPONSIVE
+----------------------------------------- */
+
+@media (max-width: 760px) {
+    .characters-heading {
+        padding-bottom: 50px;
+    }
+
+    .character-profile {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 35px 22px 65px;
+    }
+
+    .character-profile--zuri .character-visual,
+    .character-profile--zuri .character-info {
+        order: initial;
+    }
+
+    .visual-frame {
+        min-height: 260px;
+        aspect-ratio: 4 / 4.5;
+    }
+
+    .character-portrait {
+        min-height: 260px;
+    }
+
+    .holo-name {
+        min-height: 82px;
+    }
+
+    .character-traits {
+        margin-top: 25px;
+    }
+
+    .characters-footer {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .heading-symbol,
+    .bio-status span,
+    .typed-text::after {
+        animation: none;
+    }
+
+    .character-portrait,
+    .holo-name,
+    .holo-name__glare {
+        transition: none;
+    }
+}
+
+
+/* TÍTULO PRINCIPAL */
+.characters-heading {
+    position: relative;
+    z-index: 2;
+    min-height: 430px;
+    padding: 90px 20px 100px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.characters-index {
+    color: #16ff00;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    margin-bottom: 30px;
+}
+
+.gravity-title {
+    width: min(100%, 1250px);
+    height: 250px;
+    margin: 0 auto;
+}
+
+.gravity-title__fallback {
+    color: #ffffff;
+    font-size: clamp(42px, 7.5vw, 100px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.065em;
+}
+
+.gravity-hint {
+    color: #d5d5d5;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+}
+
+@media (max-width: 760px) {
+    .characters-heading {
+        min-height: 330px;
+        padding: 65px 16px 70px;
+    }
+
+    .gravity-title {
+        height: 155px;
+    }
+
+    .gravity-title__fallback {
+        font-size: clamp(32px, 8vw, 54px);
+    }
+}
+
+
+/* =========================================
+   PERSONAJES DECORATIVOS JUNTO AL TÍTULO
+   ========================================= */
+
+.characters-heading {
+    position: relative;
+    isolation: isolate;
+}
+
+/* Contenedor independiente: no mueve el título */
+.heading-characters {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: visible;
+    pointer-events: none;
+}
+
+/* Imágenes de la cabecera */
+.heading-character {
+    position: absolute;
+    bottom: -55px;
+    width: clamp(380px, 35vw, 350px);
+    height: auto;
+    max-height: 340px;
+    object-fit: contain;
+    object-position: bottom;
+    opacity: 0.95;
+    filter:
+        drop-shadow(0 0 12px #ea00e530)
+        drop-shadow(0 0 18px #16ff0020);
+}
+
+/* Nastya a la izquierda */
+.heading-character--nastya {
+    left: 2%;
+}
+
+/* Zuri a la derecha */
+.heading-character--zuri {
+    right: 2%;
+}
+
+/* Título y textos por encima de las imágenes */
+.characters-index,
+.gravity-title,
+.gravity-hint {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 760px) {
+    .heading-character {
+        width: 29vw;
+        max-height: 600px;
+        bottom: -15px;
+        opacity: 0.45;
+    }
+
+    .heading-character--nastya {
+        left: -5%;
+    }
+
+    .heading-character--zuri {
+        right: -5%;
+    }
+}
+
+/* BOTÓN GRÁFICO HUD MAGENTA */
+
+.character-image-button {
+    position: relative;
+    display: block;
+    width: min(100%, 460px);
+    height: 110px;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    transform-style: flat;
+}
+
+.character-image-button > img {
+    position: absolute;
+    inset: 0;
+    width: 50%;
+    height: 100%;
+    object-fit: fill;
+    pointer-events: none;
+    transition: filter 250ms ease, transform 250ms ease;
+}
+
+.character-image-button__label {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    z-index: 2;
+    transform: translateY(-50%);
+    color: #fff;
+    font-family: "Space Mono", monospace;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.07em;
+    text-shadow: 2px 0 #ea00e5;
+    pointer-events: none;
+}
+
+.character-image-button:hover > img,
+.character-image-button:focus-visible > img {
+    filter: drop-shadow(0 0 12px #ea00e5a0);
+    transform: scale(1.025);
+}
+
+.character-image-button:focus-visible {
+    outline: 2px solid #16ff00;
+    outline-offset: 4px;
+}
+
+.character-image-button:hover,
+.character-image-button:focus-visible,
+.character-image-button[aria-expanded="true"] {
+    box-shadow: none;
+}
+
+@media (max-width: 760px) {
+    .character-image-button {
+        height: 90px;
+    }
+
+    .character-image-button__label {
+        font-size: 32px;
+    }
+}
+
+
+/* =========================================
+   ZURI — LEGIBILIDAD Y BOTÓN VERDE
+========================================= */
+
+/* Nombre completo */
+.character-info--zuri .character-fullname {
+    color: #ffffff;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Etiqueta superior */
+.character-info--zuri .character-kicker {
+    color: #16ff00;
+    text-shadow: 0 0 8px #16ff0040;
+}
+
+/* Datos de Zuri */
+.character-info--zuri .character-data span {
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.88);
+    border: 1px solid rgba(22, 255, 0, 0.55);
+}
+
+/* Instrucción para abrir la biografía */
+.character-info--zuri .character-instruction {
+    color: #ffffff;
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+/* Rasgos del personaje */
+.character-info--zuri .character-traits {
+    color: #ffffff;
+    text-shadow: 0 1px 5px #000000;
+}
+
+.character-info--zuri .character-traits i {
+    color: #ea00e5;
+}
+
+/* Botón gráfico verde */
+.character-info--zuri .character-image-button {
+    position: relative;
+    display: block;
+    width: min(100%, 460px);
+    height: 110px;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+/* Imagen HUD */
+.character-info--zuri .character-image-button > img {
+    position: absolute;
+    inset: 0;
+    width: 50%;
+    height: 100%;
+    object-fit: fill;
+    pointer-events: none;
+    transition: filter 250ms ease, transform 250ms ease;
+}
+
+/* Texto ZURI encima de la imagen */
+.character-info--zuri .character-image-button__label {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    z-index: 2;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-family: "Space Mono", monospace;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.07em;
+    text-shadow: 2px 0 #16ff00, -1px 0 #ea00e5;
+    pointer-events: none;
+}
+
+/* Iluminación al pasar el cursor */
+.character-info--zuri .character-image-button:hover > img,
+.character-info--zuri .character-image-button:focus-visible > img {
+    filter: drop-shadow(0 0 12px #16ff0090);
+    transform: scale(1.025);
+}
+
+/* Biografía */
+.character-info--zuri .character-bio {
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.95);
+    border-left: 3px solid #16ff00;
+    box-shadow: 0 0 20px #16ff0015;
+}
+
+.character-info--zuri .bio-status {
+    color: #16ff00;
+}
+
+@media (max-width: 760px) {
+    .character-info--zuri .character-image-button {
+        height: 90px;
+    }
+
+    .character-info--zuri .character-image-button__label {
+        font-size: 32px;
+    }
+}
+
+
+/* =========================================
+   HEX ROOT — CABECERA DE PERSONAJES EN TABLET
+   ========================================= */
+
+@media (min-width: 601px) and (max-width: 1100px) {
+
+    .characters-heading {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+    }
+
+    /* Mantener el título por encima de los PNG */
+    .characters-heading .characters-index,
+    .characters-heading .gravity-title,
+    .characters-heading .gravity-hint {
+        position: relative;
+        z-index: 3;
+    }
+
+    /* Contenedor de los personajes decorativos */
+    .characters-heading .heading-characters {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    /* Reducir los PNG y mantener sus proporciones */
+    .characters-heading .heading-character {
+        position: absolute;
+        top: 48%;
+        width: clamp(100px, 15vw, 155px);
+        max-width: 17%;
+        height: auto;
+        object-fit: contain;
+        transform: translateY(-50%);
+        opacity: 0.95;
+    }
+
+    /* Personaje del lado izquierdo */
+    .characters-heading .heading-character--nastya {
+        left: 1.5%;
+    }
+
+    /* Personaje del lado derecho */
+    .characters-heading .heading-character--zuri {
+        right: 1.5%;
+    }
+
+    /* Reservar espacio central para el título */
+    .characters-heading .gravity-title {
+        width: 70%;
+        max-width: 700px;
+        margin-inline: auto;
+    }
+
+    .characters-heading .gravity-title__canvas {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .characters-heading .gravity-title__fallback {
+        font-size: clamp(30px, 4.2vw, 46px);
+        line-height: 1.2;
+        text-align: center;
+    }
+}

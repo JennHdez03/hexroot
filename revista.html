@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="description" content="HEX ROOT — Archivo editorial del universo M.A.T.E.O.">
+    <title>Revista</title>
+    <link rel="icon" type="image/png" href="img/icono_favi.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/revista.css">
+    <script src="js/revista.js" defer></script>
+    <link rel="stylesheet" href="css/menu-navegacion.css">
+    <link rel="stylesheet" href="css/efectos-globales.css">
+    <link rel="stylesheet" href="css/revista-flipbook.css">
+    <script src="js/efectos-globales.js" defer></script>
+
+</head>
+
+<body>
+    <nav class="hex-nav" id="hexNav" aria-label="Navegación principal">
+
+        <!-- Arco decorativo -->
+        <div class="hex-nav__frame" aria-hidden="true">
+            <img class="hex-nav__frame-image" src="img/hud/radar-ring-green.png" alt="">
+        </div>
+
+        <!-- Opciones de navegación -->
+        <div class="hex-nav__items" id="hexNavItems">
+
+            <a class="hex-nav__item" href="tematica.html">
+                <span class="hex-nav__number">01</span>
+                <span class="hex-nav__label">Tematica</span>
+            </a>
+
+            <a class="hex-nav__item" href="videojuego.html">
+                <span class="hex-nav__number">02</span>
+                <span class="hex-nav__label">VIDEOJUEGO</span>
+            </a>
+
+            <a class="hex-nav__item" href="galeria.html">
+                <span class="hex-nav__number">03</span>
+                <span class="hex-nav__label">GALERÍA</span>
+            </a>
+
+            <a class="hex-nav__item" href="trailer.html">
+                <span class="hex-nav__number">04</span>
+                <span class="hex-nav__label">trailer</span>
+            </a>
+
+            <a class="hex-nav__item" href="personaje.html">
+                <span class="hex-nav__number">05</span>
+                <span class="hex-nav__label">PERSONAJES</span>
+            </a>
+
+            <a class="hex-nav__item" href="contacto.html">
+                <span class="hex-nav__number">06</span>
+                <span class="hex-nav__label">CONTACTO</span>
+            </a>
+
+        </div>
+
+        <!-- Botón central -->
+        <button class="hex-nav__toggle" id="hexNavToggle" type="button" aria-label="Abrir menú de navegación"
+            aria-expanded="false" aria-controls="hexNavItems">
+            <img src="img/icono.png" alt="" class="hex-nav__icon">
+        </button>
+
+    </nav>
+
+    <main class="magazine-page" id="top">
+
+        <!-- FONDO DE ONDAS PARA TODA LA REVISTA -->
+        <div class="waves waves--page" id="wavesBackground" aria-hidden="true">
+            <canvas class="waves__canvas" id="wavesCanvas"></canvas>
+        </div>
+
+
+        <!-- INTRODUCCIÓN EDITORIAL -->
+
+        <section class="editorial-intro" id="editorialIntro">
+            <!-- PERSONAJES DECORATIVOS -->
+            <div class="intro-characters" aria-hidden="true">
+                <img class="intro-character intro-character--nastya" src="img/nastya_revista.png" alt="">
+                <img class="intro-character intro-character--zuri" src="img/zuri_revista.png" alt="">
+            </div>
+
+            <div class="editorial-noise" aria-hidden="true"></div>
+            <div class="editorial-frame editorial-frame--magenta" aria-hidden="true">
+                <img class="editorial-hud-image" src="img/hud/button-panel-magenta-1.png" alt="">
+                <div class="frame-top-label signal-type">
+                    <span>Revista editorial</span>
+                </div>
+            </div>
+
+            <div class="editorial-content">
+                <h1 class="editorial-title">
+                    <span class="glitch-text typewriter-text" data-glitch="DEL PAPEL AL" data-typewriter>DEL PAPEL
+                        AL</span>
+                    <span class="glitch-text typewriter-text" data-glitch="UNIVERSO DIGITAL" data-typewriter>UNIVERSO
+                        DIGITAL</span>
+                </h1>
+
+                <div class="editorial-description">
+                    <p data-text-reveal class="typewriter-text" data-typewriter>
+                        La revista explora el origen de los personajes, sus universos y el
+                        proceso mediante el cual Nastya y Zuri llegan a formar parte del videojuego.
+                    </p>
+                    <p data-text-reveal class="typewriter-text" data-typewriter>
+                        A través de sus páginas se presenta la evolución del proyecto:
+                        desde los personajes y sus mundos originales hasta la construcción
+                        del universo 3D y el desarrollo del Escape Room.
+                    </p>
+                </div>
+            </div>
+
+            <a class="editorial-scroll" href="#magazineArchive">
+                <span>DESPLAZARSE POR EL ARCHIVO</span>
+                <span class="scroll-arrow">↓</span>
+            </a>
+        </section>
+
+        <!-- ARCHIVO DIGITAL -->
+        <section class="magazine-archive" id="magazineArchive">
+
+            <!-- PANEL HUD SUPERIOR -->
+            <div class="archive-hud archive-hud--top" aria-hidden="true">
+                <div class="hud-corner hud-corner--left">
+                    <span>HEX ROOT // ARCHIVE</span>
+                    <small>DATA RECOVERY SYSTEM</small>
+                </div>
+
+                <div class="hud-center">
+                    <span>MEMORY SYSTEM</span>
+                    <i></i>
+                </div>
+
+                <div class="hud-corner hud-corner--right">
+                    <span>JENN//YERIS</span>
+                    <small>M.A.T.E.O. // HR-001</small>
+                </div>
+            </div>
+
+            <!-- PANEL HUD INFERIOR -->
+            <div class="archive-hud archive-hud--bottom" aria-hidden="true">
+                <div class="hud-corner hud-corner--left">
+                    <span>SYSTEM ONLINE</span>
+                    <small>VISUAL DATA RECOVERED</small>
+                </div>
+
+                <div class="hud-center">
+                    <span> </span>
+                    <i> </i>
+                </div>
+
+                <div class="hud-corner hud-corner--right">
+                    <span>HEX ROOT // EDITORIAL</span>
+                    <small>ARCHIVE 001 / 016</small>
+                </div>
+            </div>
+
+            <div class="archive-grid" aria-hidden="true"></div>
+
+            <div class="archive-heading" data-reveal>
+                <h2>¿QUÉ<span>_</span>ENCONTRARÁS?</h2>
+                <p>FRAGMENTOS RECUPERADOS DEL UNIVERSO HEX ROOT.</p>
+            </div>
+
+            <div class="archive-layout">
+
+                <div class="archive-copy" data-reveal>
+                    <span class="archive-label">PUBLICATION ID // HR-001</span>
+                    <h3>UNA REALIDAD<br>FUERA DE CONTROL.</h3>
+
+                    <p>
+                        Personajes, escenarios, anomalías y procesos visuales:
+                        una publicación sobre la construcción del universo de HEX ROOT.
+                    </p>
+
+                    <div class="archive-specs">
+                        <span>01 / PERSONAJES</span>
+                        <span>02 / UNIVERSOS</span>
+                        <span>03 / ANOMALÍAS</span>
+                        <span>04 / VIDEOJUEGO</span>
+                    </div>
+
+                    <a class="open-magazine" href="#" id="openFlipbook" aria-label="Abrir revista digital HEX ROOT">
+                        <span>↗</span>
+                        <span>ABRIR REVISTA DIGITAL</span>
+                        <span class="pdf-tag">PDF / 001</span>
+                    </a>
+
+
+
+
+                </div>
+
+                <div class="cover-scene" id="coverScene">
+                    <div class="cover-orbit orbit-one"></div>
+                    <div class="cover-orbit orbit-two"></div>
+
+                    <div class="cover-object" id="coverObject">
+                        <img id="magCover" src="img/revista/portada-revista.png"
+                            alt="Portada de la revista de HEX ROOT">
+
+                        <div class="cover-placeholder" id="coverPlaceholder">
+                            <span>HEX ROOT / 001</span>
+                            <strong>MEMORY<br>ERROR</strong>
+                            <span>VISUAL ARCHIVE // M.A.T.E.O.</span>
+                        </div>
+                        <div class="cover-overlay" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- VISOR INTERACTIVO HEX ROOT -->
+    <div class="hr-flipbook-overlay" id="hrFlipbookOverlay" aria-hidden="true">
+
+        <div class="hr-flipbook-window">
+
+            <header class="hr-flipbook-header">
+                <div>
+                    <span class="hr-flipbook-eyebrow">M.A.T.E.O. // ARCHIVE SYSTEM</span>
+                    <h2>HEX ROOT <span>— DIGITAL EDITION</span></h2>
+                </div>
+
+                <button type="button" id="closeFlipbook" class="hr-flipbook-close"
+                    aria-label="Cerrar revista">✕</button>
+            </header>
+
+            <div class="hr-flipbook-loading" id="flipbookLoading">
+                <span class="hr-loader"></span>
+                <p>RECUPERANDO ARCHIVO EDITORIAL...</p>
+            </div>
+
+            <div class="hr-flipbook-book" id="flipbookBook"></div>
+
+            <div class="hr-flipbook-error" id="flipbookError" hidden>
+                NO SE PUDO CARGAR EL ARCHIVO. COMPRUEBA LA RUTA DEL PDF.
+            </div>
+
+            <footer class="hr-flipbook-controls">
+                <button type="button" id="flipPrev" aria-label="Página anterior">
+                    ← ANTERIOR
+                </button>
+
+                <span id="flipPageCounter">01 / --</span>
+
+                <button type="button" id="flipNext" aria-label="Página siguiente">
+                    SIGUIENTE →
+                </button>
+            </footer>
+
+            <p class="hr-flipbook-hint">
+                ARRASTRA LAS ESQUINAS PARA PASAR LAS PÁGINAS
+            </p>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+    <script src="js/revista-flipbook.js"></script>
+    <script src="js/revista.js" defer></script>
+    <script src="js/menu-navegacion.js" defer></script>
+    <script src="js/efectos-globales.js" defer></script>
+    
+</body>
+
+</html>

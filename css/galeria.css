@@ -1,0 +1,773 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #030403;
+    --green: #00f52a;
+    --lime: #b8ff3c;
+    --pink: #ff19c8;
+    --white: #f4f4f4;
+    --muted: #818881;
+    --title-font: 'Orbitron', sans-serif;
+    --body-font: 'Rajdhani', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    text-wrap: balance; 
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--bg);
+}
+
+body {
+    color: var(--white);
+    font-family: var(--body-font);
+    overflow-x: hidden;
+}
+
+.gallery-noise {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    opacity: .055;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+.gallery-page {
+    min-height: 100svh;
+    position: relative;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 50% 48%, rgba(0, 245, 42, .07), transparent 48%),
+        #030403;
+}
+
+.gallery-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(184,255,60,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,255,60,.035) 1px, transparent 1px);
+    background-size: 55px 55px;
+    mask-image: linear-gradient(transparent, black 15%, black 85%, transparent);
+}
+
+
+.gallery-section {
+    min-height: 100svh;
+    padding: 105px 5vw 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-title {
+    margin: 0;
+    text-align: center;
+    font-family: var(--title-font);
+    font-size: clamp(2rem, 5.5vw, 5.5rem);
+    font-weight: 900;
+    letter-spacing: -.07em;
+    line-height: 1.15;
+}
+
+.gallery-title span {
+    color: var(--lime);
+}
+
+.gallery-instruction {
+    margin: 18px 0 0;
+    color: var(--muted);
+    font-family: var(--title-font);
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-align: center;
+}
+
+.gallery-instruction span {
+    color: var(--pink);
+    padding: 0 8px;
+}
+
+.gallery-stage {
+    position: relative;
+    width: min(100%, 1250px);
+    height: clamp(400px, 58vh, 650px);
+    margin: 5px auto 0;
+    perspective: 1100px;
+    overflow: hidden;
+    touch-action: pan-y;
+    isolation: isolate;
+}
+
+.gallery-world {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    cursor: grab;
+    outline: none;
+}
+
+.gallery-world:active {
+    cursor: grabbing;
+}
+
+.gallery-world:focus-visible {
+    outline: 1px solid var(--lime);
+    outline-offset: -5px;
+}
+
+
+.gallery-tile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: clamp(100px, 10vw, 145px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: visible;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    will-change: transform, opacity;
+    transition: filter .25s;
+}
+
+
+.gallery-tile-button {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 8%;
+  
+    background: rgba(3,4,3,.8);
+    box-shadow: 0 0 24px rgba(0,245,42,.08);
+    cursor: pointer;
+    overflow: visible;
+}
+
+.gallery-tile-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    border: 1px solid rgba(184,255,60,.18);
+}
+
+.gallery-tile-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(.8) contrast(1.1);
+    transition: filter .3s, transform .4s;
+}
+
+/* Marco HUD: radar-ring-green.png */
+.gallery-tile-frame {
+    position: absolute;
+    z-index: 3;
+    inset: -9%;
+    width: 118%;
+    height: 118%;
+    object-fit: fill;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 0 5px rgba(0,245,42,.3));
+}
+
+.gallery-tile-button:hover .gallery-tile-image,
+.gallery-tile.is-focused .gallery-tile-image {
+    filter: brightness(1) contrast(1.12);
+}
+
+.gallery-tile-button:hover {
+    border-color: var(--lime);
+    box-shadow: 0 0 30px rgba(0,245,42,.2);
+}
+
+.gallery-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(64%, 570px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(0,245,42,.15);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) rotateX(65deg);
+}
+
+.orbit-two {
+    width: min(78%, 690px);
+    border-color: rgba(255,25,200,.12);
+    transform: translate(-50%, -50%) rotateY(60deg) rotateX(65deg);
+}
+
+.gallery-crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: var(--pink);
+    font-size: 26px;
+    font-weight: 400;
+    transform: translate(-50%, -50%);
+    opacity: .8;
+    pointer-events: none;
+}
+
+.gallery-hud {
+    position: absolute;
+    z-index: 4;
+    bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    color: rgba(184,255,60,.65);
+    font-size: 8px;
+    pointer-events: none;
+}
+
+.gallery-hud-left {
+    left: 12px;
+}
+
+.gallery-hud-right {
+    right: 12px;
+    text-align: right;
+}
+
+.gallery-hud span:nth-child(2) {
+    color: var(--pink);
+}
+
+.gallery-focus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 60%;
+    border: 1px solid rgba(184,255,60,.08);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.gallery-footer {
+    width: min(100%, 1250px);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 0;
+}
+
+.gallery-footer-label {
+    color: var(--muted);
+    font-size: 8px;
+    white-space: nowrap;
+}
+
+.gallery-footer-label:last-child {
+    color: var(--lime);
+}
+
+.gallery-footer-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--green), rgba(184,255,60,.08));
+}
+
+@media (max-width: 700px) {
+
+    .gallery-index,
+    .gallery-status {
+        font-size: 7px;
+    }
+
+    .gallery-section {
+        padding: 100px 4vw 25px;
+    }
+
+    .gallery-title {
+        font-size: clamp(1.9rem, 8vw, 3.4rem);
+    }
+
+    .gallery-instruction {
+        max-width: 90%;
+        line-height: 1.8;
+        font-size: 7px;
+    }
+
+    .gallery-stage {
+        height: 55svh;
+        min-height: 390px;
+        max-height: 540px;
+        width: 100%;
+    }
+
+    .gallery-tile {
+        width: clamp(105px, 31vw, 155px);
+    }
+
+    .gallery-orbit {
+        width: 85%;
+    }
+
+    .orbit-two {
+        width: 95%;
+    }
+
+    .gallery-hud {
+        bottom: 12px;
+        font-size: 6px;
+    }
+
+    .gallery-footer-label {
+        font-size: 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-tile,
+    .gallery-tile-image {
+        transition: none;
+    }
+}
+
+
+/* =========================================
+   GALERÍA INMERSIVA — HEX ROOT
+========================================= */
+
+.gallery-page {
+    width: 100%;
+    min-height: 100svh;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.gallery-section {
+    width: 100%;
+    height: 100svh;
+    min-height: 0;
+    padding: clamp(25px, 4vh, 50px) 3vw 20px;
+    justify-content: flex-start;
+}
+
+.gallery-title {
+    flex-shrink: 0;
+    margin-top: 0;
+    font-size: clamp(2.2rem, 5.5vw, 5.5rem);
+}
+
+.gallery-instruction {
+    flex-shrink: 0;
+    margin-top: 10px;
+}
+
+.gallery-stage {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    overflow: hidden;
+}
+
+.gallery-world {
+    perspective: 1200px;
+}
+
+/* Tarjetas circulares */
+.gallery-tile {
+    width: clamp(130px, 16vw, 220px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: visible;
+}
+
+.gallery-tile-button {
+    border-radius: 50%;
+    overflow: visible;
+    padding: 7%;
+    border: 1px solid var(--green);
+    background: #030403;
+   
+}
+
+.gallery-tile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    clip-path: circle(50% at 50% 50%);
+}
+
+.gallery-tile-frame {
+    inset: -12%;
+    width: 124%;
+    height: 124%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.gallery-footer {
+    flex-shrink: 0;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.gallery-hud {
+    bottom: 12px;
+}
+
+/* La esfera utiliza más espacio vertical */
+.gallery-orbit {
+    width: min(70vh, 75vw);
+}
+
+.orbit-two {
+    width: min(80vh, 85vw);
+}
+
+/* Evitar que el título y el pie reduzcan demasiado la escena */
+@media (max-width: 700px) {
+    .gallery-section {
+        padding: 32px 4vw 14px;
+    }
+
+    .gallery-title {
+        font-size: clamp(1.8rem, 8vw, 3.2rem);
+    }
+
+    .gallery-stage {
+        min-height: 0;
+        height: auto;
+    }
+
+    .gallery-tile {
+        width: clamp(115px, 31vw, 160px);
+    }
+
+    .gallery-footer {
+        margin-top: 4px;
+    }
+
+    .gallery-hud {
+        font-size: 6px;
+    }
+}
+
+/* VISOR DE IMAGEN AMPLIADA */
+
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: rgba(2, 4, 2, 0.96);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.gallery-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--green);
+    background: transparent;
+    color: var(--lime);
+    font-size: 35px;
+    cursor: pointer;
+    transition: color .2s, background .2s;
+}
+
+.gallery-modal-close:hover {
+    background: var(--green);
+    color: #030403;
+}
+
+.gallery-modal-content {
+    width: min(100%, 650px);
+    text-align: center;
+}
+
+.gallery-modal-image-wrap {
+    position: relative;
+    width: min(58vh, 75vw);
+    aspect-ratio: 1;
+    margin: 0 auto 28px;
+}
+
+#galleryModalImage {
+    position: absolute;
+    inset: 8%;
+    width: 84%;
+    height: 84%;
+    border-radius: 50%;
+    object-fit: cover;
+    clip-path: circle(50% at 50% 50%);
+    background: #080b08;
+}
+
+#galleryModalFrame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.gallery-modal-label {
+    color: var(--pink);
+    font: 9px var(--title-font);
+    letter-spacing: .16em;
+}
+
+.gallery-modal-content h2 {
+    margin: 12px 0;
+    color: var(--lime);
+    font: 700 clamp(1.4rem, 4vw, 2.6rem) var(--title-font);
+}
+
+.gallery-modal-counter {
+    color: var(--muted);
+    font: 10px var(--title-font);
+}
+
+body.gallery-modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 600px) {
+    .gallery-modal {
+        padding: 20px;
+    }
+
+    .gallery-modal-close {
+        top: 15px;
+        right: 15px;
+    }
+
+    .gallery-modal-image-wrap {
+        width: min(70vw, 55vh);
+    }
+}
+
+
+/* =========================================
+   FLECHAS HUD - GALERÍA HEX ROOT
+========================================= */
+
+#galleryStage {
+    position: relative;
+}
+
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 64px;
+    padding: 0;
+
+    color: #b8ff3c;
+    background: rgba(3, 3, 3, 0.48);
+
+    border: 1px solid rgba(184, 255, 60, 0.3);
+    border-radius: 3px;
+
+    cursor: pointer;
+    transform: translateY(-50%);
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.gallery-arrow--prev {
+    left: 18px;
+}
+
+.gallery-arrow--next {
+    right: 18px;
+}
+
+.gallery-arrow svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.25s ease;
+}
+
+.gallery-arrow:hover {
+    color: #030303;
+    background: #b8ff3c;
+    border-color: #b8ff3c;
+    box-shadow:
+        0 0 10px rgba(184, 255, 60, 0.35),
+        0 0 24px rgba(184, 255, 60, 0.12);
+}
+
+.gallery-arrow--prev:hover svg {
+    transform: translateX(-3px);
+}
+
+.gallery-arrow--next:hover svg {
+    transform: translateX(3px);
+}
+
+.gallery-arrow:focus-visible {
+    
+    outline-offset: 4px;
+}
+
+.gallery-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 600px) {
+    .gallery-arrow {
+        width: 38px;
+        height: 48px;
+        background: rgba(3, 3, 3, 0.7);
+    }
+
+    .gallery-arrow svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .gallery-arrow--prev {
+        left: 6px;
+    }
+
+    .gallery-arrow--next {
+        right: 6px;
+    }
+}
+
+
+/* ==========================================
+   HEX ROOT — AJUSTE DE ENCUADRE DE GALERÍA
+========================================== */
+
+.gallery-section {
+    height: 100svh;
+    min-height: 0;
+    padding: 24px 3vw 16px;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.gallery-title {
+    flex-shrink: 0;
+    width: 100%;
+    margin: 0;
+    font-size: clamp(1.8rem, 4.5vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.055em;
+    text-align: center;
+}
+
+.gallery-instruction {
+    flex-shrink: 0;
+    margin: 12px 0 8px;
+    line-height: 1.5;
+}
+
+.gallery-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: min(100%, 1250px);
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.gallery-world {
+    position: absolute;
+    inset: 0;
+}
+
+.gallery-footer {
+    flex-shrink: 0;
+    margin-top: 4px;
+    padding-bottom: 2px;
+}
+
+@media (max-width: 700px) {
+    .gallery-section {
+        padding: 30px 4vw 12px;
+    }
+
+    .gallery-title {
+        font-size: clamp(1.65rem, 7.5vw, 3.2rem);
+    }
+
+    .gallery-stage {
+        width: 100%;
+    }
+}
+
+/* Marco HUD ajustado al círculo de cada imagen */
+.gallery-tile-frame {
+    position: absolute;
+    z-index: 3;
+    inset: -3%;
+    width: 110%;
+    height: 110%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 0 5px rgba(0, 245, 42, 0.3));
+}
+
+
+/* Eliminar contornos rectangulares de las fotografías */
+.gallery-tile-button,
+.gallery-tile-button::before {
+    border: none !important;
+    outline: none !important;
+    border-radius: 50% !important;
+    
+    box-shadow: none !important;
+}
+

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personajes</title>
+    <link rel="icon" type="image/png" href="img/icono_favi.png">
+    <link rel="stylesheet" href="css/personajes.css">
+    <link rel="stylesheet" href="css/menu-navegacion.css">
+    <link rel="stylesheet" href="css/efectos-globales.css">
+    <script src="js/efectos-globales.js" defer></script>
+
+</head>
+
+<body>
+    <nav class="hex-nav" id="hexNav" aria-label="Navegación principal">
+
+        <!-- Arco decorativo -->
+        <div class="hex-nav__frame" aria-hidden="true">
+            <img class="hex-nav__frame-image" src="img/hud/radar-ring-green.png" alt="">
+        </div>
+
+        <!-- Opciones de navegación -->
+        <div class="hex-nav__items" id="hexNavItems">
+
+            <a class="hex-nav__item" href="tematica.html">
+                <span class="hex-nav__number">01</span>
+                <span class="hex-nav__label">Tematica</span>
+            </a>
+
+            <a class="hex-nav__item" href="videojuego.html">
+                <span class="hex-nav__number">02</span>
+                <span class="hex-nav__label">VIDEOJUEGO</span>
+            </a>
+
+            <a class="hex-nav__item" href="galeria.html">
+                <span class="hex-nav__number">03</span>
+                <span class="hex-nav__label">GALERÍA</span>
+            </a>
+
+            <a class="hex-nav__item" href="revista.html">
+                <span class="hex-nav__number">04</span>
+                <span class="hex-nav__label">REVISTA</span>
+            </a>
+
+            <a class="hex-nav__item" href="trailer.html">
+                <span class="hex-nav__number">05</span>
+                <span class="hex-nav__label">TRAILER</span>
+            </a>
+
+            <a class="hex-nav__item" href="contacto.html">
+                <span class="hex-nav__number">06</span>
+                <span class="hex-nav__label">CONTACTO</span>
+            </a>
+
+        </div>
+
+        <!-- Botón central -->
+        <button class="hex-nav__toggle" id="hexNavToggle" type="button" aria-label="Abrir menú de navegación"
+            aria-expanded="false" aria-controls="hexNavItems">
+            <img src="img/icono.png" alt="" class="hex-nav__icon">
+        </button>
+
+    </nav>
+
+    <section class="characters-section" id="personajes">
+
+        <!-- Fondo hexagonal interactivo -->
+        <canvas class="vault-canvas" id="vaultCanvas" aria-hidden="true"></canvas>
+        <div class="characters-grain" aria-hidden="true"></div>
+
+        <!-- Título -->
+
+        <header class="characters-heading">
+            <p class="characters-index">HEX ROOT // CHARACTER DATABASE</p>
+
+            <div class="gravity-title" id="gravityTitle">
+                <h2 class="gravity-title__fallback">
+                    DOS UNIVERSOS<br>DOS ANOMALÍAS
+                </h2>
+                <canvas id="gravityCanvas" class="gravity-title__canvas" aria-hidden="true"></canvas>
+            </div>
+
+            <p class="gravity-hint">[ CLICK TO DISRUPT THE SYSTEM ]</p>
+
+
+            <!-- PERSONAJES DECORATIVOS DE LA CABECERA -->
+            <div class="heading-characters" aria-hidden="true">
+                <img src="img/zuri_personaje.png" class="heading-character heading-character--nastya" alt="">
+
+                <img src="img/nastya_personaje.png" class="heading-character heading-character--zuri" alt="">
+            </div>
+
+        </header>
+
+
+        <!-- NASTYA -->
+        <article class="character-profile character-profile--nastya">
+
+            <div class="character-visual character-visual--nastya">
+                <span class="visual-label">SUBJECT_001 / SYSTEM</span>
+
+                <div class="visual-frame">
+                    <img src="img/nastya_personaje2.png" alt="Nastya, analista de sistemas" class="character-portrait"
+                        loading="lazy">
+                    <span class="visual-crosshair visual-crosshair--one"></span>
+                    <span class="visual-crosshair visual-crosshair--two"></span>
+                </div>
+
+                <span class="visual-coordinate">04° / DIGITAL WORLD</span>
+            </div>
+
+            <div class="character-info character-info--nastya">
+
+                <p class="character-kicker">01 // ANOMALÍA DIGITAL</p>
+
+
+                <button class="holo-name holo-name--nastya character-image-button" type="button" aria-expanded="false"
+                    aria-controls="bioNastya" data-character="nastya">
+                    <img src="img/hud/button-down-magenta.png" alt="Conocer a Nastya">
+                    <span class="character-image-button__label">NASTYA</span>
+                </button>
+
+
+                <h3 class="character-fullname">Anastasia Usher</h3>
+
+                <div class="character-data">
+                    <span>23 AÑOS</span>
+                    <span>ANALISTA DE SISTEMAS</span>
+                    <span>REBELDE / SAGE</span>
+                </div>
+
+                <div class="character-bio" id="bioNastya" hidden>
+                    <p class="bio-status">ACCESSING FILE... <span>●</span></p>
+                    <div class="typed-text" aria-live="polite"></div>
+                </div>
+
+                <p class="character-instruction">
+                    [ CLIC EN EL NOMBRE PARA DESBLOQUEAR EL ARCHIVO ]
+                </p>
+
+                <p class="character-traits">
+                    TECNOLOGÍA <i>·</i> CONTROL <i>·</i>
+                    INTELIGENCIA ARTIFICIAL <i>·</i> GLITCH <i>·</i> RESISTENCIA
+                </p>
+
+            </div>
+        </article>
+
+        <!-- Transición entre universos -->
+        <div class="universe-transition" aria-hidden="true">
+            <span>REALITY BREACH</span>
+            <div class="transition-line"></div>
+            <span>WORLD_02</span>
+        </div>
+
+        <!-- ZURI -->
+        <article class="character-profile character-profile--zuri">
+
+            <div class="character-visual character-visual--zuri">
+                <span class="visual-label">SUBJECT_002 / NATURE</span>
+
+                <div class="visual-frame">
+                    <img src="img/zuri_personaje2.png" alt="Zuri, exploradora y guardiana" class="character-portrait"
+                        loading="lazy">
+                    <span class="visual-crosshair visual-crosshair--one"></span>
+                    <span class="visual-crosshair visual-crosshair--two"></span>
+                </div>
+
+                <span class="visual-coordinate">09° / NATURAL WORLD</span>
+            </div>
+
+            <div class="character-info character-info--zuri">
+
+                <p class="character-kicker">02 // ANOMALÍA NATURAL</p>
+
+
+                <button class="holo-name holo-name--zuri character-image-button" type="button" aria-expanded="false"
+                    aria-controls="bioZuri" data-character="zuri">
+                    <img src="img/hud/button-down-green.png" alt="">
+                    <span class="character-image-button__label">ZURI</span>
+                </button>
+
+
+                <h3 class="character-fullname">Zuri Manyoma</h3>
+
+                <div class="character-data">
+                    <span>25 AÑOS</span>
+                    <span>EXPLORADORA</span>
+                    <span>GUARDIANA</span>
+                </div>
+
+                <div class="character-bio" id="bioZuri" hidden>
+                    <p class="bio-status">ACCESSING FILE... <span>●</span></p>
+                    <div class="typed-text" aria-live="polite"></div>
+                </div>
+
+                <p class="character-instruction">
+                    [ CLIC EN EL NOMBRE PARA DESBLOQUEAR EL ARCHIVO ]
+                </p>
+
+                <p class="character-traits">
+                    NATURALEZA <i>·</i> EXPLORACIÓN <i>·</i>
+                    SUPERVIVENCIA <i>·</i> ESPIRITUALIDAD <i>·</i> EQUILIBRIO
+                </p>
+
+            </div>
+        </article>
+
+        <!-- Cierre -->
+        <footer class="characters-footer">
+            <span>HEX ROOT — SYSTEM FAILURE</span>
+            <span>2 SUBJECTS / 2 WORLDS</span>
+            <a href="#personajes">RELOAD DATABASE ↑</a>
+        </footer>
+
+    </section>
+    <script src="js/personajes.js" defer></script>
+    <script src="js/menu-navegacion.js"></script>
+
+</body>
+
+</html>

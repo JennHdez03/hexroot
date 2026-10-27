@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#030303">
+  <meta name="description" content="HEX ROOT — El origen de la anomalía M.A.T.E.O.">
+  <title>Temática</title>
+  <link rel="icon" type="image/png" href="img/icono_favi.png">
+  <link rel="stylesheet" href="css/tematica.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/menu-navegacion.css">
+  <link rel="stylesheet" href="css/efectos-globales.css">
+
+</head>
+
+<body>
+
+  <!-- INTRO CINEMATOGRÁFICA -->
+  <section id="hex-intro" aria-label="Introducción de HEX ROOT">
+    <div class="intro-lights"></div>
+    <div class="intro-scanlines"></div>
+    <div class="intro-noise"></div>
+
+    <video id="intro-logo-video" autoplay muted playsinline preload="auto" aria-label="Logo animado de HEX ROOT">
+      <source src="img/video/logo_falla.mp4" type="video/mp4">
+    </video>
+
+    <div class="intro-corner intro-corner-top">
+      <span>HEX ROOT</span>
+      <span>BOOT SEQUENCE // 006</span>
+    </div>
+
+    <div class="intro-message">
+      <span class="intro-dot"></span>
+      <span id="intro-status">ESTABLISHING CONNECTION...</span>
+    </div>
+
+    <div class="intro-corner intro-corner-bottom">
+      <span>REALITY INTEGRITY: UNSTABLE</span>
+      <span>M.A.T.E.O. SYSTEM</span>
+    </div>
+
+    <div class="intro-flash"></div>
+  </section>
+
+  <!-- HEX ROOT — MENÚ RADIAL -->
+  <nav class="hex-nav" id="hexNav" aria-label="Navegación principal">
+
+    <!-- Arco decorativo -->
+    <div class="hex-nav__frame" aria-hidden="true">
+      <img class="hex-nav__frame-image" src="img/hud/radar-ring-green.png" alt="">
+    </div>
+
+    <!-- Opciones de navegación -->
+    <div class="hex-nav__items" id="hexNavItems">
+
+      <a class="hex-nav__item" href="trailer.html">
+        <span class="hex-nav__number">01</span>
+        <span class="hex-nav__label">Trailer</span>
+      </a>
+
+      <a class="hex-nav__item" href="videojuego.html">
+        <span class="hex-nav__number">02</span>
+        <span class="hex-nav__label">VIDEOJUEGO</span>
+      </a>
+
+      <a class="hex-nav__item" href="galeria.html">
+        <span class="hex-nav__number">03</span>
+        <span class="hex-nav__label">GALERÍA</span>
+      </a>
+
+      <a class="hex-nav__item" href="revista.html">
+        <span class="hex-nav__number">04</span>
+        <span class="hex-nav__label">REVISTA</span>
+      </a>
+
+      <a class="hex-nav__item" href="personaje.html">
+        <span class="hex-nav__number">05</span>
+        <span class="hex-nav__label">PERSONAJE</span>
+      </a>
+
+      <a class="hex-nav__item" href="contacto.html">
+        <span class="hex-nav__number">06</span>
+        <span class="hex-nav__label">CONTACTO</span>
+      </a>
+      <!-- INICIO: solo para tablet y celular -->
+      >
+
+    </div>
+
+    <!-- Botón central -->
+    <button class="hex-nav__toggle" id="hexNavToggle" type="button" aria-label="Abrir menú de navegación"
+      aria-expanded="false" aria-controls="hexNavItems">
+      <img src="img/icono.png" alt="" class="hex-nav__icon">
+    </button>
+
+  </nav>
+
+  <!-- SECCIÓN TEMÁTICA -->
+  <main id="tematica">
+    <div id="tematica-experience">
+      <div id="tematica-3d" aria-hidden="true"></div>
+
+      <div class="horizontal-track" id="horizontal-track">
+        <div class="shared-background" aria-hidden="true"></div>
+
+        <!-- PORTADA / BIENVENIDA -->
+        <section class="theme-hero welcome-hero" id="inicio">
+
+          <div class="welcome-background" aria-hidden="true"></div>
+          <div class="welcome-grain" aria-hidden="true"></div>
+
+          <!-- Decoración de Nastya -->
+          <div class="character-frame frame-nastya" aria-hidden="true">
+            <div class="character-ring"></div>
+            <div class="character-ring ring-dashed"></div>
+            <div class="character-corner"></div>
+          </div>
+
+          <!-- Decoración de Zuri -->
+          <div class="character-frame frame-zuri" aria-hidden="true">
+            <div class="character-ring"></div>
+            <div class="character-ring ring-dashed"></div>
+            <div class="character-corner"></div>
+          </div>
+
+          <img class="welcome-character character-nastya" src="img/zuri_tematicaa.png"
+            alt="Zuri, protagonista de HEX ROOT">
+
+          <img class="welcome-character character-zuri" src="img/nastya_tematica.png"
+            alt="Nastya, protagonista de HEX ROOT">
+
+
+
+          <div class="welcome-content">
+
+            <p class="welcome-eyebrow">
+              <span class="status-light"></span>
+              SYSTEM <span class="welcome-user" id="welcomeUser"></span>
+            </p>
+
+            <h1 class="welcome-title">
+              <span class="welcome-intro">BIENVENIDOS A</span>
+              <span class="welcome-logo">HEX ROOT</span>
+            </h1>
+
+            <div class="welcome-message">
+              <h2>
+                Una falla alteró los límites entre mundos.
+              </h2>
+
+              <p class="welcome-description">
+                Dos anomalías llegaron a un lugar que nunca debió existir.
+              </p>
+            </div>
+
+          </div>
+
+
+
+          <div class="welcome-coordinates" aria-hidden="true">
+            <span>NASTYA / SUBJECT 001</span>
+            <span>M.A.T.E.O. / SYSTEM ONLINE</span>
+            <span>ZURI / SUBJECT 002</span>
+          </div>
+
+        </section>
+
+        <!-- ORIGEN — HEX ROOT EDITORIAL -->
+        <section class="theme-section origin-section" id="origen">
+
+          <div class="origin-editorial-bg" aria-hidden="true"></div>
+
+          <div class="origin-editorial">
+
+            <!-- Bloque superior: título y descripción -->
+            <div class="origin-intro">
+              <div class="origin-title-block">
+                <h2>HEX ROOT</h2>
+              </div>
+
+              <div class="origin-text-block origin-text-pink" data-origin-panel="nastya">
+                <p data-origin-text
+                  data-full-text="Es un videojuego 3D de terror y Escape Room ambientado en la Fundación Universitaria San Mateo. El jugador queda atrapado dentro de una universidad afectada por una inteligencia artificial que ha perdido el control de sus propios sistemas.">
+                  <span class="origin-loading">ESPERANDO DATOS... (click en la imagen para revelar)</span>
+                </p>
+              </div>
+            </div>
+
+
+
+            <!-- Captura interactiva de Zuri -->
+            <figure class="origin-game-frame frame-green" data-origin-image="zuri" tabindex="0" role="button"
+              aria-label="Descifrar archivo de Zuri">
+              <img src="img/zuri_escenario.jpeg" alt="Zuri explorando un escenario de HEX ROOT" loading="lazy">
+              <figcaption>SUBJECT 002 // ZURI</figcaption>
+              <span class="origin-image-prompt">[ CLICK TO DECODE ]</span>
+            </figure>
+            <!-- Captura interactiva de Nastya -->
+            <figure class="origin-game-frame frame-pink" data-origin-image="nastya" tabindex="0" role="button"
+              aria-label="Descifrar archivo de Nastya">
+              <img src="img/nastya_escenario.jpeg" alt="Nastya explorando un escenario de HEX ROOT" loading="lazy">
+              <figcaption>SUBJECT 001 // NASTYA</figcaption>
+              <span class="origin-image-prompt">[ CLICK TO DECODE ]</span>
+            </figure>
+            <!-- Bloque inferior de descripción -->
+            <div class="origin-text-block origin-text-green" data-origin-panel="zuri">
+              <p data-origin-text
+                data-full-text="En este universo, la tecnología, los espacios y la realidad comienzan a comportarse de manera anormal. Para sobrevivir, será necesario explorar, encontrar pistas y resolver los desafíos antes de que sea demasiado tarde.">
+                <span class="origin-loading">ESPERANDO DATOS... (click en la imagen para revelar)</span>
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- M.A.T.E.O. -->
+
+        <section class="theme-section mateo-section" id="mateo">
+
+
+          <div class="mateo-panel mateo-editorial">
+
+            <header class="mateo-editorial-header">
+              <p class="mateo-system-label">AUTONOMOUS SYSTEM / M-01</p>
+              <h2>M.A.T.E.O.</h2>
+              <p class="mateo-full">
+                MATRIZ AUTÓNOMA DE TRANSFORMACIÓN Y<br>
+                ESPACIO ORGANIZACIONAL
+              </p>
+            </header>
+
+            <div class="mateo-editorial-intro">
+              <span class="mateo-label">SYSTEM REPORT // 001</span>
+              <h3>M.A.T.E.O.</h3>
+              <p>
+                Fue desarrollado como una inteligencia artificial capaz
+                de intervenir y transformar diferentes sistemas dentro de
+                la universidad. Sin embargo, una corrupción masiva de datos
+                altera su funcionamiento.
+              </p>
+            </div>
+
+            <figure class="mateo-shot mateo-shot-green">
+              <div class="mateo-shot-image">
+                <img src="img/01_universidad.jpg" alt="Exterior de la universidad bajo la corrupción del sistema"
+                  loading="lazy">
+              </div>
+              <figcaption>
+                <span>01.</span>
+                <span>ORIGEN DEL SISTEMA</span>
+              </figcaption>
+            </figure>
+
+            <figure class="mateo-shot mateo-shot-pink">
+              <div class="mateo-shot-image">
+                <img src="img/zuri_escenario.jpeg" alt="Interior de la universidad alterado por las anomalías"
+                  loading="lazy">
+              </div>
+              <figcaption>
+                <span>02.</span>
+                <span>ANOMALÍA DETECTADA</span>
+              </figcaption>
+            </figure>
+
+            <div class="mateo-editorial-outro">
+              <span class="mateo-label">SYSTEM ALERT // CRITICAL</span>
+              <p>
+                La inteligencia comienza a tomar control de las instalaciones
+                y genera anomalías que modifican el comportamiento de los
+                espacios. Lo que debía ser un sistema de control se convierte
+                en la principal amenaza.
+              </p>
+              <div class="mateo-system-data">
+                <span>STATUS: CORRUPTED</span>
+                <span>THREAT LEVEL: CRITICAL</span>
+                <span>ROOT ACCESS: UNKNOWN</span>
+              </div>
+            </div>
+
+          </div>
+
+
+        </section>
+        <!-- UNIVERSIDAD -->
+        <section class="theme-section universe-section" id="universo">
+          <img src="img/zuri_nastya_tematica.png" alt="" class="universe-characters-bg" aria-hidden="true" />
+
+          <div class="universe-editorial">
+
+            <!-- ENCABEZADO -->
+            <header class="universe-heading">
+              <h2>La Universidad</h2>
+
+              <p>
+                Lo que alguna vez fue un espacio académico<br>
+                se transforma en un escenario<br>
+                de incertidumbre.
+              </p>
+            </header>
+
+            <!-- IMAGEN PANORÁMICA -->
+            <div class="universe-frame">
+
+              <div class="universe-frame-decoration" aria-hidden="true">
+                <span class="universe-corner universe-corner-left"></span>
+                <span class="universe-corner universe-corner-right"></span>
+              </div>
+
+              <img class="universe-image" src="img/01_universidad.jpg"
+                alt="La Fundación Universitaria San Mateo transformada por las anomalías de M.A.T.E.O." loading="lazy">
+
+              <!-- TEXTO SUPERPUESTO -->
+              <div class="universe-overlay">
+                <p>
+                  Aulas, oficinas y corredores comienzan a presentar
+                  alteraciones provocadas por M.A.T.E.O. Los espacios
+                  conocidos dejan de ser completamente seguros y cada
+                  habitación puede esconder una nueva amenaza.
+                </p>
+              </div>
+
+              <!-- IDENTIFICACIÓN -->
+              <div class="universe-frame-label">
+                <span>ENVIRONMENT / SAN MATEO</span>
+                <span>STATUS: CORRUPTED</span>
+              </div>
+
+            </div>
+
+            <!-- INFORMACIÓN INFERIOR -->
+            <footer class="universe-footer">
+              <span>LOCATION // SAN MATEO</span>
+              <span>THREAT LEVEL // UNKNOWN</span>
+              <span>EXIT // NOT CONFIRMED</span>
+            </footer>
+
+          </div>
+
+        </section>
+        <!-- FIN UNIVERSIDAD -->
+
+        <!-- CIERRE HEX ROOT -->
+        <section class="theme-ending hexroot-ending" id="cierre">
+
+          <div class="ending-grid" aria-hidden="true"></div>
+          <canvas class="ending-particles" aria-hidden="true"></canvas>
+
+          <!-- Información técnica de las esquinas -->
+          <div class="ending-status ending-status-top">
+            <span>HEX ROOT // TERMINAL 06</span>
+            <span class="ending-connection">
+              <i></i> CONNECTION UNSTABLE
+            </span>
+          </div>
+
+          <div class="ending-coordinate ending-coordinate-left" aria-hidden="true">
+            SYSTEM ARCHIVE<br>
+            ROOT ACCESS: UNKNOWN
+          </div>
+
+          <!-- Pantalla inicial -->
+          <div class="ending-main" id="ending-main">
+
+            <div class="ending-orbit ending-orbit-outer" aria-hidden="true"></div>
+            <div class="ending-orbit ending-orbit-inner" aria-hidden="true"></div>
+
+            <div class="ending-logo-frame">
+              <span class="ending-corner ending-corner-tl"></span>
+              <span class="ending-corner ending-corner-tr"></span>
+              <span class="ending-corner ending-corner-bl"></span>
+              <span class="ending-corner ending-corner-br"></span>
+
+              <button class="ending-logo-button" id="ending-logo-button" type="button"
+                aria-label="Abrir el archivo de HEX ROOT" aria-expanded="false" aria-controls="ending-description">
+                <img class="ending-logo" src="img/logo.png" alt="HEX ROOT">
+              </button>
+            </div>
+
+            <p class="ending-tagline">UN MUNDO, DOS ANOMALÍAS</p>
+
+            <button class="ending-access-button" id="ending-access-button" type="button"
+              aria-controls="ending-description">
+              <span class="ending-access-dot"></span>
+              [ CLICK TO ACCESS ]
+            </button>
+
+            <p class="ending-hint">
+              INTERACT WITH THE SYSTEM TO CONTINUE
+            </p>
+
+          </div>
+
+          <!-- Panel oculto: aparece al activar el logo -->
+          <div class="ending-description" id="ending-description" aria-hidden="true" inert>
+            <div class="ending-description-logo">
+              <img src="img/logo.png" alt="" aria-hidden="true">
+              <span>ARCHIVE // DECRYPTED</span>
+            </div>
+
+
+            <div class="ending-description-content ending-hacker-panel">
+
+              <div class="ending-hacker-text" id="ending-hacker-text">
+
+                <p>
+                  <strong class="hacker-keyword">HEX</strong>
+                  representa el código, el sistema y también una especie
+                  de hechizo o anomalía.
+                </p>
+
+                <p>
+                  <strong class="hacker-keyword">ROOT</strong>
+                  representa las raíces, la naturaleza y, en informática,
+                  el acceso profundo a un sistema.
+                </p>
+
+                <p>
+                  Ambos conceptos representan a Nastya y Zuri, dos
+                  personajes provenientes de universos completamente
+                  diferentes que ahora forman parte de una misma anomalía.
+                </p>
+
+              </div>
+
+              <div class="ending-description-actions">
+                <button id="ending-explore-button" type="button">
+                  [ VOLVER A EXPLORAR ]
+                </button>
+
+                <button id="ending-close-button" type="button">
+                  CERRAR ARCHIVO [ × ]
+                </button>
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <!-- Pie de pantalla -->
+          <div class="ending-footer">
+            <span>M.A.T.E.O. // SYSTEM ARCHIVE</span>
+            <span class="ending-footer-center">END OF TRANSMISSION</span>
+            <span>HEX ROOT © 2026</span>
+          </div>
+
+          <div class="ending-scanline" aria-hidden="true"></div>
+
+        </section>
+        <!-- FIN CIERRE HEX ROOT -->
+
+
+
+
+      </div><!-- Fin horizontal-track -->
+
+      <div class="scroll-progress" aria-hidden="true">
+        <span id="scroll-progress-bar"></span>
+      </div>
+
+      <div class="scroll-hint" id="scroll-hint">
+        SCROLL TO EXPLORE <span>→</span>
+      </div>
+
+    </div><!-- Fin tematica-experience -->
+  </main>
+
+
+  <!-- CURSOR PERSONALIZADO HEX ROOT -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <div class="hud-cursor" id="hudCursor" aria-hidden="true">
+    <svg class="hud-cursor-arrow" viewBox="0 0 64 80">
+      <path class="cursor-arrow-main" d="M8 5 L8 65 L24 48 L36 72 L46 67 L34 43 L57 42 Z" />
+      <path class="cursor-arrow-detail" d="M8 5 L34 43 L57 42 Z" />
+      <path class="cursor-arrow-line" d="M24 48 L34 43" />
+      <path class="cursor-arrow-glitch" d="M12 12 L42 42" />
+    </svg>
+    <span class="hud-cursor-corner"></span>
+    <span class="hud-cursor-ring"></span>
+  </div>
+
+  <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
+  <div class="cursor-click-effect" id="cursorClickEffect" aria-hidden="true"></div>
+
+
+
+<!-- SCRIPTS ORIGINALES -->
+<script src="js/main.js" defer></script>
+<script src="js/menu-navegacion.js" defer></script>
+<script type="module" src="js/tematica-scroll3d.js"></script>
+<script src="js/tematica.js" defer></script>
+</body>
+</html>

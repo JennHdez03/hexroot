@@ -1,0 +1,5139 @@
+:root {
+  --black: #030303;
+  --panel: #0a0a0c;
+  --white: #f1eff3;
+  --muted: #85818d;
+  --pink: #ff36bc;
+  --green: #b8ff3c;
+  --line: rgba(255, 255, 255, .13);
+  --mono: "Space Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  text-wrap: balance;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  background: var(--black);
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--mono);
+  overflow-x: hidden;
+}
+
+body.intro-lock {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--pink);
+  color: var(--black);
+}
+
+/* =====================================
+   INTRO DE VIDEO
+===================================== */
+
+#hex-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  isolation: isolate;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.5s ease, visibility 1.5s ease;
+}
+
+#hex-intro.intro-ending {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#intro-logo-video {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  opacity: 0;
+  mix-blend-mode: screen;
+  filter:
+    drop-shadow(0 0 16px rgba(255, 54, 188, .32)) drop-shadow(0 0 30px rgba(184, 255, 60, .2));
+  transition: opacity 1.2s ease;
+}
+
+#hex-intro.video-visible #intro-logo-video {
+  opacity: 0.20;
+}
+
+.intro-lights {
+  position: absolute;
+  z-index: 1;
+  inset: -15%;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse at 22% 45%,
+      rgba(184, 255, 60, .25),
+      transparent 42%),
+    radial-gradient(ellipse at 78% 54%,
+      rgba(255, 54, 188, .26),
+      transparent 42%);
+  filter: blur(35px);
+}
+
+#hex-intro.lights-active .intro-lights {
+  animation: light-flicker 2.8s steps(1, end) infinite;
+}
+
+.intro-scanlines,
+.intro-noise {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+}
+
+.intro-scanlines {
+  opacity: .13;
+  background: repeating-linear-gradient(to bottom,
+      transparent 0,
+      transparent 3px,
+      rgba(255, 255, 255, .12) 4px);
+}
+
+.intro-noise {
+  opacity: .08;
+  background: repeating-linear-gradient(90deg,
+      transparent 0,
+      transparent 2px,
+      rgba(255, 54, 188, .18) 3px,
+      transparent 4px);
+}
+
+.intro-corner {
+  position: absolute;
+  z-index: 4;
+  left: 26px;
+  right: 26px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(255, 255, 255, .58);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.intro-corner-top {
+  top: 24px;
+}
+
+.intro-corner-bottom {
+  bottom: 24px;
+}
+
+.intro-corner-top span:first-child {
+  color: var(--green);
+}
+
+.intro-message {
+  position: absolute;
+  z-index: 4;
+  bottom: 65px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--pink);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.intro-dot,
+.status-light {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+  animation: pulse-light 1s ease-in-out infinite alternate;
+}
+
+.intro-flash {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#hex-intro.glitch-flash .intro-flash {
+  background: white;
+  animation: flash-frame .18s steps(2, end);
+}
+
+#hex-intro.glitch-flash #intro-logo-video {
+  transform: translateX(3px);
+}
+
+/* =====================================
+   PORTADA
+===================================== */
+
+.theme-hero {
+  position: relative;
+  min-height: 88vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 100px 12vw;
+  border-bottom: 1px solid var(--line);
+  isolation: isolate;
+  background: #050505;
+}
+
+.theme-hero h1 {
+  margin: 32px 0 26px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(50px, 8vw, 110px);
+  font-weight: 900;
+  letter-spacing: -.075em;
+  line-height: .91;
+}
+
+.theme-hero h1 span {
+  color: var(--pink);
+}
+
+/* =====================================
+   SECCIONES GENERALES
+===================================== */
+
+.theme-section {
+  position: relative;
+  padding: 100px 12vw;
+  border-bottom: 1px solid var(--line);
+  background: var(--black);
+}
+
+.section-index {
+  margin-bottom: 55px;
+  color: var(--pink);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+span:first-child {
+  font-size: 18px;
+}
+
+/* =====================================
+   M.A.T.E.O.
+===================================== */
+
+.mateo-section {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(184, 255, 60, .045), transparent 45%),
+    #070708;
+}
+
+.mateo-panel {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 8vw;
+  align-items: center;
+}
+
+.mateo-full {
+  color: var(--green);
+  font-size: 9px;
+  line-height: 1.9;
+  letter-spacing: 1px;
+}
+
+/* =====================================
+   UNIVERSO
+===================================== */
+
+.universe-section {
+  background:
+    radial-gradient(ellipse at 15% 60%, rgba(255, 54, 188, .06), transparent 40%),
+    #070708;
+}
+
+.universe-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 70px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 8px;
+}
+
+/* =====================================
+   CIERRE Y FOOTER
+===================================== */
+
+.theme-ending {
+  padding: 110px 6vw;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 54, 188, .08), transparent 55%),
+    #030303;
+}
+
+.theme-ending .eyebrow {
+  justify-content: center;
+}
+
+.theme-ending h2 {
+  margin: 30px 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(38px, 7vw, 88px);
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+
+.theme-ending h2 span {
+  color: var(--pink);
+}
+
+/* =====================================
+   REVELACIÓN AL DESPLAZARSE
+===================================== */
+
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.js-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================
+   KEYFRAMES
+===================================== */
+
+@keyframes light-flicker {
+
+  0%,
+  100% {
+    opacity: .08;
+    transform: translateX(0);
+  }
+
+  12% {
+    opacity: .9;
+    transform: translateX(-1%);
+  }
+
+  14% {
+    opacity: .12;
+  }
+
+  31% {
+    opacity: .65;
+    transform: translateX(1%);
+  }
+
+  34% {
+    opacity: .08;
+  }
+
+  58% {
+    opacity: .85;
+  }
+
+  60% {
+    opacity: .2;
+  }
+
+  82% {
+    opacity: .7;
+    transform: translateX(-.5%);
+  }
+}
+
+@keyframes flash-frame {
+  0% {
+    opacity: .8;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-light {
+  from {
+    opacity: .35;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes glow-drift {
+  from {
+    transform: translateX(-1%) scale(1);
+  }
+
+  to {
+    transform: translateX(2%) scale(1.08);
+  }
+}
+
+@keyframes orb-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes core-pulse {
+  from {
+    transform: scale(.8);
+    opacity: .65;
+  }
+
+  to {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 850px) {
+  .theme-hero {
+    padding: 100px 7vw;
+  }
+
+  .theme-section {
+    padding: 80px 7vw;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .theme-hero {
+    min-height: 78vh;
+    padding: 80px 7vw;
+  }
+
+  .theme-hero h1 {
+    font-size: clamp(44px, 11vw, 65px);
+  }
+
+  .theme-section {
+    padding: 65px 7vw;
+  }
+
+  .section-index {
+    margin-bottom: 38px;
+  }
+
+  .intro-corner {
+    left: 12px;
+    right: 12px;
+    font-size: 7px;
+    letter-spacing: .5px;
+  }
+
+  .intro-message {
+    bottom: 55px;
+    font-size: 8px;
+  }
+
+  #intro-logo-video {
+    width: 94vw;
+    max-height: 70vh;
+  }
+
+  .universe-footer {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* =========================================
+   HEX ROOT — SCROLL HORIZONTAL
+   ========================================= */
+
+#tematica {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#tematica-experience {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: calc(100vh - 78px);
+  height: calc(100dvh - 78px);
+  min-height: 480px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #030303;
+}
+
+#tematica-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#tematica-3d canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#horizontal-track {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  cursor: grab;
+}
+
+#horizontal-track::-webkit-scrollbar {
+  display: none;
+}
+
+#horizontal-track>section {
+  display: block;
+  position: relative;
+
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+
+  margin: 0;
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+  overscroll-behavior-y: contain;
+}
+
+/* Fondos originales de cada escena */
+
+#horizontal-track>.theme-hero {
+  background: #050505;
+}
+
+#horizontal-track>.origin-section {
+  background: #030303;
+}
+
+#horizontal-track>.mateo-section {
+  background: #070708;
+}
+
+#horizontal-track> {
+  background: #030303;
+}
+
+#horizontal-track>.universe-section {
+  background: #070708;
+}
+
+#horizontal-track>.theme-ending {
+  background: #030303;
+}
+
+/* Indicador de progreso */
+
+.scroll-progress {
+  position: absolute;
+  z-index: 10;
+  left: 5%;
+  right: 5%;
+  bottom: 18px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+#scroll-progress-bar {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: #b8ff3c;
+  box-shadow: 0 0 8px #b8ff3c;
+}
+
+.scroll-hint {
+  position: absolute;
+  z-index: 10;
+  right: 5%;
+  bottom: 30px;
+  color: #ff36bc;
+  font: 9px "Space Mono", monospace;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  #tematica-experience {
+    height: calc(100vh - 68px);
+    height: calc(100dvh - 68px);
+    min-height: 420px;
+  }
+
+  #horizontal-track>section {
+    padding-bottom: 65px;
+  }
+
+  .scroll-hint {
+    font-size: 8px;
+  }
+}
+
+/* =========================================
+   HEX ROOT — PORTADA DE BIENVENIDA
+   ========================================= */
+
+#horizontal-track>.welcome-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex: 0 0 100%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 40px 5%;
+  overflow: hidden;
+  color: #050505;
+  background: #f54ab6;
+}
+
+/* Fondo original */
+.welcome-background {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image: url("../img/fondo-dinamico1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.02);
+}
+
+/* Textura oscura sutil */
+.welcome-grain {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(0, 0, 0, .15),
+      transparent 35%,
+      rgba(0, 0, 0, .08) 70%,
+      transparent);
+}
+
+/* Texto central */
+.welcome-content {
+  position: relative;
+  z-index: 3;
+  width: min(54%, 700px);
+  text-align: center;
+  margin-top: -20px;
+}
+
+.welcome-eyebrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 22px;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.welcome-content h1 {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(38px, 5.4vw, 76px);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -.065em;
+}
+
+.welcome-content h1 span {
+  display: block;
+  margin-top: 12px;
+}
+
+.welcome-content h2 {
+  max-width: 510px;
+  margin: 42px auto 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(22px, 3vw, 40px);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.welcome-description {
+  max-width: 440px;
+  margin: 32px auto 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(14px, 1.8vw, 23px);
+  line-height: 1.5;
+}
+
+/* Personajes */
+.welcome-character {
+  position: absolute;
+  z-index: 2;
+  bottom: 8%;
+  width: clamp(150px, 20vw, 300px);
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 12px 10px rgba(0, 0, 0, .25));
+  pointer-events: none;
+}
+
+.character-nastya {
+  left: 0;
+}
+
+.character-zuri {
+  right: 0;
+}
+
+/* Círculos gráficos */
+.character-frame {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  width: clamp(260px, 31vw, 450px);
+  aspect-ratio: 1;
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.frame-nastya {
+  left: -4%;
+  color: #00db19;
+}
+
+.frame-zuri {
+  right: -4%;
+  color: #b900a8;
+}
+
+.character-ring {
+  position: absolute;
+  inset: 8%;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.ring-dashed {
+  inset: 15%;
+  border: 8px dashed currentColor;
+  opacity: .85;
+}
+
+.character-corner {
+  position: absolute;
+  inset: -7px;
+  border: 2px solid currentColor;
+  border-radius: 23%;
+  transform: rotate(25deg);
+}
+
+/* Botón de inicio inferior */
+
+:focus-visible {
+  outline: 2px solid #050505;
+  outline-offset: 5px;
+}
+
+@keyframes welcome-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: .85;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* Información inferior */
+.welcome-coordinates {
+  position: absolute;
+  z-index: 3;
+  right: 4%;
+  bottom: 15px;
+  left: 4%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 8px;
+  letter-spacing: .5px;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  #horizontal-track>.welcome-hero {
+    padding: 30px 5%;
+  }
+
+  .welcome-content {
+    width: 82%;
+    margin-top: -35px;
+  }
+
+  .welcome-content h1 {
+    font-size: clamp(30px, 7vw, 48px);
+  }
+
+  .welcome-content h2 {
+    margin-top: 25px;
+    font-size: clamp(19px, 4.5vw, 28px);
+  }
+
+  .welcome-description {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  .welcome-character {
+    bottom: 12%;
+    width: 100%;
+    height: 500px;
+  }
+
+  .character-nastya {
+    left: -4%;
+  }
+
+  .character-zuri {
+    right: -4%;
+  }
+
+  .character-frame {
+    top: 57%;
+    width: 45vw;
+  }
+
+  .frame-nastya {
+    left: -12%;
+  }
+
+  .frame-zuri {
+    right: -12%;
+  }
+
+  .ring-dashed {
+    border-width: 4px;
+  }
+
+  .welcome-coordinates {
+    bottom: 5px;
+    font-size: 6px;
+  }
+
+  .welcome-coordinates span:nth-child(2) {
+    display: none;
+  }
+}
+
+/* Fondo original: sin repetir ni deformar */
+.shared-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: url("../img/fondo-dinamico1.jpg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: auto 100%;
+
+  animation: none;
+}
+
+#tematica-experience {
+  position: relative;
+  overflow: hidden;
+}
+
+#horizontal-track {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+#horizontal-track>section {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.welcome-background {
+  display: none;
+}
+
+/* El contenido queda por encima del fondo */
+#horizontal-track {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* Todas las escenas dejan ver la misma textura */
+#horizontal-track>section {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Evita que la portada dibuje una segunda textura */
+.welcome-background {
+  display: none;
+}
+
+.welcome-grain {
+  pointer-events: none;
+}
+
+@keyframes hex-background-drift {
+  from {
+    background-position: 48% center;
+  }
+
+  to {
+    background-position: 52% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shared-background {
+    animation: none;
+  }
+}
+
+/* Ocultar la capa compartida: ya no la necesitamos */
+.shared-background {
+  display: none !important;
+}
+
+/* Eliminar la imagen de fondo duplicada de la portada */
+.welcome-background {
+  display: none !important;
+}
+
+/* HEX ROOT — PORTADA SIN BARRA SUPERIOR */
+
+/* La experiencia ocupa toda la pantalla */
+#tematica-experience {
+  height: 100vh !important;
+  height: 100dvh !important;
+}
+
+/* Evita que el fondo se extienda a las demás escenas */
+#horizontal-track>.welcome-hero {
+  background-color: #030303 !important;
+  background-image: none !important;
+}
+
+#horizontal-track>.welcome-hero .welcome-background {
+  display: none !important;
+}
+
+/* El fondo original solo en la primera pantalla */
+#horizontal-track>.welcome-hero {
+  background-image: url("../img/fondo-dinamico1.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: auto 100% !important;
+}
+
+/* La capa compartida ya no se utiliza */
+.shared-background {
+  display: none !important;
+}
+
+/* =====================================
+   HEX ROOT — PORTADA LIMPIA
+===================================== */
+
+/* Ocultar footer inferior */
+
+footer {
+  display: none !important;
+}
+
+/* Portada a pantalla completa */
+#horizontal-track>.welcome-hero {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+/* Indicador vertical en el extremo derecho */
+#horizontal-track>.welcome-hero .scroll-hint {
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  right: 22px;
+  bottom: auto;
+  left: auto;
+
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #ff36bc;
+  opacity: 1;
+}
+
+/* Línea vertical decorativa */
+#horizontal-track>.welcome-hero .scroll-hint::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 65px;
+  background: linear-gradient(to bottom,
+      #ff36bc,
+      rgba(255, 54, 188, 0));
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 700px) {
+  #horizontal-track>.welcome-hero .scroll-hint {
+    right: 10px;
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+}
+
+/* =====================================
+   HEX ROOT — FONDO ANIMADO DE PORTADA
+===================================== */
+
+#horizontal-track>.welcome-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background-image: none !important;
+}
+
+/* Imagen independiente del contenido */
+#horizontal-track>.welcome-hero::before {
+  content: "";
+  position: absolute;
+  inset: -5%;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: url("../img/fondo-dinamico-degradado.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90% 100%;
+
+  opacity: 0.25;
+  transform: scale(1.03);
+  animation: hex-welcome-zoom 5s ease-in-out infinite alternate;
+
+  will-change: transform;
+}
+
+/* Acercamiento y alejamiento lento */
+@keyframes hex-welcome-zoom {
+  0% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1.09);
+  }
+}
+
+/* Respetar la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  #horizontal-track>.welcome-hero::before {
+    animation: none;
+    transform: scale(1.05);
+  }
+}
+
+/* =========================================
+   ORIGEN — COMPOSICIÓN EDITORIAL HEX ROOT
+   ========================================= */
+
+#horizontal-track>.origin-section {
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 35px 4.5%;
+  color: #fff;
+  background: #050505;
+}
+
+/* Fondo texturizado */
+.origin-editorial-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url(../img/fondo-dinamico-degradado.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  opacity: .25;
+}
+
+/* Composición principal */
+.origin-editorial {
+  position: relative;
+  width: min(100%, 1450px);
+  min-height: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-content: center;
+  align-items: center;
+  gap: 22px 26px;
+}
+
+/* Título y bloque superior */
+.origin-intro {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: start;
+}
+
+.origin-title-block {
+  width: fit-content;
+  padding: 7px 13px;
+  background: #050505;
+  border: 2px solid #050505;
+  box-shadow: 5px 5px 0 #ff36bc;
+}
+
+.origin-title-block h2 {
+  margin: 0;
+  color: #ff36bc;
+  font: 900 clamp(28px, 3.2vw, 52px)/1 Arial, sans-serif;
+  letter-spacing: -2px;
+}
+
+.origin-text-block {
+  position: relative;
+  width: 100%;
+  padding: 18px 22px;
+  background: #050505;
+  border: 1px solid currentColor;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px,
+      100% calc(100% - 12px), calc(100% - 12px) 100%,
+      0 100%);
+}
+
+.origin-text-block p {
+  margin: 0;
+  font: 400 clamp(14px, 1.15vw, 19px)/1.45 Arial, sans-serif;
+}
+
+.origin-text-pink {
+  color: #ff36bc;
+  border-color: #00ff39;
+}
+
+.origin-text-green {
+  color: #00ff39;
+  border-color: #ff36bc;
+}
+
+/* Marcos de las capturas */
+.origin-game-frame {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 9px;
+  background: #050505;
+}
+
+.origin-game-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 3px solid currentColor;
+  clip-path: polygon(0 0, 94% 0, 100% 10%,
+      100% 100%, 6% 100%, 0 90%);
+}
+
+.origin-game-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 2px solid currentColor;
+}
+
+.origin-game-frame figcaption {
+  padding: 8px 3px 1px;
+  font: 700 9px/1.4 "Space Mono", monospace;
+  letter-spacing: 1px;
+}
+
+.frame-pink {
+  grid-column: 1;
+  grid-row: 2;
+  width: 92%;
+  justify-self: center;
+  color: #ff00d4;
+  filter: drop-shadow(0 0 5px rgba(255, 0, 212, .4));
+}
+
+.frame-green {
+  grid-column: 2;
+  grid-row: 1;
+  width: 88%;
+  justify-self: center;
+  color: #00ff39;
+  filter: drop-shadow(0 0 5px rgba(0, 255, 57, .4));
+}
+
+/* Texto inferior a la derecha */
+.origin-text-green {
+  grid-column: 2;
+  grid-row: 2;
+  width: 90%;
+  justify-self: center;
+}
+
+/* Ajustes para tabletas y celulares */
+@media (max-width: 700px) {
+  #horizontal-track>.origin-section {
+    padding: 28px 18px 75px;
+    overflow-y: auto;
+  }
+
+  .origin-editorial {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+    align-content: start;
+  }
+
+  .origin-intro,
+  .frame-pink,
+  .frame-green,
+  .origin-text-green {
+    grid-column: 1;
+    grid-row: auto;
+    width: 100%;
+  }
+
+  .origin-title-block h2 {
+    font-size: clamp(30px, 9vw, 46px);
+  }
+
+  .origin-text-block {
+    padding: 16px;
+  }
+
+  .origin-text-block p {
+    font-size: 15px;
+  }
+
+  .origin-game-frame img {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Aparición progresiva de las capturas */
+#origen .origin-game-frame {
+  opacity: 0;
+  transform: translateY(28px) scale(.97);
+  transition:
+    opacity .5s ease,
+    transform .5s ease;
+}
+
+#origen .origin-game-frame.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#origen .origin-game-frame.is-decoding {
+  animation: origin-glitch .18s steps(2, end) 4;
+}
+
+#origen .origin-game-frame.is-decoded {
+  filter: drop-shadow(0 0 12px currentColor);
+}
+
+#origen .origin-game-frame:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 5px;
+}
+
+#origen .origin-image-prompt {
+  display: block;
+  padding-top: 7px;
+  font: 9px "Space Mono", monospace;
+  letter-spacing: 1px;
+  color: currentColor;
+  animation: origin-blink 1s steps(2, end) infinite;
+}
+
+#origen .origin-text-block [data-origin-text] {
+  min-height: 4em;
+  overflow-wrap: anywhere;
+}
+
+#origen .origin-loading {
+  font: 10px "Space Mono", monospace;
+  letter-spacing: 1px;
+  color: var(--pink);
+  animation: origin-blink .8s steps(2, end) infinite;
+}
+
+#origen .origin-text-green .origin-loading {
+  color: var(--green);
+}
+
+#origen .origin-cursor {
+  color: var(--green);
+  animation: origin-blink .7s steps(2, end) infinite;
+}
+
+@keyframes origin-blink {
+  50% {
+    opacity: .2;
+  }
+}
+
+@keyframes origin-glitch {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  50% {
+    opacity: .65;
+    transform: translateX(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  #origen .origin-game-frame,
+  #origen .origin-image-prompt,
+  #origen .origin-loading,
+  #origen .origin-cursor {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* =========================================
+   M.A.T.E.O. — LIGHTBOX + SCROLL PARALLAX
+========================================= */
+
+#mateo .mateo-shot {
+  cursor: zoom-in;
+}
+
+.mateo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: rgba(2, 2, 3, .97);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+
+.mateo-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mateo-lightbox-topbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 5vw;
+  border-bottom: 1px solid rgba(184, 255, 60, .3);
+  color: #b8ff3c;
+  font: 10px "Space Mono", monospace;
+  letter-spacing: 1.5px;
+}
+
+.mateo-lightbox-close {
+  border: 1px solid #ff36bc;
+  background: transparent;
+  color: #ff36bc;
+  padding: 8px 13px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.mateo-lightbox-close:hover,
+.mateo-lightbox-close:focus-visible {
+  background: #ff36bc;
+  color: #050505;
+}
+
+.mateo-lightbox-scroll {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-color: #b8ff3c #080808;
+  scrollbar-width: thin;
+}
+
+.mateo-lightbox-stage {
+  position: relative;
+  min-height: 155vh;
+  padding: 10vh 6vw 30vh;
+  isolation: isolate;
+}
+
+/* Cuadrícula decorativa de fondo */
+.mateo-lightbox-grid {
+  position: absolute;
+  z-index: -1;
+  inset: -10%;
+  min-height: 170vh;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(184, 255, 60, .10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 255, 60, .10) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(650px) rotateX(48deg) scale(1.4);
+  transform-origin: center top;
+  opacity: .5;
+}
+
+.mateo-lightbox-image-wrap {
+  position: sticky;
+  top: 8vh;
+  width: min(100%, 1250px);
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid var(--lightbox-accent, #b8ff3c);
+  background: #050505;
+  box-shadow: 0 0 35px color-mix(in srgb,
+      var(--lightbox-accent, #b8ff3c) 18%,
+      transparent);
+  will-change: transform;
+}
+
+.mateo-lightbox-image-wrap img {
+  display: block;
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  background: #080808;
+  will-change: transform;
+}
+
+.mateo-lightbox-caption {
+  width: min(100%, 1250px);
+  margin: 20px auto 0;
+  color: #eaeaea;
+  font: 11px/1.8 "Space Mono", monospace;
+  letter-spacing: 1px;
+}
+
+.mateo-lightbox-caption span {
+  color: #ff36bc;
+}
+
+/* Evita el scroll de la página de fondo mientras se amplía */
+body.mateo-lightbox-active {
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .mateo-lightbox-topbar {
+    padding: 14px 18px;
+    font-size: 8px;
+  }
+
+  .mateo-lightbox-stage {
+    padding: 8vh 18px 25vh;
+  }
+
+  .mateo-lightbox-image-wrap {
+    padding: 5px;
+  }
+
+  .mateo-lightbox-image-wrap img {
+    max-height: 62vh;
+  }
+
+  .mateo-lightbox-caption {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mateo-lightbox {
+    transition: none;
+  }
+}
+
+/* ==========================================
+   HEX ROOT — M.A.T.E.O. EDITORIAL
+   Fondo negro, sin imagen de fondo
+========================================== */
+
+#mateo.mateo-section {
+  background-image: none !important;
+  isolation: isolate;
+  color: #f2f2f2;
+}
+
+#mateo.mateo-section::before,
+#mateo.mateo-section::after {
+  background-image: none !important;
+  content: none;
+}
+
+#mateo .mateo-panel.mateo-editorial {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "header header"
+    "intro green"
+    "pink outro";
+  align-items: center;
+  gap: 26px 34px;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 40px 5vw 65px;
+  box-sizing: border-box;
+
+  color: #f2f2f2;
+}
+
+/* Elimina posibles fondos decorativos del panel */
+
+#mateo .mateo-panel.mateo-editorial::before,
+#mateo .mateo-panel.mateo-editorial::after {
+  content: none;
+  display: none;
+}
+
+/* Encabezado */
+
+#mateo .mateo-editorial-header {
+  grid-area: header;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+#mateo .mateo-system-label,
+#mateo .mateo-label {
+  display: block;
+  color: #b8ff3c;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.8;
+}
+
+#mateo .mateo-editorial-header h2 {
+  margin: 8px 0 0;
+  color: #ff00d4;
+  font-size: clamp(38px, 5vw, 76px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+#mateo .mateo-full {
+  margin: 8px 0 0;
+  color: #b8ff3c;
+  font-size: clamp(12px, 1.5vw, 21px);
+  font-weight: 800;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* Texto izquierdo */
+
+#mateo .mateo-editorial-intro {
+  grid-area: intro;
+  max-width: 520px;
+  padding: 12px 0;
+}
+
+#mateo .mateo-editorial-intro h3 {
+  margin: 12px 0 8px;
+  color: #f5f5f5;
+  font-size: clamp(27px, 3vw, 43px);
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+#mateo .mateo-editorial-intro p,
+#mateo .mateo-editorial-outro>p {
+  margin: 0;
+  color: #c9c9c9;
+  font-size: clamp(14px, 1.25vw, 19px);
+  line-height: 1.55;
+}
+
+/* Imágenes */
+
+#mateo .mateo-shot {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 10px;
+  cursor: zoom-in;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+#mateo .mateo-shot-green {
+  grid-area: green;
+  border: 4px solid #00ed19;
+  box-shadow: 0 0 12px rgb(0 237 25 / 10%);
+}
+
+#mateo .mateo-shot-pink {
+  grid-area: pink;
+  border: 4px solid #ff00a8;
+  box-shadow: 0 0 12px rgb(255 0 168 / 10%);
+}
+
+#mateo .mateo-shot-image {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+
+}
+
+#mateo .mateo-shot-image img,
+#mateo .mateo-shot>img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+#mateo .mateo-shot:hover .mateo-shot-image img {
+  transform: scale(1.045);
+  filter: contrast(1.08);
+}
+
+#mateo .mateo-shot figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 9px;
+  color: #f2f2f2;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+/* Texto inferior derecho */
+
+#mateo .mateo-editorial-outro {
+  grid-area: outro;
+  padding: 12px 0;
+}
+
+#mateo .mateo-editorial-outro>p {
+  margin-top: 12px;
+}
+
+#mateo .mateo-system-data {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid rgb(184 255 60 / 30%);
+  color: #b8ff3c;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+/* Responsive: pantallas pequeñas */
+
+@media (max-width: 760px) {
+  #mateo .mateo-panel.mateo-editorial {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "intro"
+      "green"
+      "outro"
+      "pink";
+    gap: 22px;
+    padding: 35px 22px 55px;
+  }
+
+  #mateo .mateo-editorial-header {
+    text-align: left;
+  }
+
+  #mateo .mateo-full br {
+    display: none;
+  }
+
+  #mateo .mateo-shot-image {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* M.A.T.E.O. — FONDO CON OPACIDAD */
+
+#mateo.mateo-section {
+  position: relative;
+  isolation: isolate;
+  color: #f2f2f2;
+}
+
+/* Imagen de fondo oscurecida */
+#mateo.mateo-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("img/01_universidad.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.22;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Contenido por encima del fondo */
+#mateo .mateo-panel.mateo-editorial {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* ==========================================
+   M.A.T.E.O. — FONDO OSCURO Y ESPACIADO
+========================================== */
+
+#horizontal-track>section#mateo.mateo-section {
+  position: relative;
+  isolation: isolate;
+
+  /* Recuperar fondo propio de esta sección */
+  background-image: none !important;
+
+  /* Reducir espacio superior */
+  padding: 28px 5vw 65px !important;
+
+  box-sizing: border-box;
+}
+
+/* Imagen de fondo independiente */
+#horizontal-track>section#mateo.mateo-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(rgba(3, 3, 3, 0.62),
+      rgba(3, 3, 3, 0.78)),
+    url("../img/fondo-dinamico-degradado.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 1;
+}
+
+/* Eliminar la separación excesiva del indicador */
+#mateo.mateo-section>.section-index {
+  margin-top: 0 !important;
+  margin-bottom: 20px !important;
+}
+
+/* Panel editorial */
+#mateo .mateo-panel.mateo-editorial {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto !important;
+  padding: 12px 0 0 !important;
+
+  background: transparent !important;
+}
+
+/* No ocultar el fondo de la sección */
+#mateo.mateo-section::after {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* ==========================================
+   M.A.T.E.O. — COMPOSICIÓN EDITORIAL
+========================================== */
+
+#horizontal-track>section#mateo.mateo-section {
+  padding: 22px 5vw 58px !important;
+  isolation: isolate;
+}
+
+#mateo.mateo-section>.section-index {
+  margin: 0 0 12px !important;
+  position: relative;
+  z-index: 2;
+}
+
+#mateo .mateo-panel.mateo-editorial {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "header header"
+    "intro green"
+    "pink outro";
+  align-items: center;
+  gap: 22px 4vw;
+
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#mateo .mateo-editorial-header {
+  grid-area: header;
+  text-align: center;
+  margin: 0 0 2px;
+}
+
+#mateo .mateo-editorial-header h2 {
+  margin: 0;
+  color: #ff36bc;
+  font: 900 clamp(38px, 5vw, 70px)/.95 Arial, sans-serif;
+  letter-spacing: -.06em;
+}
+
+#mateo .mateo-full {
+  max-width: 850px;
+  margin: 8px auto 0;
+  color: #00ff35;
+  font: 700 clamp(14px, 2vw, 27px)/1.15 Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+#mateo .mateo-editorial-intro {
+  grid-area: intro;
+  align-self: center;
+  max-width: 540px;
+}
+
+#mateo .mateo-editorial-intro h3 {
+  margin: 8px 0 12px;
+  color: #f1eff3;
+  font: 900 clamp(28px, 3vw, 44px)/1 Arial, sans-serif;
+}
+
+#mateo .mateo-editorial-intro p,
+#mateo .mateo-editorial-outro p {
+  color: #c7c3cc;
+  font: 400 clamp(12px, 1.1vw, 16px)/1.65 Arial, sans-serif;
+}
+
+#mateo .mateo-shot {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 10px;
+  background: #050505;
+  cursor: zoom-in;
+}
+
+#mateo .mateo-shot-green {
+  grid-area: green;
+  border: 2px solid #00ff35;
+  box-shadow: 0 0 16px #00ff3540;
+}
+
+#mateo .mateo-shot-pink {
+  grid-area: pink;
+  border: 2px solid #ff00b8;
+  box-shadow: 0 0 16px #ff00b840;
+}
+
+#mateo .mateo-shot-image {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+#mateo .mateo-shot-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+#mateo .mateo-shot:hover .mateo-shot-image img {
+  transform: scale(1.035);
+}
+
+#mateo .mateo-shot figcaption {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  color: #00ff35;
+  font: 700 9px/1.5 "Space Mono", monospace;
+  letter-spacing: .8px;
+}
+
+#mateo .mateo-shot-pink figcaption {
+  color: #ff36bc;
+}
+
+#mateo .mateo-editorial-outro {
+  grid-area: outro;
+  align-self: center;
+  padding: 18px 20px;
+  border: 1px solid #ff36bc;
+  background: rgba(187, 3, 3, 0.82);
+}
+
+#mateo .mateo-editorial-outro .mateo-label {
+  color: #00ff35;
+  font: 700 9px/1.5 "Space Mono", monospace;
+  letter-spacing: 1px;
+}
+
+#mateo .mateo-system-data {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 18px;
+  color: #00ff35;
+  font: 700 8px/1.5 "Space Mono", monospace;
+}
+
+@media (max-width: 700px) {
+  #mateo .mateo-panel.mateo-editorial {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "intro"
+      "green"
+      "pink"
+      "outro";
+    gap: 22px;
+  }
+
+  #mateo .mateo-editorial-header h2 {
+    font-size: clamp(36px, 10vw, 54px);
+  }
+
+  #mateo .mateo-full {
+    font-size: clamp(13px, 3.5vw, 18px);
+  }
+}
+
+/* ==========================================
+   M.A.T.E.O. — FONDO VISIBLE + UNA PANTALLA
+========================================== */
+
+/* Fotografía de fondo */
+#horizontal-track>section#mateo.mateo-section::before {
+  content: "" !important;
+  display: block !important;
+
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+
+    url("../img/fondo-dinamico-degradado.png") !important;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+}
+
+/* Indicador de sección */
+#mateo.mateo-section>.section-index {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 8px !important;
+}
+
+/* Cuadrícula editorial compacta */
+#mateo .mateo-panel.mateo-editorial {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "header header"
+    "intro green"
+    "pink outro";
+
+  align-items: center;
+  gap: 12px 3.5vw;
+
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+}
+
+/* Encabezado más compacto */
+#mateo .mateo-editorial-header {
+  grid-area: header;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center;
+}
+
+#mateo .mateo-system-label {
+  margin: 0 0 5px;
+}
+
+#mateo .mateo-editorial-header h2 {
+  margin: 0;
+  font-size: clamp(34px, 4vw, 58px);
+  line-height: 0.95;
+}
+
+#mateo .mateo-full {
+  margin: 5px auto 0;
+  font-size: clamp(12px, 1.5vw, 20px);
+  line-height: 1.15;
+}
+
+/* Textos */
+#mateo .mateo-editorial-intro {
+  grid-area: intro;
+  align-self: center;
+  max-width: 540px;
+}
+
+#mateo .mateo-editorial-intro h3 {
+  margin: 6px 0 8px;
+  font-size: clamp(25px, 2.7vw, 38px);
+  line-height: 1;
+}
+
+#mateo .mateo-editorial-intro p,
+#mateo .mateo-editorial-outro>p {
+  margin: 8px 0 0;
+  font-size: clamp(12px, 1vw, 15px);
+  line-height: 1.45;
+}
+
+/* Recuadros más bajos */
+#mateo .mateo-shot {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 7px;
+  align-self: center;
+}
+
+#mateo .mateo-shot-green {
+  grid-area: green;
+}
+
+#mateo .mateo-shot-pink {
+  grid-area: pink;
+}
+
+/* Limitar la altura de las fotografías */
+#mateo .mateo-shot-image {
+  width: 100%;
+  height: clamp(130px, 22vh, 215px);
+  aspect-ratio: auto;
+  overflow: hidden;
+}
+
+#mateo .mateo-shot-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#mateo .mateo-shot figcaption {
+  margin-top: 6px;
+  font-size: 8px;
+  line-height: 1.3;
+}
+
+/* Texto de alerta compacto */
+#mateo .mateo-editorial-outro {
+  grid-area: outro;
+  align-self: center;
+  padding: 12px 15px;
+  background: rgba(3, 3, 3, 0.82);
+}
+
+#mateo .mateo-system-data {
+  gap: 5px 12px;
+  margin-top: 10px;
+  font-size: 8px;
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 700px) {
+  #mateo.mateo-section {
+    padding: 18px 6vw 60px !important;
+  }
+
+  #mateo .mateo-panel.mateo-editorial {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "intro"
+      "green"
+      "pink"
+      "outro";
+    gap: 18px;
+  }
+
+  #mateo .mateo-shot-image {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  #mateo .mateo-full br {
+    display: none;
+  }
+}
+
+/* ==========================================
+   UNIVERSIDAD — EDITORIAL HEX ROOT
+========================================== */
+
+#horizontal-track>#universo.universe-section {
+  position: relative;
+  isolation: isolate;
+  padding: 22px 4vw 42px !important;
+  background: #030303;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#universo .universe-editorial {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* Título */
+#universo .universe-heading {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+#universo .universe-heading h2 {
+  margin: 0;
+  color: #00ed21;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(40px, 5.2vw, 76px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+#universo .universe-heading p {
+  margin: 0 auto;
+  color: #ff00d4;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(19px, 2.6vw, 42px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+/* Marco panorámico */
+#universo .universe-frame {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: clamp(220px, 32vh, 330px);
+  border: 5px solid #00ed21;
+  box-shadow:
+    0 0 12px rgba(0, 237, 33, .45),
+    inset 0 0 12px rgba(0, 237, 33, .2);
+  background: #030303;
+}
+
+/* Fotografía */
+#universo .universe-image {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+/* Oscurecer el lado del texto */
+#universo .universe-frame::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, .88) 0%,
+      rgba(0, 0, 0, .62) 32%,
+      rgba(0, 0, 0, .05) 75%);
+}
+
+/* Texto superpuesto */
+#universo .universe-overlay {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: min(390px, 42%);
+  height: 100%;
+  padding: 22px;
+}
+
+#universo .universe-overlay p {
+  margin: 0;
+  color: #f1eff3;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(13px, 1.1vw, 17px);
+  line-height: 1.55;
+}
+
+/* Decoraciones del marco */
+#universo .universe-frame-decoration {
+  position: absolute;
+  z-index: 3;
+  inset: -8px;
+  pointer-events: none;
+  border-top: 5px solid #00ed21;
+  border-bottom: 5px solid #00ed21;
+  clip-path: polygon(0 0, 42% 0, 46% 4%, 54% 4%,
+      58% 0, 100% 0, 100% 100%,
+      60% 100%, 56% 96%, 44% 96%,
+      40% 100%, 0 100%);
+}
+
+#universo .universe-corner {
+  position: absolute;
+  top: 0;
+  width: 24px;
+  height: 100%;
+  border-top: 5px solid #00ed21;
+  border-bottom: 5px solid #00ed21;
+}
+
+#universo .universe-corner-left {
+  left: 0;
+  border-left: 5px solid #00ed21;
+}
+
+#universo .universe-corner-right {
+  right: 0;
+  border-right: 5px solid #00ed21;
+}
+
+/* Etiquetas inferiores del marco */
+#universo .universe-frame-label {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  left: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #00ed21;
+  font: 700 8px "Space Mono", monospace;
+  letter-spacing: 1px;
+}
+
+/* Pie */
+#universo .universe-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 237, 33, .35);
+  color: #8b8b8b;
+  font: 8px "Space Mono", monospace;
+  letter-spacing: .7px;
+}
+
+/* Móvil */
+@media (max-width: 650px) {
+  #horizontal-track>#universo.universe-section {
+    padding: 24px 5vw 60px !important;
+  }
+
+  #universo .universe-heading {
+    margin-bottom: 28px;
+  }
+
+  #universo .universe-heading p br {
+    display: none;
+  }
+
+  #universo .universe-frame {
+    height: 330px;
+  }
+
+  #universo .universe-overlay {
+    width: 75%;
+    padding: 14px;
+  }
+
+  #universo .universe-overlay p {
+    font-size: 13px;
+  }
+
+  #universo .universe-frame-label {
+    font-size: 7px;
+  }
+
+  #universo .universe-footer {
+    flex-direction: column;
+  }
+}
+
+/* ==========================================
+   HEX ROOT — CIERRE CYBERPUNK
+========================================== */
+
+#cierre.hexroot-ending {
+  --ending-green: #00ff35;
+  --ending-lime: #b8ff3c;
+  --ending-pink: #ff00d4;
+  --ending-black: #030303;
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: 65px 5vw 48px;
+
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 48%,
+      rgba(0, 255, 53, .065),
+      transparent 38%),
+    radial-gradient(ellipse at 50% 50%,
+      rgba(255, 0, 212, .045),
+      transparent 58%),
+    #030303;
+
+  color: #f2f2f2;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Cuadrícula técnica */
+
+#cierre .ending-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .18;
+
+  background-image:
+    linear-gradient(rgba(184, 255, 60, .14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 255, 60, .14) 1px, transparent 1px);
+
+  background-size: 55px 55px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 78%);
+}
+
+/* Partículas canvas */
+
+#cierre .ending-particles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .7;
+}
+
+/* Indicadores de estado */
+
+#cierre .ending-status {
+  position: absolute;
+  top: 22px;
+  left: 5vw;
+  right: 5vw;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+
+  color: var(--ending-lime);
+  font: 700 9px/1.5 monospace;
+  letter-spacing: 1.5px;
+}
+
+#cierre .ending-connection {
+  color: var(--ending-pink);
+}
+
+#cierre .ending-connection i,
+#cierre i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+  animation: ending-blink 1.5s steps(2, start) infinite;
+}
+
+#cierre .ending-coordinate {
+  position: absolute;
+  left: 5vw;
+  bottom: 80px;
+  color: rgba(184, 255, 60, .5);
+  font: 8px/1.8 monospace;
+  letter-spacing: 1px;
+}
+
+/* Pantalla inicial */
+
+#cierre .ending-main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: min(650px, 90%);
+  margin: auto;
+  text-align: center;
+
+  transition:
+    opacity .4s ease,
+    transform .5s ease,
+    filter .4s ease;
+}
+
+#cierre .ending-logo-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+
+  width: min(460px, 78vw);
+  aspect-ratio: 1.65 / 1;
+  padding: 30px;
+  box-sizing: border-box;
+
+  border: 1px solid rgba(0, 255, 53, .42);
+  background: rgba(3, 3, 3, .24);
+
+  box-shadow:
+    0 0 25px rgba(0, 255, 53, .08),
+    inset 0 0 35px rgba(0, 255, 53, .035);
+
+  transition:
+    border-color .3s ease,
+    box-shadow .3s ease,
+    transform .3s ease;
+}
+
+#cierre .ending-logo-frame::before,
+#cierre .ending-logo-frame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+#cierre .ending-logo-frame::before {
+  inset: -7px 14%;
+  border-top: 2px solid var(--ending-green);
+  border-bottom: 2px solid var(--ending-pink);
+  opacity: .7;
+}
+
+#cierre .ending-logo-frame::after {
+  inset: 12px;
+  border: 1px dashed rgba(184, 255, 60, .18);
+}
+
+/* Esquinas decorativas */
+
+#cierre .ending-corner {
+  position: absolute;
+  z-index: 2;
+  width: 25px;
+  height: 25px;
+  border-color: var(--ending-green);
+  border-style: solid;
+}
+
+#cierre .ending-corner-tl {
+  top: -2px;
+  left: -2px;
+  border-width: 3px 0 0 3px;
+}
+
+#cierre .ending-corner-tr {
+  top: -2px;
+  right: -2px;
+  border-width: 3px 3px 0 0;
+}
+
+#cierre .ending-corner-bl {
+  bottom: -2px;
+  left: -2px;
+  border-width: 0 0 3px 3px;
+}
+
+#cierre .ending-corner-br {
+  right: -2px;
+  bottom: -2px;
+  border-width: 0 3px 3px 0;
+}
+
+/* Logo interactivo */
+
+#cierre .ending-logo-button {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+#cierre .ending-logo {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 0 8px rgba(0, 255, 53, .35)) drop-shadow(0 0 18px rgba(255, 0, 212, .12));
+
+  transition: filter .3s ease, transform .3s ease;
+}
+
+#cierre .ending-logo-button:hover .ending-logo,
+#cierre .ending-logo-button:focus-visible .ending-logo {
+  transform: scale(1.035);
+  filter:
+    drop-shadow(0 0 9px var(--ending-green)) drop-shadow(0 0 24px var(--ending-pink));
+}
+
+#cierre .ending-logo-button:focus-visible {
+  outline: 1px solid var(--ending-lime);
+  outline-offset: 8px;
+}
+
+/* Anillos */
+
+#cierre .ending-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(0, 255, 53, .32);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+#cierre .ending-orbit-outer {
+  width: min(590px, 105vw);
+  aspect-ratio: 1;
+  border-style: dashed;
+  animation: ending-orbit-spin 40s linear infinite;
+}
+
+#cierre .ending-orbit-inner {
+  width: min(510px, 90vw);
+  aspect-ratio: 1;
+  border-color: rgba(255, 0, 212, .2);
+  border-left-color: var(--ending-pink);
+  animation: ending-orbit-spin 24s linear infinite reverse;
+}
+
+#cierre .ending-tagline {
+  margin: 22px 0 0;
+  color: var(--ending-lime);
+  font: 700 clamp(10px, 1.1vw, 13px)/1.5 monospace;
+  letter-spacing: 3px;
+}
+
+#cierre .ending-access-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 26px;
+  padding: 12px 22px;
+
+  color: var(--ending-pink);
+  background: rgba(255, 0, 212, .035);
+  border: 1px solid rgba(255, 0, 212, .6);
+
+  font: 700 10px/1.5 monospace;
+  letter-spacing: 2px;
+  cursor: pointer;
+
+  transition:
+    color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+#cierre .ending-access-button:hover {
+  color: #fff;
+  background: rgba(255, 0, 212, .13);
+  box-shadow: 0 0 20px rgba(255, 0, 212, .2);
+}
+
+#cierre .ending-access-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ending-green);
+  box-shadow: 0 0 10px var(--ending-green);
+}
+
+#cierre .ending-hint {
+  margin: 12px 0 0;
+  color: rgba(242, 242, 242, .4);
+  font: 8px/1.5 monospace;
+  letter-spacing: 1.5px;
+}
+
+/* Panel de descripción */
+
+#cierre .ending-description {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(25px, 5vw, 80px);
+
+  padding: 70px 8vw 60px;
+  box-sizing: border-box;
+
+  background: rgba(3, 3, 3, .97);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  clip-path: inset(50% 0 50% 0);
+  transition:
+    opacity .45s ease,
+    clip-path .6s cubic-bezier(.2, .8, .2, 1),
+    visibility .6s;
+}
+
+#cierre .ending-description.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  clip-path: inset(0 0 0 0);
+}
+
+#cierre .ending-description-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+#cierre .ending-description-logo img {
+  display: block;
+  width: 100%;
+  max-width: 390px;
+  max-height: 240px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(0, 255, 53, .25));
+}
+
+#cierre .ending-description-logo span {
+  color: var(--ending-green);
+  font: 700 9px/1.5 monospace;
+  letter-spacing: 2px;
+}
+
+#cierre .ending-description-content {
+  width: 100%;
+  max-width: 650px;
+  justify-self: center;
+}
+
+#cierre {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(184, 255, 60, .3);
+
+  color: var(--ending-lime);
+  font: 700 9px/1.5 monospace;
+  letter-spacing: 1px;
+}
+
+#cierre {
+  color: var(--ending-green);
+}
+
+#cierre .ending-description-content h2 {
+  margin: 24px 0 12px;
+  color: #f5f5f5;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 900;
+  line-height: .98;
+  letter-spacing: -1.5px;
+}
+
+#cierre {
+  margin: 0 0 25px;
+  color: var(--ending-pink);
+  font-size: clamp(13px, 1.4vw, 18px);
+  line-height: 1.5;
+}
+
+#cierre {
+  margin: 0 0 17px;
+  padding-left: 14px;
+  border-left: 2px solid var(--ending-green);
+}
+
+#cierre {
+  color: var(--ending-lime);
+  font: 700 9px/1.5 monospace;
+  letter-spacing: 1px;
+}
+
+#cierre p {
+  margin: 5px 0 0;
+  color: #c9c9c9;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Acciones */
+
+#cierre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+#cierre,
+#cierre {
+  padding: 12px 15px;
+  font: 700 9px/1.5 monospace;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+#cierre {
+  color: #030303;
+  border: 1px solid var(--ending-green);
+  background: var(--ending-green);
+}
+
+#cierre :hover {
+  background: #0c6d0169;
+  box-shadow: 0 0 18px rgba(0, 255, 53, .2);
+}
+
+#cierre {
+  color: #ddd;
+  border: 1px solid #444;
+  background: transparent;
+}
+
+#cierre :hover {
+  color: #0c6d0169;
+  border-color: var(--ending-pink);
+}
+
+/* Pie de pantalla */
+
+#cierre .ending-footer {
+  position: absolute;
+  right: 5vw;
+  bottom: 18px;
+  left: 5vw;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  color: rgba(184, 255, 60, .55);
+  font: 8px/1.5 monospace;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+#cierre .ending-footer-center {
+  color: rgba(255, 0, 212, .65);
+}
+
+/* Línea de escaneo */
+
+#cierre .ending-scanline {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 5;
+  pointer-events: none;
+
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(0, 255, 53, .15),
+      rgba(184, 255, 60, .6),
+      rgba(255, 0, 212, .2),
+      transparent);
+
+  opacity: .4;
+  animation: ending-scan 9s linear infinite;
+}
+
+/* Transición glitch */
+
+#cierre.is-decrypting .ending-main {
+  filter: hue-rotate(90deg) contrast(1.5);
+  transform: scale(1.035);
+  opacity: .2;
+}
+
+#cierre.is-decrypting .ending-logo-frame {
+  border-color: var(--ending-pink);
+  box-shadow: 0 0 35px rgba(255, 0, 212, .45);
+}
+
+/* Animaciones */
+
+@keyframes ending-orbit-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes ending-scan {
+  0% {
+    top: -20%;
+  }
+
+  100% {
+    top: 120%;
+  }
+}
+
+@keyframes ending-blink {
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: .25;
+  }
+}
+
+/* Adaptación móvil */
+
+@media (max-width: 760px) {
+  #cierre.hexroot-ending {
+    padding: 75px 22px 65px;
+  }
+
+  #cierre .ending-status {
+    top: 18px;
+    left: 22px;
+    right: 22px;
+    font-size: 7px;
+    letter-spacing: .7px;
+  }
+
+  #cierre .ending-logo-frame {
+    width: min(390px, 82vw);
+    padding: 22px;
+  }
+
+  #cierre .ending-tagline {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  #cierre .ending-description {
+    position: absolute;
+    overflow-y: auto;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 20px;
+    padding: 65px 24px 70px;
+  }
+
+  #cierre .ending-description-logo img {
+    max-width: 180px;
+    max-height: 110px;
+  }
+
+  #cierre .ending-description-logo {
+    gap: 10px;
+  }
+
+  #cierre .ending-description-content h2 {
+    margin-top: 18px;
+  }
+
+  #cierre {
+    margin-bottom: 13px;
+  }
+
+  #cierre .ending-coordinate {
+    display: none;
+  }
+
+  #cierre .ending-footer {
+    right: 22px;
+    bottom: 15px;
+    left: 22px;
+    font-size: 7px;
+  }
+
+  #cierre .ending-footer-center {
+    display: none;
+  }
+}
+
+/* Reducir movimiento si el usuario lo prefiere */
+
+@media (prefers-reduced-motion: reduce) {
+
+  #cierre .ending-orbit,
+  #cierre .ending-scanline,
+  #cierre .ending-connection i {
+    animation: none !important;
+  }
+
+  #cierre *,
+  #cierre *::before,
+  #cierre *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ==========================================
+   HEX ROOT — CIERRE CON LOGO Y PANEL
+========================================== */
+
+#cierre.hexroot-ending {
+  background:
+    radial-gradient(ellipse at 23% 50%,
+      rgba(0, 255, 53, .13),
+      transparent 36%),
+    radial-gradient(ellipse at 28% 54%,
+      rgba(255, 0, 212, .16),
+      transparent 38%),
+    #080808 !important;
+
+  overflow: hidden;
+}
+
+/* Al abrir: no oscurecer toda la sección */
+#cierre .ending-main {
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+#cierre .ending-main[aria-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* El panel debe ocupar la pantalla, sin fondo negro total */
+#cierre .ending-description {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: center;
+  gap: 3vw;
+
+  padding: 5vh 4vw;
+  background: transparent !important;
+  overflow: hidden;
+
+  clip-path: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity .4s ease, visibility .4s ease;
+}
+
+#cierre .ending-description.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Logo grande a la izquierda */
+#cierre .ending-description-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 380px;
+  padding: 30px;
+
+  border: 3px solid #ff00d4;
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at center,
+      rgba(0, 255, 53, .28),
+      rgba(255, 0, 212, .14) 50%,
+      transparent 75%);
+
+  box-shadow:
+    0 0 18px rgba(255, 0, 212, .7),
+    inset 0 0 30px rgba(0, 255, 53, .22);
+}
+
+#cierre .ending-description-logo img {
+  width: 100%;
+  max-width: 570px;
+  max-height: 340px;
+  object-fit: contain;
+
+  filter:
+    brightness(0) saturate(100%) invert(57%) sepia(99%) saturate(5000%) hue-rotate(80deg) drop-shadow(0 0 14px rgba(0, 255, 53, .8));
+}
+
+/* Texto de archivo debajo del logo */
+#cierre .ending-description-logo span {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #00ff35;
+  font: 700 9px monospace;
+  letter-spacing: 2px;
+}
+
+/* Panel negro a la derecha */
+#cierre .ending-description-content {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  justify-self: end;
+
+  padding: 26px;
+  box-sizing: border-box;
+
+  border: 1px solid #00ff35;
+  background: rgba(0, 0, 0, .94);
+
+  box-shadow:
+    0 0 18px rgba(0, 255, 53, .12),
+    8px 8px 0 rgba(255, 0, 212, .08);
+}
+
+/* Cabecera del panel */
+#cierre {
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 255, 53, .45);
+}
+
+/* Título */
+#cierre .ending-description-content h2 {
+  margin: 12px 0;
+  font-size: clamp(26px, 3vw, 46px);
+  line-height: .98;
+  color: #f5f5f5;
+}
+
+/* Frase magenta */
+#cierre {
+  color: #ff00d4;
+  margin-bottom: 22px;
+}
+
+/* Bloques informativos */
+#cierre {
+  margin: 0 0 18px;
+  padding-left: 15px;
+
+}
+
+#cierre p {
+  margin-top: 6px;
+  color: #bfc3c1;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* Botones */
+#cierre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* Decoración circular al fondo */
+#cierre .ending-orbit {
+  opacity: .5;
+}
+
+/* Esquinas técnicas del panel */
+#cierre .ending-description-content::before,
+#cierre .ending-description-content::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+#cierre .ending-description-content::before {
+  top: -1px;
+  right: -1px;
+  border-top: 3px solid #ff00d4;
+  border-right: 3px solid #ff00d4;
+}
+
+#cierre .ending-description-content::after {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 3px solid #00ff35;
+  border-left: 3px solid #00ff35;
+}
+
+/* Adaptación móvil */
+@media (max-width: 760px) {
+  #cierre .ending-description {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 18px;
+    padding: 55px 22px 65px;
+    overflow-y: auto;
+  }
+
+  #cierre .ending-description-logo {
+    min-height: 180px;
+    padding: 18px;
+  }
+
+  #cierre .ending-description-logo img {
+    max-height: 150px;
+  }
+
+  #cierre .ending-description-content {
+    padding: 20px;
+  }
+}
+
+/* ==========================================
+   PANEL HACKER — DESCRIPCIÓN HEX ROOT
+========================================== */
+
+#cierre .ending-description {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 3vw;
+  padding: 5vh 4vw;
+}
+
+/* Logo a la izquierda */
+#cierre .ending-description-logo {
+  min-height: 380px;
+  border: 3px solid #ff00d4;
+  background:
+    radial-gradient(ellipse at center,
+      rgba(0, 255, 53, .30),
+      rgba(255, 0, 212, .20) 48%,
+      transparent 75%);
+  box-shadow:
+    0 0 20px rgba(255, 0, 212, .65),
+    inset 0 0 28px rgba(0, 255, 53, .22);
+}
+
+/* Panel derecho */
+#cierre .ending-description-content.ending-hacker-panel {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  justify-self: end;
+  align-self: center;
+  padding: 28px;
+  box-sizing: border-box;
+
+  border: 0;
+  background: rgba(0, 0, 0, .84);
+  box-shadow: none;
+
+  clip-path: polygon(3% 0,
+      100% 0,
+      100% 94%,
+      97% 100%,
+      7% 100%,
+      0 95%,
+      0 5%);
+}
+
+/* Marco angular neón */
+#cierre .ending-hacker-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  border: 1px solid #00ff35;
+  clip-path: polygon(3% 0,
+      100% 0,
+      100% 94%,
+      97% 100%,
+      45% 100%,
+      43% 97%,
+      7% 97%,
+      0 92%,
+      0 5%);
+}
+
+/* Líneas decorativas inferiores */
+#cierre .ending-hacker-panel::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 42%;
+  height: 3px;
+  background: #00ff35;
+  box-shadow: 0 0 8px rgba(0, 255, 53, .65);
+}
+
+/* Texto */
+#cierre .ending-hacker-text {
+  color: #00ff35;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(14px, 1.25vw, 20px);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Separación entre párrafos */
+#cierre .ending-hacker-text p {
+  margin: 0 0 20px;
+}
+
+#cierre .ending-hacker-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Palabras destacadas */
+#cierre .hacker-keyword {
+  color: #b8ff3c;
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(184, 255, 60, .5);
+}
+
+/* Efecto de texto durante la transcripción */
+#cierre .ending-hacker-text.is-typing p {
+  min-height: 1.5em;
+}
+
+/* Adaptación móvil */
+@media (max-width: 760px) {
+  #cierre .ending-description {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 18px;
+    overflow-y: auto;
+    padding: 55px 22px 65px;
+  }
+
+  #cierre .ending-description-logo {
+    min-height: 170px;
+  }
+
+  #cierre .ending-description-content.ending-hacker-panel {
+    padding: 24px 20px;
+  }
+
+  #cierre .ending-hacker-text {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+}
+
+/* BOTONES DEL ARCHIVO HEX ROOT */
+
+#cierre .ending-description-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+#cierre .ending-description-actions button {
+  min-height: 40px;
+  padding: 12px 18px;
+  border: 1px solid #00ff35;
+  background: #00ff35;
+  color: #030303;
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease,
+    box-shadow .2s ease;
+}
+
+#cierre #ending-close-button {
+  border-color: rgba(255, 255, 255, .35);
+  background: transparent;
+  color: #f1eff3;
+}
+
+#cierre .ending-description-actions button:hover {
+  box-shadow: 0 0 14px rgba(0, 255, 53, .35);
+}
+
+#cierre #ending-close-button:hover {
+  border-color: #ff36bc;
+  color: #ff36bc;
+}
+
+/* =========================================
+   HEX ROOT — TEXTO LEGIBLE + GLITCH
+========================================= */
+
+#horizontal-track>.welcome-hero .welcome-content {
+  position: relative;
+  z-index: 10;
+  width: min(54%, 900px);
+  padding: clamp(24px, 3vw, 42px);
+  margin-top: -120px;
+
+  color: #f5f5f5;
+  text-align: center;
+
+  animation: welcome-panel-in 0.8s ease-out both;
+}
+
+/* Etiqueta del sistema */
+#horizontal-track>.welcome-hero .welcome-eyebrow {
+  color: #b8ff3c;
+  font-size: clamp(9px, 0.8vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-shadow: 0 0 10px rgba(184, 255, 60, 0.35);
+}
+
+/* Título principal */
+#horizontal-track>.welcome-hero .welcome-content h1 {
+  color: #ffffff;
+  font-size: clamp(38px, 5vw, 76px);
+  line-height: 1;
+  text-shadow:
+    2px 0 rgba(255, 54, 188, 0.35),
+    -2px 0 rgba(184, 255, 60, 0.18),
+    0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+#horizontal-track>.welcome-hero .welcome-content h1 span {
+  display: block;
+  margin-top: 0px;
+  color: #ff36bc;
+  text-shadow:
+    0 0 8px rgba(255, 54, 188, 0.7),
+    0 0 24px rgba(255, 54, 188, 0.25);
+}
+
+/* Frase destacada */
+#horizontal-track>.welcome-hero .welcome-content h2 {
+  margin-top: 28px;
+  color: #ffffff;
+  font-size: clamp(21px, 2.5vw, 36px);
+  line-height: 1.2;
+  text-shadow: 0 2px 12px #000000;
+}
+
+/* Descripción */
+#horizontal-track>.welcome-hero .welcome-description {
+  max-width: 440px;
+  margin: 20px auto 0;
+  color: #e5e5e5;
+  font-size: clamp(14px, 1.3vw, 19px);
+  line-height: 1.75;
+  text-shadow: 0 2px 10px #000000;
+}
+
+/* Entrada sutil del panel */
+@keyframes welcome-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Adaptación móvil */
+@media (max-width: 700px) {
+  #horizontal-track>.welcome-hero .welcome-content {
+    width: min(88%, 520px);
+    padding: 22px 18px;
+    margin-top: 0;
+  }
+
+  #horizontal-track>.welcome-hero .welcome-content h1 {
+    font-size: clamp(32px, 8vw, 48px);
+  }
+
+  #horizontal-track>.welcome-hero .welcome-content h2 {
+    margin-top: 22px;
+    font-size: clamp(20px, 5vw, 28px);
+  }
+
+  #horizontal-track>.welcome-hero .welcome-description {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #horizontal-track>.welcome-hero .welcome-content {
+    animation: none;
+  }
+}
+
+/* BIENVENIDOS A */
+#horizontal-track>.welcome-hero .welcome-content h1 {
+  font-size: clamp(44px, 6.4vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+  color: #ffffff;
+}
+
+/* LOGOTIPO HEX ROOT: mucho más grande y protagonista */
+#horizontal-track>.welcome-hero .welcome-content h1 span {
+  position: relative;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 16px auto 0;
+
+  color: #ff36bc;
+  font-size: clamp(64px, 10vw, 145px);
+  line-height: 0.95;
+  font-weight: 900;
+  letter-spacing: -0.075em;
+
+  text-shadow:
+    0 0 5px rgba(255, 54, 188, 0.95),
+    0 0 18px rgba(255, 54, 188, 0.8),
+    0 0 42px rgba(255, 54, 188, 0.35);
+
+  animation: hexroot-signal 4s steps(1, end) infinite;
+}
+
+/* Destellos cortos de señal */
+@keyframes hexroot-signal {
+
+  0%,
+  16%,
+  19%,
+  48%,
+  51%,
+  54%,
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow:
+      0 0 5px rgba(255, 54, 188, 0.95),
+      0 0 18px rgba(255, 54, 188, 0.8),
+      0 0 42px rgba(255, 54, 188, 0.35);
+    transform: translateX(0);
+  }
+
+  17%,
+  50% {
+    opacity: 0.35;
+    filter: brightness(1.8);
+    text-shadow:
+      -4px 0 #b8ff3c,
+      4px 0 #ff36bc,
+      0 0 30px #ff36bc;
+    transform: translateX(2px);
+  }
+
+  18%,
+  52% {
+    opacity: 0.85;
+    transform: translateX(-2px);
+  }
+}
+
+/* Frase principal */
+#horizontal-track>.welcome-hero .welcome-content h2 {
+  max-width: 950px;
+  margin: 30px auto 0;
+  color: #ffffff;
+  font-size: clamp(22px, 2.6vw, 38px);
+  line-height: 1.18;
+  text-shadow: 0 2px 14px #000000;
+}
+
+/* Descripción */
+#horizontal-track>.welcome-hero .welcome-description {
+  max-width: 500px;
+  margin: 20px auto 0;
+  color: #eeeeee;
+  font-size: clamp(14px, 1.3vw, 19px);
+  line-height: 1.7;
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 700px) {
+  #horizontal-track>.welcome-hero .welcome-content {
+    width: 98%;
+    padding: 24px 16px;
+  }
+
+  #horizontal-track>.welcome-hero .welcome-content h1 {
+    font-size: clamp(32px, 7vw, 48px);
+  }
+
+  #horizontal-track>.welcome-hero .welcome-content h1 span {
+    font-size: clamp(54px, 13vw, 86px);
+  }
+
+  #horizontal-track>.welcome-hero .welcome-content h2 {
+    font-size: clamp(19px, 4.5vw, 27px);
+  }
+}
+
+/* Respetar la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  #horizontal-track>.welcome-hero .welcome-content h1 span {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   HEX ROOT — AJUSTES PORTADA TEMÁTICA
+   Pegar al FINAL de tematica.css
+========================================== */
+
+/* 1. IMÁGENES LATERALES: MÁS GRANDES Y SUTILMENTE TRANSPARENTES */
+
+#horizontal-track .welcome-character {
+    width: clamp(220px, 25vw, 390px);
+    height: 78%;
+    object-fit: contain;
+    object-position: center bottom;
+    opacity: 0.88;
+    transition: opacity 0.3s ease;
+}
+
+/* Zuri: imagen del lado izquierdo */
+#horizontal-track .character-nastya {
+    left: -3%;
+    bottom: 5%;
+    z-index: 3;
+}
+
+/* Nastya: imagen rosada del lado derecho */
+#horizontal-track .character-zuri {
+    right: -5%;
+    bottom: -4%;
+    width: clamp(260px, 29vw, 440px);
+    height: 86%;
+    z-index: 10;
+}
+
+/* 2. QUITAR EL RECUADRO DEL TEXTO CENTRAL */
+
+#horizontal-track .welcome-content {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    z-index: 5;
+}
+
+/* Eliminar posibles marcos decorativos del contenedor */
+#horizontal-track .welcome-content::before,
+#horizontal-track .welcome-content::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* 3. PERMITIR QUE NASTYA SOBRESALGA DE LA PORTADA */
+
+#horizontal-track .welcome-hero {
+    overflow: visible;
+    isolation: auto;
+    z-index: 3;
+}
+
+/* 4. AJUSTES PARA TABLET */
+
+/* TABLET: contenido más grande y mejor distribuido */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #horizontal-track > .welcome-hero .welcome-content {
+    position: relative;
+    z-index: 10;
+    width: 75%;
+    max-width: 670px;
+    margin: -480px auto 0;
+    padding: 22px 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+}
+
+  #horizontal-track > .welcome-hero .welcome-eyebrow {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  #horizontal-track > .welcome-hero .welcome-title {
+    font-size: clamp(42px, 6vw, 64px);
+    line-height: 1.05;
+    margin-bottom: 0;
+  }
+
+  #horizontal-track > .welcome-hero .welcome-message {
+    margin-top: 48px;
+    padding: 20px 18px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #horizontal-track > .welcome-hero .welcome-message h2 {
+    font-size: 23px;
+    line-height: 1.3;
+  }
+
+  #horizontal-track > .welcome-hero .welcome-description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+/* 5. AJUSTES PARA CELULAR */
+
+@media (max-width: 700px) {
+
+    #horizontal-track .welcome-character {
+        width: 34%;
+        height: 45%;
+        bottom: 10%;
+        opacity: 0.90;
+    }
+
+    #horizontal-track .character-nastya {
+        left: -5%;
+        bottom: 10%;
+    }
+
+    #horizontal-track .character-zuri {
+        right: -7%;
+        bottom: 5%;
+        width: 38%;
+        height: 48%;
+    }
+
+    #horizontal-track .welcome-content {
+        width: 82%;
+        margin-top: -35px;
+    }
+}
+
+/* ==========================================
+   HEX ROOT — PERSONAJES DE BIENVENIDA
+   Ajustes de tamaño y superposición
+========================================== */
+
+.welcome-character {
+    position: absolute;
+    z-index: 5;
+
+    width: clamp(320px, 30vw, 520px);
+    max-width: none;
+    height: auto;
+
+    object-fit: contain;
+    opacity: 0.88;
+
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Zuri — lado izquierdo */
+.character-nastya {
+    left: -35px;
+    bottom: 35px;
+
+    width: clamp(320px, 30vw, 520px);
+    opacity: 0.82;
+}
+
+/* Nastya — lado derecho */
+.character-zuri {
+    right: -45px;
+    bottom: -65px;
+
+    width: clamp(350px, 33vw, 560px);
+    opacity: 0.90;
+
+    z-index: 10;
+}
+
+/* TABLET */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .character-nastya {
+        width: 340px;
+        left: -55px;
+        bottom: 45px;
+    }
+
+    .character-zuri {
+        width: 360px;
+        right: -55px;
+        bottom: -35px;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 600px) {
+    .character-nastya {
+        width: 190px;
+        left: -35px;
+        bottom: 100px;
+        opacity: 0.85;
+    }
+
+    .character-zuri {
+        width: 210px;
+        right: -35px;
+        bottom: 65px;
+        opacity: 0.90;
+    }
+}
+
+/* ==========================================
+   HEX ROOT — PERSONAJES DE BIENVENIDA
+   Ajuste de tamaño y superposición
+========================================== */
+
+.welcome-character {
+    position: absolute !important;
+    width: clamp(350px, 32vw, 600px) !important;
+    max-width: none !important;
+    height: auto !important;
+    object-fit: contain;
+    opacity: 0.88;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* ZURI — lado izquierdo */
+.character-nastya {
+    left: -450px !important;
+    bottom: 0px !important;
+    width: clamp(1200px, 32vw, 600px) !important;
+    opacity: 0.75 !important;
+}
+
+/* NASTYA — lado derecho */
+.character-zuri {
+    right: -355px !important;
+    bottom: 0px !important;
+    width: clamp(1200px, 35vw, 650px) !important;
+    z-index: 10 !important;
+}
+
+/* TABLET */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .welcome-character {
+        width: 80vw !important;
+    }
+
+    .character-nastya {
+        left: -290px !important;
+        bottom: 0px !important;
+        opacity: 0.45 !important;
+    }
+
+    .character-zuri {
+        right: -230px !important;
+        bottom: -25px !important;
+        width: 80vw !important;
+        opacity: 0.65 !important;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 600px) {
+    .welcome-character {
+        width: 80vw !important;
+        max-width: none !important;
+        opacity: 0.9;
+    }
+
+    .character-nastya {
+        left: -135px !important;
+        bottom: 0px !important;
+        opacity: 0.45 !important;
+    }
+
+    .character-zuri {
+        right: -110px !important;
+        bottom: 0px !important;
+        width: 80vw !important;
+        opacity: 0.45 !important;
+    }
+}
+
+/* ==========================================
+   HEX ROOT — TIPOGRAFÍA Y TEXTO DE BIENVENIDA
+========================================== */
+
+.welcome-content {
+  position: relative;
+  z-index: 5;
+  font-family: "Rajdhani", sans-serif;
+  text-align: center;
+  overflow: visible;
+}
+
+/* ESTADO DEL SISTEMA */
+
+.welcome-eyebrow {
+  position: relative;
+  margin: 0 0 6px;
+  color: #a6ff00;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(11px, 1vw, 15px);
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.status-light {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  background: #a6ff00;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #a6ff00;
+  animation: statusBlink 1.4s infinite;
+}
+
+/* USUARIO CONECTADO */
+
+.welcome-user {
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(10px, 1vw, 13px);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.welcome-user span {
+  color: #00ed21;
+  text-shadow: 0 0 8px rgba(0, 237, 33, 0.5);
+}
+
+/* TÍTULO PRINCIPAL */
+
+.welcome-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+/* BIENVENIDOS A */
+
+.welcome-intro {
+  display: block;
+  color: #fff;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(32px, 5vw, 76px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* HEX ROOT — GLITCH */
+
+.welcome-glitch {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  color: #ff29b8;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(58px, 8vw, 130px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow:
+    3px 0 #00ed21,
+    -3px 0 rgba(255, 0, 183, 0.65),
+    0 0 18px rgba(255, 41, 184, 0.65);
+  animation: hexRootGlitch 4s infinite;
+}
+
+/* CAPAS DE GLITCH */
+
+.welcome-glitch::before,
+.welcome-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.welcome-glitch::before {
+  color: #00ed21;
+  clip-path: inset(15% 0 65% 0);
+  transform: translateX(-3px);
+  opacity: 0;
+  animation: glitchGreen 4s infinite;
+}
+
+.welcome-glitch::after {
+  color: #ff29b8;
+  clip-path: inset(65% 0 15% 0);
+  transform: translateX(3px);
+  opacity: 0;
+  animation: glitchPink 4s infinite;
+}
+
+/* MENSAJE NARRATIVO — MARCO HUD */
+
+.welcome-message {
+  position: relative;
+  width: min(90%, 700px);
+  margin: clamp(28px, 4vh, 48px) auto 0;
+  padding: 20px 28px;
+  box-sizing: border-box;
+  margin-top: 150px;
+
+  background: rgb(2 8 9 / 86%);
+  border: 1px solid rgba(0, 237, 33, 0.45);
+
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+
+  animation: hudPulse 3s ease-in-out infinite;
+}
+
+/* DETALLES TÉCNICOS DEL MARCO */
+
+.welcome-message::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34%;
+  height: 2px;
+  background: #ff29b8;
+  box-shadow: 0 0 10px #ff29b8;
+}
+
+.welcome-message::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 34%;
+  height: 2px;
+  background: #00ed21;
+  box-shadow: 0 0 10px #00ed21;
+}
+
+/* FRASE PRINCIPAL */
+
+.welcome-message h2 {
+  margin: 0;
+  color: #fff;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+}
+
+/* DESCRIPCIÓN */
+
+.welcome-description {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(15px, 1.5vw, 19px);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ANIMACIONES */
+
+@keyframes statusBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes hudPulse {
+  0%, 100% {
+    border-color: rgba(0, 237, 33, 0.4);
+    box-shadow: 0 0 5px rgba(0, 237, 33, 0.08);
+  }
+  50% {
+    border-color: rgba(0, 237, 33, 0.9);
+    box-shadow:
+      0 0 12px rgba(0, 237, 33, 0.18),
+      inset 0 0 14px rgba(0, 237, 33, 0.04);
+  }
+}
+
+@keyframes hexRootGlitch {
+  0%, 88%, 92%, 100% {
+    transform: translateX(0);
+  }
+  89% {
+    transform: translateX(-3px);
+  }
+  90% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes glitchGreen {
+  0%, 88%, 92%, 100% {
+    opacity: 0;
+  }
+  89%, 91% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes glitchPink {
+  0%, 89%, 93%, 100% {
+    opacity: 0;
+  }
+  90%, 92% {
+    opacity: 0.8;
+  }
+}
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+  .status-light,
+  .welcome-message,
+  .welcome-glitch,
+  .welcome-glitch::before,
+  .welcome-glitch::after {
+    animation: none !important;
+  }
+}
+
+/* INDICADOR DE SCROLL */
+
+.scroll-to-explore {
+  color: #ff29b8;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(255, 41, 184, 0.7);
+  opacity: 1;
+  animation: scrollSignal 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollSignal {
+  0%, 100% {
+    opacity: 0.7;
+    text-shadow: 0 0 5px rgba(255, 41, 184, 0.4);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 14px rgba(255, 41, 184, 0.9);
+  }
+}
+
+/* Usuario conectado: misma tipografía y color que SYSTEM FAILURE */
+#welcomeUser.welcome-user {
+  display: block;
+  margin: 0 0 18px;
+
+  font-family: "Rajdhani", sans-serif !important;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  color: #b6ff00 !important;
+  text-transform: uppercase;
+
+  text-shadow: none;
+  opacity: 1;
+  filter: none;
+}
+
+/* Alinear estado del sistema y usuario */
+.welcome-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 !important;
+  line-height: 1.2;
+}
+
+#welcomeUser {
+  display: inline-block;
+  margin: 0 0 0 12px !important;
+  padding: 0;
+  vertical-align: middle;
+  line-height: 1.2;
+  font-family: "Rajdhani", sans-serif !important;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #b6ff00 !important;
+}
+
+/* Mantener ambos elementos centrados */
+.welcome-content {
+  align-items: center;
+}
+
+/* ==========================================
+   HEX ROOT — JERARQUÍA DEL TÍTULO
+========================================== */
+
+/* BIENVENIDOS A: blanco, más pequeño y sin efectos */
+.welcome-heading {
+  display: block;
+  width: 100%;
+
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(28px, 3.2vw, 46px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 2px;
+
+  color: #ffffff !important;
+  text-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+}
+
+/* HEX ROOT: título principal */
+.welcome-glitch {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(72px, 9vw, 132px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 2px;
+
+  color: #f000b7;
+  text-shadow:
+    3px 0 #00ed21,
+    -3px 0 rgba(240, 0, 183, 0.75),
+    0 0 18px rgba(240, 0, 183, 0.8);
+}
+
+/* Ajustes para celular */
+@media (max-width: 600px) {
+  .welcome-heading {
+    font-size: clamp(25px, 7vw, 36px);
+    letter-spacing: 1px;
+  }
+
+  .welcome-glitch {
+    font-size: clamp(48px, 12vw, 72px);
+    letter-spacing: 0;
+    margin-top: 10px;
+  }
+}
+
+/* ==========================================
+   HEX ROOT — AJUSTE FINAL DEL TITULAR
+========================================== */
+
+/* Contenedor del título */
+#horizontal-track > .welcome-hero .welcome-content h1.welcome-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(20px, 2.8vw, 38px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* BIENVENIDOS A: blanco, pequeño y sin glitch */
+#horizontal-track > .welcome-hero .welcome-content h1 .welcome-intro {
+  display: block;
+  margin: 0;
+  color: #ffffff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-shadow: none;
+  animation: none;
+  transform: none;
+}
+
+/* HEX ROOT: protagonista rosa con efecto glitch */
+#horizontal-track > .welcome-hero .welcome-content h1 .welcome-logo {
+  display: block;
+  margin: 0;
+  color: #65ff36;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(58px, 7.5vw, 108px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 5px rgba(255, 54, 188, 0.95),
+    0 0 18px rgba(255, 54, 188, 0.8),
+    0 0 42px rgba(255, 54, 188, 0.35);
+
+  animation: hexroot-signal 4s steps(1, end) infinite;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #horizontal-track > .welcome-hero .welcome-content h1 .welcome-logo {
+    font-size: clamp(52px, 7vw, 82px);
+  }
+}
+
+/* Celular */
+@media (max-width: 700px) {
+  #horizontal-track > .welcome-hero .welcome-content h1.welcome-title {
+    gap: 12px;
+    font-size: clamp(18px, 4.5vw, 28px);
+  }
+
+  #horizontal-track > .welcome-hero .welcome-content h1 .welcome-logo {
+    font-size: clamp(38px, 10vw, 64px);
+    letter-spacing: -0.04em;
+  }
+}
+
+/* Evitar que el efecto moleste a usuarios sensibles al movimiento */
+@media (prefers-reduced-motion: reduce) {
+  #horizontal-track > .welcome-hero .welcome-content h1 .welcome-logo {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   AJUSTE DE TAMAÑO Y POSICIÓN — HEX ROOT
+========================================== */
+
+/* Agrandar el título principal */
+#horizontal-track > .welcome-hero .welcome-content h1 .welcome-logo {
+      font-size: clamp(88px, 13.5vw, 200px);
+}
+
+/* Separar un poco más BIENVENIDOS A de HEX ROOT */
+#horizontal-track > .welcome-hero .welcome-content h1.welcome-title {
+  gap: 12px;
+}
+
+/* Bajar el marco HUD de la descripción */
+#horizontal-track > .welcome-hero .welcome-content .welcome-description,
+#horizontal-track > .welcome-hero .welcome-content h2 {
+  position: relative;
+}
+
+/* Dar más espacio entre el título y el marco inferior */
+#horizontal-track > .welcome-hero .welcome-content h2 {
+  margin-top: 42px;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #horizontal-track > .welcome-hero .welcome-content h1 .welcome-logo {
+        font-size: clamp(88px, 13.5vw, 400px);
+  }
+
+  #horizontal-track > .welcome-hero .welcome-content h2 {
+    margin-top: 32px;
+  }
+}
+
+/* Celular */
+@media (max-width: 700px) {
+  #horizontal-track > .welcome-hero .welcome-content h1 .welcome-logo {
+        font-size: clamp(88px, 13.5vw, 400px);
+  }
+
+  #horizontal-track > .welcome-hero .welcome-content h1.welcome-title {
+    gap: 10px;
+  }
+
+  #horizontal-track > .welcome-hero .welcome-content h2 {
+    margin-top: 24px;
+  }
+}
+
+/* ==========================================
+   HEX ROOT — AJUSTES TABLET Y CELULAR
+   ========================================== */
+
+/* TABLET */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .welcome-content {
+    width: 78%;
+    max-width: 680px;
+    margin-top: -55px;
+    gap: 10px;
+  }
+
+  .welcome-content h1 {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 0;
+  }
+
+  .welcome-content h2 {
+    font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+    line-height: 1.2;
+  }
+
+  .welcome-description {
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+  }
+
+  /* Recuadro inferior más compacto */
+  .welcome-description,
+  .welcome-content h2 {
+    max-width: 100%;
+  }
+}
+
+/* CELULAR */
+@media (max-width: 600px) {
+
+  .welcome-content {
+    width: 88%;
+    max-width: 440px;
+    margin-top: -65px;
+    gap: 8px;
+  }
+
+  .welcome-eyebrow {
+    font-size: 0.58rem;
+    margin-bottom: 0;
+  }
+
+  .welcome-content h1 {
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
+    line-height: 1;
+    margin-bottom: 0;
+  }
+
+  .welcome-content h2 {
+    font-size: clamp(1rem, 4.2vw, 1.3rem);
+    line-height: 1.25;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  .welcome-description {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    margin-top: 0;
+  }
+
+  /* Evita que el texto ocupe demasiado espacio */
+  .welcome-content h2,
+  .welcome-description {
+    max-width: 100%;
+  }
+}
+
+/* =================================
+   TABLET: MÁS GRANDE Y MÁS ARRIBA
+   ================================= */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .welcome-content {
+    width: 86%;
+    max-width: 780px;
+    margin-top: -120px;
+    gap: 14px;
+  }
+
+  .welcome-eyebrow {
+    font-size: 0.8rem;
+  }
+
+  .welcome-content h1 {
+    font-size: clamp(3.8rem, 8vw, 6rem);
+    line-height: 1;
+  }
+
+  .welcome-content h2 {
+    font-size: clamp(1.5rem, 3.2vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .welcome-description {
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    line-height: 1.5;
+  }
+}
+
+/* =================================
+   CELULAR: CONSERVAR TAMAÑOS Y SUBIR
+   ================================= */
+@media (max-width: 600px) {
+
+  .welcome-content {
+    margin-top: -110px;
+  }
+}
+
+/* ========================================
+   HEX ROOT — AJUSTE VERTICAL RESPONSIVE
+   ======================================== */
+
+/* TABLET */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #horizontal-track > .welcome-hero .welcome-content {
+    transform: translateY(-65px);
+  }
+}
+
+/* CELULAR */
+@media (max-width: 700px) {
+  #horizontal-track > .welcome-hero .welcome-content {
+    transform: translateY(-55px);
+  }
+}
+
+/* ==========================================
+   HEX ROOT — ORIGEN
+   Indicador visual de interacción
+========================================== */
+
+/* Las capturas indican que se pueden pulsar */
+#origen .origin-game-frame {
+  position: relative;
+  cursor: pointer;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Destello de atención: verde para Zuri y magenta para Nastya */
+#origen .origin-game-frame:not(.is-decoded) {
+  animation: origin-image-pulse 1.8s ease-in-out infinite;
+}
+
+#origen .frame-green:not(.is-decoded) {
+  --origin-pulse-color: 0, 255, 57;
+}
+
+#origen .frame-pink:not(.is-decoded) {
+  --origin-pulse-color: 255, 54, 188;
+}
+
+@keyframes origin-image-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(var(--origin-pulse-color), 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 12px rgba(var(--origin-pulse-color), 0.75),
+      0 0 25px rgba(var(--origin-pulse-color), 0.25);
+  }
+}
+
+/* Mensaje superpuesto directamente sobre la imagen */
+#origen .origin-image-prompt {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  z-index: 5;
+
+  display: block;
+  width: max-content;
+  max-width: 85%;
+  padding: 10px 14px;
+
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.88);
+  border: 1px solid currentColor;
+
+  color: currentColor;
+  font: 700 10px "Space Mono", monospace;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  text-align: center;
+
+  pointer-events: none;
+  animation: origin-prompt-blink 1s steps(2, end) infinite;
+}
+
+@keyframes origin-prompt-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* Al revelar el contenido, detener las señales de atención */
+#origen .origin-game-frame.is-decoded {
+  animation: none;
+  box-shadow: 0 0 16px currentColor;
+}
+
+#origen .origin-game-frame.is-decoded .origin-image-prompt {
+  top: auto;
+  bottom: 30px;
+  animation: none;
+  opacity: 1;
+}
+
+/* ==========================================
+   TABLET: COMPOSICIÓN VERTICAL
+   Solo entre 701px y 1024px
+========================================== */
+
+@media screen and (min-width: 701px) and (max-width: 1024px) {
+
+  #horizontal-track > .origin-section {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  #origen .origin-editorial {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    gap: 26px;
+    align-content: start;
+
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+    padding: 35px 28px 100px;
+    box-sizing: border-box;
+  }
+
+  #origen .origin-intro,
+  #origen .frame-green,
+  #origen .frame-pink,
+  #origen .origin-text-green {
+    grid-column: 1;
+    grid-row: auto;
+
+    width: 100%;
+    max-width: 680px;
+    justify-self: center;
+    align-self: start;
+
+    box-sizing: border-box;
+  }
+
+  /* Título y descripción superior */
+  #origen .origin-intro {
+    margin: 0;
+  }
+
+  #origen .origin-title-block h2 {
+    font-size: clamp(42px, 5.5vw, 64px);
+  }
+
+  #origen .origin-text-block {
+    padding: 22px;
+  }
+
+  #origen .origin-text-block p {
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.7;
+  }
+
+  /* Capturas grandes y ordenadas verticalmente */
+  #origen .origin-game-frame {
+    margin: 0;
+  }
+
+  #origen .origin-game-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  #origen .origin-game-frame figcaption {
+    margin-top: 10px;
+    font-size: 11px;
+  }
+
+  #origen .origin-image-prompt {
+    font-size: 11px;
+    padding: 12px 16px;
+  }
+
+  #origen .origin-text-green {
+    margin-top: 0;
+  }
+}
+
+/* Respetar la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  #origen .origin-game-frame:not(.is-decoded),
+  #origen .origin-image-prompt {
+    animation: none;
+  }
+}
+
+/* Corregir superposición de personajes en la sección de bienvenida */
+#horizontal-track .welcome-character {
+  pointer-events: none;
+}
+
+/* Mantener el contenido de bienvenida por encima */
+#horizontal-track .welcome-content {
+  position: relative;
+  z-index: 20;
+}
+
+/* Evitar que la imagen de Zuri tape otros elementos */
+#horizontal-track .character-zuri {
+  z-index: 1;
+}
+
+/* =====================================
+   HEX ROOT — RESTAURAR TIPOGRAFÍA HACKER
+===================================== */
+
+.welcome-content,
+.welcome-content h1,
+.welcome-content h2,
+.welcome-description,
+.welcome-message,
+.welcome-message h2 {
+  font-family: "Space Mono", monospace !important;
+}
+
+/* ==========================================
+   HEX ROOT — M.A.T.E.O.
+   TIPOGRAFÍA HACKER + RESPONSIVE TABLET
+========================================== */
+
+/* Tipografía monoespaciada en toda la sección */
+#mateo,
+#mateo * {
+  font-family: "Space Mono", monospace !important;
+}
+
+/* Mantener títulos legibles y contundentes */
+#mateo .mateo-editorial-header h2 {
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+#mateo .mateo-editorial-intro h3 {
+  font-weight: 700;
+}
+
+#mateo .mateo-system-label,
+#mateo .mateo-label,
+#mateo .mateo-system-data {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: 1px;
+}
+
+/* TABLET: 701 px a 1024 px */
+@media screen and (min-width: 701px) and (max-width: 1024px) {
+
+  #mateo.mateo-section {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+  }
+
+  #mateo .mateo-panel.mateo-editorial {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "intro"
+      "green"
+      "pink"
+      "outro";
+
+    width: 100%;
+    max-width: 760px;
+    gap: 26px;
+    margin: 0 auto !important;
+    padding: 24px 32px 40px !important;
+    box-sizing: border-box;
+    align-items: start;
+  }
+
+  #mateo .mateo-editorial-header {
+    margin: 0 0 8px !important;
+    text-align: center;
+  }
+
+  #mateo .mateo-editorial-header h2 {
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1;
+  }
+
+  #mateo .mateo-full {
+    font-size: clamp(14px, 1.8vw, 19px);
+    line-height: 1.35;
+  }
+
+  #mateo .mateo-editorial-intro {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+
+  #mateo .mateo-editorial-intro h3 {
+    font-size: clamp(26px, 3vw, 36px);
+    margin: 8px 0;
+  }
+
+  #mateo .mateo-editorial-intro p,
+  #mateo .mateo-editorial-outro > p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  #mateo .mateo-shot {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  #mateo .mateo-shot-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  #mateo .mateo-editorial-outro {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  #mateo .mateo-system-data {
+    gap: 8px 16px;
+    margin-top: 14px;
+    line-height: 1.8;
+  }
+}
+
+/* =========================================
+   UNIVERSIDAD — PERSONAJES DE FONDO
+========================================= */
+
+#universo,
+.universe-section {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Imagen decorativa detrás del contenido */
+.universe-characters-bg {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+
+  width: min(48vw, 680px);
+  height: auto;
+  object-fit: contain;
+
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+
+  opacity: 0.24;
+}
+
+/* Mantener el contenido por encima */
+#universo > :not(.universe-characters-bg),
+.universe-section > :not(.universe-characters-bg) {
+  position: relative;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .universe-characters-bg {
+    width: 65%;
+    left: 50%;
+    bottom: 2%;
+    top: auto;
+    transform: translateX(-50%);
+    opacity: 0.12;
+  }
+}
+
+/* =========================================
+   CELULAR
+========================================= */
+@media (max-width: 700px) {
+  /* Dejar la descripción debajo de la imagen */
+  .universe-section,
+  #universo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .universe-characters-bg {
+    width: 90%;
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 3%;
+    transform: translateX(-50%);
+    opacity: 0.09;
+  }
+}
+
+/* =====================================
+   INICIO HEX ROOT — PC
+===================================== */
+
+@media (min-width: 1025px) {
+  .terminal-center,
+  .welcome-screen .welcome-content {
+    transform: scale(1.15);
+    transform-origin: center center;
+  }
+}
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (min-width: 701px) and (max-width: 1024px) {
+  .terminal-center,
+  .welcome-screen .welcome-content {
+    transform: scale(1.25);
+    transform-origin: center center;
+  }
+}
+
+/* =====================================
+   CELULAR
+   Mantener el tamaño actual
+===================================== */
+
+@media (max-width: 700px) {
+  .terminal-center,
+  .welcome-screen .welcome-content {
+    transform: none;
+  }
+}
+
+/* El contenido central se organiza verticalmente */
+.terminal-center,
+.welcome-screen .welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Panel de información */
+.terminal-info,
+.welcome-screen .welcome-info {
+  position: relative;
+  width: min(90%, 600px);
+  margin: 24px auto 0;
+  z-index: 5;
+  box-sizing: border-box;
+}
+
+/* Tablet: panel debajo del logo y botón */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .terminal-info,
+  .welcome-screen .welcome-info {
+    width: 90%;
+    margin-top: 28px;
+  }
+}
+/* HEX ROOT — FONDO FIJO DE PORTADA */
+#horizontal-track > .welcome-hero {
+    background-attachment: fixed !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+/* HEX ROOT — CONTINUIDAD DEL FONDO ENTRE PORTADA Y M.A.T.E.O. */
+
+#horizontal-track > .welcome-hero,
+#horizontal-track > section#mateo.mateo-section {
+   
+    background-image: none !important;
+}
+
+#horizontal-track > .welcome-hero::before,
+#horizontal-track > section#mateo.mateo-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    background-image: url("../img/fondo-dinamico-degradado.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    opacity: 0.25;
+}
+
+#horizontal-track > .welcome-hero > *,
+#horizontal-track > section#mateo.mateo-section > * {
+    position: relative;
+    z-index: 1;
+}

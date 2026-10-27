@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tráiler</title>
+    <link rel="icon" type="image/png" href="img/icono_favi.png">
+    <link rel="stylesheet" href="css/trailer.css">
+    <link rel="stylesheet" href="css/menu-navegacion.css">
+    <link rel="stylesheet" href="css/efectos-globales.css">
+    <script src="js/efectos-globales.js" defer></script>
+
+</head>
+
+<body>
+
+    <!-- HEX ROOT — MENÚ RADIAL -->
+    <nav class="hex-nav" id="hexNav" aria-label="Navegación principal">
+
+        <!-- Arco decorativo -->
+        <div class="hex-nav__frame" aria-hidden="true">
+            <img class="hex-nav__frame-image" src="img/hud/radar-ring-green.png" alt="">
+        </div>
+
+        <!-- Opciones de navegación -->
+        <div class="hex-nav__items" id="hexNavItems">
+
+            <a class="hex-nav__item" href="tematica.html">
+                <span class="hex-nav__number">01</span>
+                <span class="hex-nav__label">Tematica</span>
+            </a>
+
+            <a class="hex-nav__item" href="videojuego.html">
+                <span class="hex-nav__number">02</span>
+                <span class="hex-nav__label">VIDEOJUEGO</span>
+            </a>
+
+            <a class="hex-nav__item" href="galeria.html">
+                <span class="hex-nav__number">03</span>
+                <span class="hex-nav__label">GALERÍA</span>
+            </a>
+
+            <a class="hex-nav__item" href="revista.html">
+                <span class="hex-nav__number">04</span>
+                <span class="hex-nav__label">REVISTA</span>
+            </a>
+
+            <a class="hex-nav__item" href="personaje.html">
+                <span class="hex-nav__number">05</span>
+                <span class="hex-nav__label">PERSONAJE</span>
+            </a>
+
+            <a class="hex-nav__item" href="contacto.html">
+                <span class="hex-nav__number">06</span>
+                <span class="hex-nav__label">CONTACTO</span>
+            </a>
+
+        </div>
+
+        <!-- Botón central -->
+        <button class="hex-nav__toggle" id="hexNavToggle" type="button" aria-label="Abrir menú de navegación"
+            aria-expanded="false" aria-controls="hexNavItems">
+            <img src="img/icono.png" alt="" class="hex-nav__icon">
+        </button>
+
+    </nav>
+
+    <!-- TRAILER — HEX ROOT -->
+    <section class="trailer-section" id="trailer">
+
+        <!-- Fondo y capa 3D -->
+        <div class="trailer-background" aria-hidden="true">
+            <canvas id="shape-grid-canvas"></canvas>
+        </div>
+
+        <!-- Encabezado -->
+        <header class="trailer-topbar">
+            <span class="trailer-system-label">
+                <i data-lucide="radio-tower"></i>
+                HEX ROOT // VISUAL TRANSMISSION
+            </span>
+            <span class="trailer-status">
+                <span class="trailer-status-dot"></span>
+                SIGNAL DETECTED
+            </span>
+        </header>
+
+        <!-- Título -->
+        <div class="trailer-heading">
+            <span class="trailer-eyebrow">SYSTEM FAILURE / FILE 003</span>
+            <h1>
+                LA UNIVERSIDAD<br>
+                <span>YA NO ES LA MISMA</span>
+            </h1>
+            <div class="trailer-title-line"></div>
+        </div>
+
+        <!-- Personajes y descripción -->
+        <div class="trailer-intro">
+
+            <div class="trailer-characters">
+                <div class="trailer-character-glow" aria-hidden="true"></div>
+                <img src="img/nastya_zuri_lego.png" alt="Nastya y Zuri, protagonistas de HEX ROOT"
+                    class="trailer-characters-image">
+                <span class="trailer-character-tag">
+                    SUBJECT 001 / 002
+                </span>
+            </div>
+
+            <div class="trailer-copy">
+                <span class="trailer-copy-label">
+                    <i data-lucide="terminal"></i>
+                    TRANSMISSION INCOMING
+                </span>
+
+                <p>
+                    Algo cambió dentro de San Mateo. Los sistemas fallaron.
+                    Los espacios comenzaron a transformarse.
+                    Y ahora hay algo que intenta impedir que salgas.
+                </p>
+
+                <button class="trailer-green-button" id="trailer-watch-button" type="button">
+                    <img src="img/hud/button-down-green.png" alt="" aria-hidden="true">
+                    <span>VER TRÁILER</span>
+                    <i data-lucide="arrow-up-right"></i>
+                </button>
+
+                <span class="trailer-button-caption">
+                    OPEN VIDEO TRANSMISSION
+                </span>
+            </div>
+
+        </div>
+
+        <!-- Reproductor enmarcado -->
+
+        <div class="trailer-video-area" id="trailer-video-area">
+
+            <div class="trailer-video-frame">
+
+                <!-- Marco HUD magenta -->
+                <img src="img/hud/input-panel-luz-magenta.png" alt="" class="trailer-video-hud" aria-hidden="true">
+
+                <!-- Reproductor único -->
+                <div class="trailer-video-inner">
+
+                    <div class="trailer-video-topline">
+                        <span>HEX ROOT // VIDEO FILE 003</span>
+
+                        <span class="trailer-recording">
+                            <i></i> TRANSMISSION
+                        </span>
+                    </div>
+
+                    <video id="trailer-inline-video" class="trailer-inline-video" preload="metadata" playsinline
+                        aria-label="Tráiler oficial de HEX ROOT">
+                        <source src="img/video/trailer.mp4" type="video/mp4">
+                    </video>
+
+                    <!-- Controles personalizados -->
+                    <div class="trailer-custom-controls">
+
+                        <button type="button" id="trailer-control-play" aria-label="Reproducir o pausar">▶</button>
+
+                        <span id="trailer-current-time">00:00</span>
+
+                        <input type="range" id="trailer-seek" min="0" max="100" value="0" step="0.1"
+                            aria-label="Posición del video">
+
+                        <span id="trailer-duration">00:00</span>
+
+                        <button type="button" id="trailer-mute" aria-label="Silenciar o activar sonido">VOL</button>
+
+                        <input type="range" id="trailer-volume" min="0" max="1" value="1" step="0.05"
+                            aria-label="Volumen">
+
+                        <button type="button" id="trailer-fullscreen" aria-label="Pantalla completa">⛶</button>
+
+                    </div>
+
+                    <div class="trailer-video-bottomline">
+                        <span>HEX ROOT — SYSTEM FAILURE</span>
+                        <span>M.A.T.E.O. // 003</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Descripción -->
+            <div class="trailer-video-caption">
+                <h2>¿Te atreves a entrar?</h2>
+                <p>
+                    Explora la universidad, descubre las anomalías y encuentra
+                    la salida antes de que el tiempo se termine.
+                </p>
+            </div>
+
+            <!-- Videojuego aún no disponible -->
+            <button class="trailer-green-button trailer-play-now" id="trailer-play-now" type="button" disabled
+                aria-disabled="true">
+                <img src="img/hud/button-down-green.png" alt="" aria-hidden="true">
+                <span>PRÓXIMAMENTE</span>
+                <i data-lucide="gamepad-2"></i>
+            </button>
+
+        </div>
+
+
+        <!-- Modal del vídeo -->
+        <div class="trailer-modal" id="trailer-modal" aria-hidden="true" inert>
+            <div class="trailer-modal-panel" role="dialog" aria-modal="true" aria-label="Reproductor del tráiler">
+
+                <div class="trailer-modal-header">
+                    <span>HEX ROOT // VIDEO TRANSMISSION</span>
+                    <button id="trailer-modal-close" type="button" aria-label="Cerrar tráiler">
+                        <i data-lucide="x"></i>
+                        CERRAR
+                    </button>
+                </div>
+
+
+                <video id="trailer-video" preload="metadata" playsinline>
+                    <source src="img/video/trailer.mp4" type="video/mp4">
+                    Tu navegador no admite la reproducción de vídeo.
+                </video>
+
+
+                <p class="trailer-modal-footer">
+                    END OF TRANSMISSION // M.A.T.E.O.
+                </p>
+            </div>
+        </div>
+
+        <!-- Pie -->
+        <footer class="trailer-footer">
+            <span>SUBJECTS DETECTED: 002</span>
+            <span class="trailer-footer-center">
+                <i data-lucide="activity"></i>
+                SYSTEM UNSTABLE
+            </span>
+            <span>HEX ROOT © 2026</span>
+        </footer>
+
+    </section>
+    <!-- FIN TRAILER -->
+    <script src="js/menu-navegacion.js" defer></script>
+    <script src="js/trailer.js" defer></script>
+</body>
+
+</html>

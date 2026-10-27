@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050505">
+    <title>Contacto</title>
+    <link rel="icon" type="image/png" href="img/icono_favi.png">
+    <link rel="stylesheet" href="css/contacto.css">
+    <script src="js/magnet-lines.js" defer></script>
+    <script src="js/contacto.js" defer></script>
+    <link rel="stylesheet" href="css/menu-navegacion.css">
+    <link rel="stylesheet" href="css/efectos-globales.css">
+    <script src="js/efectos-globales.js" defer></script>
+
+</head>
+
+<body>
+
+    <nav class="hex-nav" id="hexNav" aria-label="Navegación principal">
+
+        <!-- Arco decorativo -->
+        <div class="hex-nav__frame" aria-hidden="true">
+            <img class="hex-nav__frame-image" src="img/hud/radar-ring-green.png" alt="">
+        </div>
+
+        <!-- Opciones de navegación -->
+        <div class="hex-nav__items" id="hexNavItems">
+
+            <a class="hex-nav__item" href="tematica.html">
+                <span class="hex-nav__number">01</span>
+                <span class="hex-nav__label">Tematica</span>
+            </a>
+
+            <a class="hex-nav__item" href="videojuego.html">
+                <span class="hex-nav__number">02</span>
+                <span class="hex-nav__label">VIDEOJUEGO</span>
+            </a>
+
+            <a class="hex-nav__item" href="galeria.html">
+                <span class="hex-nav__number">03</span>
+                <span class="hex-nav__label">GALERÍA</span>
+            </a>
+
+            <a class="hex-nav__item" href="revista.html">
+                <span class="hex-nav__number">04</span>
+                <span class="hex-nav__label">REVISTA</span>
+            </a>
+
+            <a class="hex-nav__item" href="personaje.html">
+                <span class="hex-nav__number">05</span>
+                <span class="hex-nav__label">PERSONAJES</span>
+            </a>
+
+            <a class="hex-nav__item" href="trailer.html">
+                <span class="hex-nav__number">06</span>
+                <span class="hex-nav__label">trailer</span>
+            </a>
+
+        </div>
+
+        <!-- Botón central -->
+        <button class="hex-nav__toggle" id="hexNavToggle" type="button" aria-label="Abrir menú de navegación"
+            aria-expanded="false" aria-controls="hexNavItems">
+            <img src="img/icono.png" alt="" class="hex-nav__icon">
+        </button>
+
+    </nav>
+
+    <section class="contact-section" id="contacto">
+
+        <!-- FONDO MAGNET LINES -->
+        <canvas id="magnetLinesCanvas" aria-hidden="true"></canvas>
+        <div class="contact-noise" aria-hidden="true"></div>
+
+        <header class="contact-header">
+            <span class="contact-kicker">HEX ROOT // TRANSMISSION CHANNEL</span>
+            <h2>¿QUIERES SABER MÁS?</h2>
+        </header>
+
+        <!-- LOGO ELÉCTRICO -->
+        <div class="electric-logo-stage" id="electricLogoStage">
+            <canvas id="electricCanvas" aria-hidden="true"></canvas>
+
+            <img src="img/logo.png" alt="HEX ROOT — Un mundo, dos anomalías" class="contact-logo" id="contactLogo">
+
+            <p class="contact-tagline">UN MUNDO, DOS ANOMALÍAS</p>
+        </div>
+
+        <!-- PRESENTACIÓN -->
+        <div class="contact-description">
+            <p>
+                Proyecto académico desarrollado por estudiantes de la
+                <strong>Fundación Universitaria San Mateo.</strong>
+            </p>
+        </div>
+
+        <!-- EQUIPO -->
+        <div class="contact-team">
+            <h3 class="contact-section-title">
+                EQUIPO<span>_02</span>
+            </h3>
+
+
+            <div class="team-grid">
+
+                <!-- JENNYFER -->
+                <article class="team-card">
+                    <div class="team-image-wrap team-image-trigger" role="button" tabindex="0"
+                        aria-label="Mostrar información de Jennyfer Hernández" aria-expanded="false">
+                        <img src="img/jenn.png" alt="Jennyfer Hernández con su personaje" class="team-portrait">
+
+                        <img src="img/hud/input-panel-luz-magenta.png" alt="" aria-hidden="true" class="team-hud-frame">
+
+                        <span class="team-code">USER_001 // DESIGN &amp; CODE</span>
+                        <span class="team-image-index">01</span>
+
+                        <span class="team-click-hint">[ CLICK TO ACCESS ]</span>
+                    </div>
+
+                    <div class="team-info">
+                        <span class="team-role">PROGRAMMING / CONTENT</span>
+                        <h4>Jennyfer Hernández</h4>
+                        <ul>
+                            <li>Programación</li>
+                            <li>Diseño UI</li>
+                            <li>Desarrollo web</li>
+                            <li>Redacción y organización de contenidos</li>
+                        </ul>
+                    </div>
+
+                    <div class="team-terminal" hidden aria-live="polite">
+                        <div class="terminal-top">
+                            <span>HEX ROOT // USER_001</span>
+                            <span class="terminal-status">● CONNECTION ESTABLISHED</span>
+                        </div>
+
+                        <div class="terminal-content">
+                            <p class="terminal-prompt">root@hexroot:~$ identify_user</p>
+                            <div class="terminal-typed"
+                                data-text="IDENTIDAD: JENNYFER HERNÁNDEZ&#10;ROL: PROGRAMACIÓN Y CONTENIDO&#10;&#10;> Programación del proyecto&#10;> Desarrollo web e interacción&#10;> Redacción y organización de contenidos&#10;&#10;ESTADO: USUARIO AUTORIZADO_">
+                            </div>
+                        </div>
+
+                        <div class="terminal-bottom">SYSTEM MESSAGE // END OF FILE</div>
+                    </div>
+                </article>
+
+                <!-- YERIS -->
+                <article class="team-card">
+                    <div class="team-image-wrap team-image-trigger" role="button" tabindex="0"
+                        aria-label="Mostrar información de Yeris Arteaga" aria-expanded="false">
+                        <img src="img/yeris.png" alt="Yeris Arteaga con su personaje" class="team-portrait">
+
+                        <img src="img/hud/input-panel-luz-magenta.png" alt="" aria-hidden="true" class="team-hud-frame">
+
+                        <span class="team-code">USER_002 // VISUAL SYSTEM</span>
+                        <span class="team-image-index">02</span>
+
+                        <span class="team-click-hint">[ CLICK TO ACCESS ]</span>
+                    </div>
+
+                    <div class="team-info">
+                        <span class="team-role">VISUAL DESIGN / ART</span>
+                        <h4>Yeris Arteaga</h4>
+                        <ul>
+                            <li>Lenguaje visual</li>
+                            <li>Tratamiento de imágenes</li>
+                            <li>Recursos gráficos</li>
+                        </ul>
+                    </div>
+
+                    <div class="team-terminal" hidden aria-live="polite">
+                        <div class="terminal-top">
+                            <span>HEX ROOT // USER_002</span>
+                            <span class="terminal-status">● CONNECTION ESTABLISHED</span>
+                        </div>
+
+                        <div class="terminal-content">
+                            <p class="terminal-prompt">root@hexroot:~$ identify_user</p>
+                            <div class="terminal-typed"
+                                data-text="IDENTIDAD: YERIS ARTEAGA&#10;ROL: DISEÑO VISUAL&#10;&#10;> Diseño de interfaz UI&#10;> Desarrollo del lenguaje visual&#10;> Tratamiento de imágenes&#10;> Creación de recursos gráficos&#10;&#10;ESTADO: USUARIO AUTORIZADO_">
+                            </div>
+                        </div>
+
+                        <div class="terminal-bottom">SYSTEM MESSAGE // END OF FILE</div>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+
+        <!-- CONTACTO -->
+        <footer class="contact-footer">
+            <div>
+                <span class="contact-kicker">END OF TRANSMISSION</span>
+                <h3>ENCUÉNTRANOS<span>.</span></h3>
+            </div>
+
+            <nav class="contact-links" aria-label="Redes y contacto">
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                    <span>01</span> Instagram <b>↗</b>
+                </a>
+
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                    <span>02</span> Facebook <b>↗</b>
+                </a>
+
+                <!-- Reemplaza esta dirección por el correo real del proyecto -->
+                <a href="mailto:TU_CORREO@ejemplo.com">
+                    <span>03</span> Correo electrónico <b>↗</b>
+                </a>
+            </nav>
+
+            <p class="contact-copyright">
+                HEX ROOT © 2026 — SYSTEM OFFLINE
+            </p>
+        </footer>
+
+    </section>
+    <script src="js/menu-navegacion.js"></script>
+</body>
+
+</html>

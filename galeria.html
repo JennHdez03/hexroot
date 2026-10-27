@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030403">
+    <meta name="description" content="Explora el universo de HEX ROOT.">
+    <title>Galería</title>
+    <link rel="icon" type="image/png" href="img/icono_favi.png">
+    <link rel="stylesheet" href="css/galeria.css">
+    <link rel="stylesheet" href="css/menu-navegacion.css">
+    <link rel="stylesheet" href="css/efectos-globales.css">
+    <script src="js/efectos-globales.js" defer></script>
+
+</head>
+
+<body>
+
+    <nav class="hex-nav" id="hexNav" aria-label="Navegación principal">
+
+        <!-- Arco decorativo -->
+        <div class="hex-nav__frame" aria-hidden="true">
+            <img class="hex-nav__frame-image" src="img/hud/radar-ring-green.png" alt="">
+        </div>
+
+        <!-- Opciones de navegación -->
+        <div class="hex-nav__items" id="hexNavItems">
+
+            <a class="hex-nav__item" href="tematica.html">
+                <span class="hex-nav__number">01</span>
+                <span class="hex-nav__label">Tematica</span>
+            </a>
+
+            <a class="hex-nav__item" href="trailer.html">
+                <span class="hex-nav__number">02</span>
+                <span class="hex-nav__label">trailer</span>
+            </a>
+
+            <a class="hex-nav__item" href="videojuego.html">
+                <span class="hex-nav__number">03</span>
+                <span class="hex-nav__label">GALERÍA</span>
+            </a>
+
+            <a class="hex-nav__item" href="revista.html">
+                <span class="hex-nav__number">04</span>
+                <span class="hex-nav__label">REVISTA</span>
+            </a>
+
+            <a class="hex-nav__item" href="personaje.html">
+                <span class="hex-nav__number">05</span>
+                <span class="hex-nav__label">PERSONAJES</span>
+            </a>
+
+            <a class="hex-nav__item" href="contacto.html">
+                <span class="hex-nav__number">06</span>
+                <span class="hex-nav__label">CONTACTO</span>
+            </a>
+
+        </div>
+
+        <!-- Botón central -->
+        <button class="hex-nav__toggle" id="hexNavToggle" type="button" aria-label="Abrir menú de navegación"
+            aria-expanded="false" aria-controls="hexNavItems">
+            <img src="img/icono.png" alt="" class="hex-nav__icon">
+        </button>
+
+    </nav>
+
+    <div class="gallery-noise" aria-hidden="true"></div>
+
+    <main class="gallery-page">
+
+        <section class="gallery-section" aria-label="Galería interactiva">
+            <h1 class="gallery-title">EXPLORA EL <span>UNIVERSO</span></h1>
+
+            <p class="gallery-instruction">
+                ARRASTRA PARA EXPLORAR <span>///</span> SELECCIONA UNA IMAGEN
+            </p>
+
+            <div class="gallery-stage" id="galleryStage">
+                <div class="gallery-orbit orbit-one" aria-hidden="true"></div>
+                <div class="gallery-orbit orbit-two" aria-hidden="true"></div>
+                <div class="gallery-crosshair" aria-hidden="true">+</div>
+
+                <!-- Controles laterales de la galería -->
+                <button class="gallery-arrow gallery-arrow--prev" id="galleryPrev" type="button"
+                    aria-label="Ver imagen anterior" title="Imagen anterior">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+
+                <button class="gallery-arrow gallery-arrow--next" id="galleryNext" type="button"
+                    aria-label="Ver imagen siguiente" title="Imagen siguiente">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+
+                <div class="gallery-world" id="galleryWorld" tabindex="0" role="group"
+                    aria-label="Galería 3D. Usa las flechas o arrastra para girar.">
+                </div>
+
+                <div class="gallery-hud gallery-hud-left" aria-hidden="true">
+                    <span>DIMENSION_01</span>
+                    <span>VISUAL ARCHIVE</span>
+                    <span id="galleryCounter">01 / 20</span>
+                </div>
+
+                <div class="gallery-hud gallery-hud-right" aria-hidden="true">
+                    <span>ROTATION</span>
+                    <span id="galleryRotation">000°</span>
+                    <span>DRAG TO NAVIGATE</span>
+                </div>
+
+                <div class="gallery-focus" aria-hidden="true"></div>
+            </div>
+
+            <footer class="gallery-footer">
+                <span class="gallery-footer-label">
+                    M.A.T.E.O. // VISUAL DATABASE
+                </span>
+                <span class="gallery-footer-line"></span>
+                <span class="gallery-footer-label">SYSTEM ONLINE</span>
+            </footer>
+        </section>
+    </main>
+
+
+    <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle"
+        aria-hidden="true">
+
+        <button class="gallery-modal-close" id="galleryModalClose" type="button" aria-label="Cerrar imagen ampliada">
+            ×
+        </button>
+
+
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-image-wrap">
+                <img id="galleryModalFrame" src="img/hud/radar-ring-green.png" alt="" aria-hidden="true">
+
+                <img id="galleryModalImage" src="" alt="">
+            </div>
+
+            <p class="gallery-modal-label">M.A.T.E.O. // ARCHIVE DATA</p>
+            <h2 id="galleryModalTitle">ARCHIVE_001</h2>
+            <p class="gallery-modal-counter" id="galleryModalCounter">01 / 20</p>
+        </div>
+    </div>
+
+    <script src="js/galeria.js"></script>
+    <script src="js/menu-navegacion.js"></script>
+</body>
+
+</html>

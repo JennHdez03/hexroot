@@ -1,0 +1,49 @@
+
+/* HEX ROOT — BASE RESPONSIVE DE EFECTOS */
+
+canvas {
+    max-width: 100%;
+}
+
+/* Los efectos decorativos no bloquean botones */
+canvas[aria-hidden="true"],
+.characters-grain,
+.vault-canvas {
+    pointer-events: none;
+}
+
+/* Evitar desbordamientos horizontales accidentales */
+img,
+video {
+    max-width: 100%;
+}
+
+/* Permitir interacción táctil en controles */
+button,
+a,
+[role="button"] {
+    touch-action: manipulation;
+}
+
+/* En dispositivos táctiles, no depender del hover */
+@media (hover: none) {
+    .hover-effect,
+    .glitch-hover {
+        animation-play-state: running;
+    }
+}
+
+/* Mantener los efectos legibles en pantallas pequeñas */
+@media (max-width: 768px) {
+    canvas {
+        max-width: 100%;
+    }
+}
+
+/* Solo reducir animaciones si el usuario lo solicita */
+@media (prefers-reduced-motion: reduce) {
+    html.reduced-motion .decorative-animation {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
